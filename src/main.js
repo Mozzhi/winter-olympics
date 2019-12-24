@@ -5,6 +5,18 @@ import App from './App'
 import router from './router'
 import { Api } from './api'
 import 'wc-messagebox/style.css'
+import 'swiper/dist/css/swiper.css'
+// 动态计算根字号
+function setRem() {
+  let rem = document.documentElement.clientWidth / 10;
+  rem = rem > 192 ? 192 : (rem < 120 ? 120 : rem);
+  document.documentElement.style.fontSize = rem + "px";
+}
+document.body.style.fontSize = "14px";
+setRem();
+window.addEventListener("resize", function () {
+  setRem();
+});
 
 Vue.prototype.$http = new Api();
 

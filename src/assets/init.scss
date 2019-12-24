@@ -31,14 +31,25 @@ vertical-align: top;
 body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,input,textarea,select,p,dl,dt,dd,a,img,button,form,table,th,tr,td,tbody,article,
 aside, details,figcaption,figure,footer,header,hgroup, menu,nav,section{margin:0; padding:0; border:none;box-sizing: border-box;}
 body{font-family:"Microsoft Yahei",Tahoma,"Lucida Grande",Verdana,STXihei,hei;background:#fff;height: 100%;overflow:auto;font-size:14px;}
-body,html{overflow-x:hidden;}
+body,html{overflow-x:hidden;height: 100%;}
 em,i{font-style:normal;}
 strong{font-weight: normal;}
 .clearfix:after{content:""; display:block; visibility:hidden; height:0; clear:both;}
 .clearfix{zoom:1;}
-a{text-decoration:none; color:#333; font-family:Microsoft YaHei,Tahoma,Arial,sans-serif;}
+a{text-decoration:none; color:#303030; font-family:Microsoft YaHei,Tahoma,Arial,sans-serif;}
 a:hover{ text-decoration:none;}
 ul,ol{list-style:none;}
 h1, h2, h3, h4, h5, h6{ font-size:100%; font-family: Microsoft YaHei;}
 img{border: none;width: 100%;}
 html{overflow-x:hidden;}
+#app {
+  width: 100%;
+  /*height: 100%;*/
+  background: url("../../static/images/banner.png") center top no-repeat, url("../../static/images/hose.png") center bottom no-repeat;
+  background-size: 100% auto;
+}
+.copy-right {
+  text-align: center;
+  font-size: 16px;
+  padding: 2.2968rem 0 0.29166rem;
+}

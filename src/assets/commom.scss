@@ -1,0 +1,38 @@
+$theme-color: #3775BD;
+$font-g: #969696;
+$more-btn-color: #005BAC;
+$normal-bg: #E4F0FF;
+$date-color: #C2C2C2;
+$img-base: '../../../static/images/';
+$img-base1: '../../static/images/';
+@mixin base-bg {
+  background: {
+    repeat: no-repeat;
+    size: cover;
+    position: center;
+  };
+}
+
+@mixin pseudo-class {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.wrapper{width: 1200px;margin: 0 auto;}
+.inline-box {
+  display: inline-block;
+  vertical-align: bottom;
+}
+.look-more {
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  @include base-bg;
+  display: block;
+  color: #fff;
+  background-size: 132px 30px;
+  font-size: 14px;
+}

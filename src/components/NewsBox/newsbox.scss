@@ -1,0 +1,62 @@
+.news-box {
+  .new-center {
+    width: 255px;
+    height: 360px;
+    @include base-bg;
+    background-image: url("#{$img-base}news-box.png");
+    position: fixed;
+    top: 566px;
+    left: 64px;
+    padding: 40px;
+    font-size: 14px;
+    .news-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: $theme-color;
+      text-align: center;
+      padding: 15px 0 20px;
+    }
+    .list {
+      height: 60px;
+      overflow: hidden;
+      line-height: 30px;
+      margin-bottom: 15px;
+    }
+    .look-more {
+      @extend .look-more;
+      background-image: url("#{$img-base}more.png");
+      margin-top: 20px;
+    }
+  }
+  .logout {
+    position: fixed;
+    right: 240px;
+    top: 257px;
+    width: 80px;
+    overflow: hidden;
+    border-radius: 4px;
+    background: rgba(55,117,189,0.7);
+    .side-btn {
+      border-bottom: 1px solid #fff;
+      height: 110px;
+      padding-top: 70px;
+      @include base-bg;
+      background-size: 38px;
+      background-image: url("#{$img-base}logout.png");
+      background-position: center 23px;
+      font-size: 14px;
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+      &:last-child{
+        border-bottom: none;
+      }
+      &.manage-btn {
+        background-image: url("#{$img-base}manage.png");
+      }
+      &.wechat-btn {
+        background-image: url("#{$img-base}wechat-pg.png");
+      }
+    }
+  }
+}

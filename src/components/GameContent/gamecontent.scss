@@ -1,0 +1,45 @@
+.game-content {
+  width: 1140px;
+  min-height: 278px;
+  background: {
+    repeat: no-repeat;
+    size: 100% 100%;
+    image: url("#{$img-base}game-border.png");
+  };
+  margin-top: 15px;
+  .inline-box {
+    vertical-align: top;
+  }
+  .calendar-box {
+    width: 550px;
+  }
+  .game-lists {
+    float: right;
+    padding: 25px 59px 25px 20px;
+    width: 570px;
+    font-size: 16px;
+    .game-list {
+      line-height: 45px;
+      .game-title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 360px;
+        display: inline-block;
+        vertical-align: middle;
+        float: left;
+        .game-icon {
+          width: 8px;
+          height: 16px;
+          vertical-align: middle;
+          margin: -4px 10px 0 0;
+        }
+      }
+      .date {
+        float: right;
+        color: $date-color;
+        vertical-align: middle;
+      }
+    }
+  }
+}
