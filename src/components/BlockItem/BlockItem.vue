@@ -1,0 +1,72 @@
+<template>
+	<div class="block-item wrapper">
+	  <div class="block-header">
+      <div class="block-name"><img class="img-icon" src="../../../static/images/block-icon.png" alt="">{{blockName}}</div>
+      <div class="header-center"><slot name="headCenter"></slot></div>
+      <a href="#" class="more-entry" :class="moreClass">查看更多 <img src="../../../static/images/more-icon.png" alt="" class="more-icon"></a>
+    </div>
+    <slot name="blockContent"></slot>
+	</div>
+</template>
+<script>
+	export default {
+		name: 'BlockItem',
+    props: ['blockName', 'moreClass'],
+		data() {
+			return {}
+		},
+    mounted () {
+		  console.log(this)
+    }
+	}
+</script>
+<style lang="scss" scoped>
+  @import '../../assets/commom';
+.block-item {
+  background: #fff;
+  padding: 0 30px 30px;
+  margin-top: 30px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  .block-header {
+    height: 80px;
+    padding: 0 170px 0 200px;
+    position: relative;
+    line-height: 80px;
+    .block-name {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 80px;
+      /*width: 200px;*/
+      color: $theme-color;
+      font-weight: 700;
+      font-size: 30px;
+      background: {
+        repeat: no-repeat;
+        size: 60px 60px;
+        position: center center;
+        image: url("#{$img-base}namebg.png");
+      };
+      .img-icon{
+        width: 22px;
+        height: 22px;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+    }
+    .more-entry {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 80px;
+      color: $more-btn-color;
+      font-size: 14px;
+      .more-icon {
+        width: 34px;
+        height: 34px;vertical-align: middle;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+</style>

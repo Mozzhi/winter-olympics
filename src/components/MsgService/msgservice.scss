@@ -1,0 +1,109 @@
+.msg-service {
+  margin-top: 283px;
+  .msg-left {
+    width: 720px;
+    height: 445px;
+    padding-top: 40px;
+    float: left;
+    .new-banner {
+      background: #fff;
+      width: 720px;
+      height: 405px;
+      overflow: hidden;
+      img {
+        width: 720px;
+        height: 405px;
+      }
+      .swiper-pagination-bullet {
+        width: 14px;
+        height: 14px;
+        @include base-bg;
+        background-image: url("#{$img-base}1.png");
+      }
+    }
+  }
+  .msg-right {
+    width: 470px;
+    float: right;
+    .wish {
+      width: 470px;
+      height: 40px;
+      background: rgba(55,117,189,0.7);
+      color: #fff;
+      line-height: 40px;
+      padding: 0 15px 0 9px;
+    }
+    .wish-run {
+      width: 380px;
+      overflow: hidden;
+      position: relative;
+      height: 40px;
+      .run-text {
+        white-space: nowrap;
+        position: absolute;
+        left: 0;
+        animation: wishRun 10s linear infinite;
+        font-size: 14px;
+      }
+    }
+    .news-content {
+      background: url("#{$img-base}top-border.png") center top no-repeat,
+      url("#{$img-base}bottom-border.png") center bottom no-repeat;
+      background-size: 470px auto;
+      background-color: #fff;
+      padding: 18px 0;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+      .line-item {
+        padding: 0 30px 5px;
+        .line-title {
+          font-size: 22px;
+          width: 410px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          padding: 9px 0 0px;
+          font-weight: 700;
+        }
+        .line-detail {
+          line-height: 30px;
+          height: 60px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          color: $font-g;
+          font-size: 14px;
+        }
+      }
+      .topline-list {
+        padding: 0 30px;
+        .lines {
+          padding-left: 15px;
+          width: 410px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          position: relative;
+          line-height: 34px;
+          font-size: 16px;
+          &:after {
+            @include pseudo-class;
+            width: 3px;/*no*/
+            height: 3px;/*no*/
+            background: $theme-color;
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes wishRun {
+  0% {
+    transform: translateX(390px);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
