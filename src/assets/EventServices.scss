@@ -1,0 +1,129 @@
+.tab-text-hover {
+  position: relative;
+  &:before {
+    @include pseudo-class;
+    width: 139px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include base-bg;
+    background-image: url("#{$img-base1}something.png");
+    background-size: 139px auto;
+    height: 12px;
+  }
+}
+.home {
+  .game-tabs {
+    text-align: center;
+    .game-tab {
+      display: inline-block;
+      height: 36px;
+      line-height: 36px;
+      color: $theme-color;
+      text-align: center;
+      box-sizing: border-box;
+      vertical-align: middle;
+      cursor: pointer;
+      
+      &.game-date {
+        width: 195px;
+        @include base-bg;
+        background-image: url("#{$img-base1}game-l.png");
+        background-size: 195px 36px;
+        padding-left: 30px;
+        margin-right: -3px;
+        &:hover {
+          background-image: url("#{$img-base1}game-l-hover.png");
+          color: #fff;
+          .tab-text{
+            @extend .tab-text-hover;
+          }
+        }
+      }
+      &.game-house {
+        width: 163px;
+        background: $normal-bg;
+        &:hover {
+          background: $theme-color;
+          color: #fff;
+          .tab-text{
+            @extend .tab-text-hover;
+          }
+        }
+      }
+      &.games {
+        @extend .game-date;
+        background-image: url("#{$img-base1}game-r.png");
+        padding-left: 0;
+        padding-right: 30px;
+        margin-left: -3px;
+        &:hover {
+          background-image: url("#{$img-base1}game-r-hove.png");
+          color: #fff;
+          .tab-text{
+            @extend .tab-text-hover;
+          }
+        }
+      }
+    }
+  }
+  .interview-date-bar {
+    text-align: center;
+    margin-top: 20px;
+    .inline-box {
+      vertical-align: middle;
+    }
+    .contr-btn {
+      width: 25px;
+      height: 30px;
+      @include base-bg;
+      cursor: pointer;
+      background-image: url("#{$img-base1}right-icon.png");
+      &.next-btn {
+        background-image: url("#{$img-base1}left-icon.png");
+      }
+    }
+    .date-lists {
+      width: 500px;
+      overflow: hidden;
+      text-align: left;
+      height: 100px;
+      padding-bottom: 30px;
+      margin: 0 20px;
+      .dates {
+        display: inline-block;
+        width: 100px;
+        text-align: center;
+        border-bottom: 1px solid $theme-color;
+        position: relative;
+        height: 70px;
+        line-height: 70px;
+        cursor: pointer;
+        &:before, &:after {
+          @include pseudo-class;
+          width: 10px;/*no*/
+          height: 10px;/*no*/
+          border-radius: 50%;
+          background: $theme-color;
+          bottom: -5px;/*no*/
+          top: auto;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        &.active {
+          color: $theme-color;
+          font-weight: 700;
+          &:after {
+            width: 20px;/*no*/
+            height: 20px;/*no*/
+            @include base-bg;
+            background-image: url("#{$img-base1}interview.png");
+            bottom: -9px;/*no*/
+          }
+        }
+      }
+    }
+  }
+  .city-view {
+    margin-top: 30px;
+  }
+}

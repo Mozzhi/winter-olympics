@@ -43,14 +43,13 @@
 	.login {
 		height: 100vh;
 		background: url(../../static/images/login/bg.png);
-		background-size: cover;
-		padding-top: 40px;
+		background-size:cover;
+		padding-top: 51px;
     	box-sizing: border-box;
     	.lg{
     		height: 146px;
     		width: 1000px;
     		margin: 0 auto;
-    		margin-top: 81px;
     		margin-bottom: 60px;
     		display: block;
     	}
@@ -61,7 +60,7 @@
 			border-radius: 4px;
 			box-shadow: 0px 0px 20px #dadada;
 			margin: 0 auto;
-			background: url(../../static/images/login/t.png) top no-repeat,url(../../static/images/login/b.png) bottom no-repeat;
+			background: url(../../static/images/login/t.png) top no-repeat,url(../../static/images/login/b.png) bottom no-repeat #fffef7;;
 			margin-bottom: 34px;
 			display: flex;
 			justify-content: center;

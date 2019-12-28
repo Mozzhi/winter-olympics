@@ -19,5 +19,10 @@ export default new Router({
 			},
 			component: (resolve) => require(['@/pages/Login.vue'], resolve)
     },
+    {
+			path: '/EventServices',
+			name:'赛事服务',
+			component: (resolve) => require(['@/pages/EventServices.vue'], resolve)
+    },
   ]
 })
