@@ -41,11 +41,8 @@
 		data() {
 			return {
         swiperOption: {
-<<<<<<< HEAD
           autoplay: true,
           loop: true,
-=======
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
           pagination: {
             el: '.swiper-pagination'
           }
@@ -65,10 +62,6 @@
       // current swiper instance
       // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
       console.log('this is current swiper instance object', this.swiper)
-<<<<<<< HEAD
-=======
-      this.swiper.slideTo(3, 1000, false)
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
     }
 	}
 </script>

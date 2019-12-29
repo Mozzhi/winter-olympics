@@ -14,15 +14,12 @@
         width: 720px;
         height: 405px;
       }
-<<<<<<< HEAD
-=======
       .swiper-pagination-bullet {
         width: 14px;
         height: 14px;
         @include base-bg;
         background-image: url("#{$img-base}1.png");
       }
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
     }
   }
   .msg-right {

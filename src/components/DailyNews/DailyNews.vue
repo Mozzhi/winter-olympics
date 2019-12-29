@@ -16,11 +16,8 @@
 </template>
 <script>
 	export default {
-<<<<<<< HEAD
 		name: 'DailyNews',
-=======
 		name: '',
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
 		data() {
 			return {}
 		}
@@ -30,10 +27,7 @@
   @import '../../assets/commom';
   @import '../GameContent/gamecontent';
   .game-content {
-<<<<<<< HEAD
     margin-top: 5px;
-=======
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
     min-height: 0;
     background: {
       size: 1140px 14px;

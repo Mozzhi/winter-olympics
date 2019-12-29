@@ -1,7 +1,6 @@
 <template>
 	<div class="home">
 	    <header-bar active="home"></header-bar>
-	    <news-box></news-box>
 	     <div class="centerMain wrapper">
 	     	<!--面包屑-->
 	     	<div class="Breadcrumb">5555</div>
@@ -13,7 +12,6 @@
 <script>
   import HeaderBar from '../components/HeaderBar/HeaderBar.vue';
   import Footer from '../components/Footer/Footer.vue';
-  import NewsBox from '../components/NewsBox/NewsBox.vue';
   import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
 	export default {
 		name: 'Home',
@@ -23,16 +21,15 @@
       }
 		},
     components: {
-	  HeaderBar,
-	  Footer,
-      NewsBox,
+	    HeaderBar,
+	    Footer,
       SubpageTitle
     },
     created() {
 
     },
     mounted() {
-     
+    
     },
     methods: {
 		

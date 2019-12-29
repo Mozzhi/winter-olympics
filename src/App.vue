@@ -1,18 +1,22 @@
 <template>
   <div id="app">
+    <news-box v-if="$router.currentRoute.name !== 'Login'"></news-box>
     <router-view/>
-<<<<<<< HEAD
-    <div class="copy-right">版权©中华人民共和国第十四届冬季运动会组织委员会</div>
-=======
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
   </div>
 </template>
 
 <script>
+  import NewsBox from './components/NewsBox/NewsBox'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    NewsBox
+  },
+  created() {
+    console.log(this.$router.currentRoute.name)
+  }
 }
 </script>
 <style>
-  @import "assets/init.scss";
+  @import "assets/init.css";
 </style>

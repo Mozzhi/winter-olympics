@@ -1,13 +1,8 @@
 <template>
 	<div class="home">
 	  <header-bar active="home"></header-bar>
-    <news-box></news-box>
     <msg-service></msg-service>
-<<<<<<< HEAD
     <block-item block-name="赛事服务">
-=======
-    <block-item block-name="赛事服务" more-class="none-bg">
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
       <div class="game-tabs" slot="headCenter">
         <div class="game-tab game-date"><span class="tab-text">赛事日程</span></div>
         <div class="game-tab game-house"><span class="tab-text">赛事场馆</span></div>
@@ -17,24 +12,17 @@
         <game-content></game-content>
       </div>
     </block-item>
-<<<<<<< HEAD
     <block-item block-name="每日新闻">
       <div class="venue" slot="headCenter">
         <swiper :options="swiperOption" ref="mySwiper">
           <!-- slides -->
           <swiper-slide v-for="i in 4"  :key="i"><img src="../../static/images/training-center.png" alt=""></swiper-slide>
         </swiper>
-=======
-    <block-item block-name="每日新闻" more-class="none-bg">
-      <div class="venue" slot="headCenter">
-      
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
       </div>
       <div class="daily" slot="blockContent">
         <daily-news></daily-news>
       </div>
     </block-item>
-<<<<<<< HEAD
     <div class="wrapper clearfix">
       <div class="inline-box jalousie">
         <div class="inline-box jalousie-per"
@@ -102,13 +90,7 @@
         <swiper-slide v-for="i in 3"  :key="i"><img src="../../static/images/snow-forest.png" alt=""></swiper-slide>
       </swiper>
     </div>
-    <block-item block-name="城市采访线">
-=======
-    <div class="hulun-buir">
-      <img src="../../static/images/snow-forest.png" alt="">
-    </div>
     <block-item block-name="城市采访线" more-class="none-bg">
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
       <div class="interview-date-bar" slot="headCenter">
         <span class="inline-box contr-btn"></span>
         <div class="inline-box date-lists" ref="dateScroll">
@@ -122,26 +104,18 @@
         <city-interview></city-interview>
       </div>
     </block-item>
-<<<<<<< HEAD
-=======
     <Footer></Footer>
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
 	</div>
 </template>
 <script>
   import HeaderBar from '../components/HeaderBar/HeaderBar.vue';
-<<<<<<< HEAD
-=======
   import Footer from '../components/Footer/Footer.vue';
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
-  import NewsBox from '../components/NewsBox/NewsBox.vue';
   import MsgService from '../components/MsgService/MsgService.vue';
   import BlockItem from '../components/BlockItem/BlockItem';
   import GameContent from '../components/GameContent/GameContent';
   import DailyNews from '../components/DailyNews/DailyNews';
   import CityInterview from '../components/CityInterview/CityInterview';
   import Bscroll from 'better-scroll';
-<<<<<<< HEAD
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
   let jalousie = [
     {index: '一', title: "即时引语"},
@@ -151,13 +125,10 @@
     {index: '五', title: "比赛赛况"},
     {index: '六', title: "背景资料"},
   ]
-=======
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
 	export default {
 		name: 'Home',
 		data() {
 			return {
-<<<<<<< HEAD
         swiperOption: {
           autoplay: true,
           loop: true
@@ -175,26 +146,15 @@
 		},
     components: {
 		  HeaderBar,
-=======
-			  
-      }
-		},
-    components: {
-	  HeaderBar,
-	  Footer,
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
-      NewsBox,
+	    Footer,
       MsgService,
       BlockItem,
       GameContent,
       DailyNews,
-<<<<<<< HEAD
       CityInterview,
       swiper,
-      swiperSlide
-=======
-      CityInterview
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
+      swiperSlide,
+      CityInterview,
     },
     created() {
 		  this.$http.getTags()
@@ -220,15 +180,12 @@
             this.scroll.refresh();
           }
         })
-<<<<<<< HEAD
       },
       stopSwiper () {
 		    this.$refs.imgSwiper.swiper.autoplay.stop();
       },
       startSwiper () {
 		    this.$refs.imgSwiper.swiper.autoplay.start();
-=======
->>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
       }
     }
   }
