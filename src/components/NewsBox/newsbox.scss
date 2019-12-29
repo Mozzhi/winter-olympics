@@ -1,4 +1,8 @@
 .news-box {
+  display: none;
+  &.box-show {
+    display: block;
+  }
   .new-center {
     width: 255px;
     height: 360px;

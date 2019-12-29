@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <news-box v-if="$route.path !== '/Login'"></news-box>
+    <news-box></news-box>
     <router-view/>
   </div>
 </template>
@@ -11,9 +11,6 @@ export default {
   name: 'App',
   components: {
     NewsBox
-  },
-  created() {
-    console.log(this.$route)
   }
 }
 </script>

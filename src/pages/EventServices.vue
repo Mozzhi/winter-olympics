@@ -14,7 +14,7 @@
   import Footer from '../components/Footer/Footer.vue';
   import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
 	export default {
-		name: 'Home',
+		name: 'EventServices',
 		data() {
 			return {
 			  

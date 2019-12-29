@@ -1,5 +1,16 @@
 .msg-service {
   margin-top: 283px;
+  position: relative;
+  .meet-in-neimoongu {
+    position: absolute;
+    width: 693px;
+    height: 111px;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url("#{$img-base}meet-neimenggu.png") center no-repeat;
+    background-size: 693px 111px;
+  }
   .msg-left {
     width: 720px;
     height: 445px;
