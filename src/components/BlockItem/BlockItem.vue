@@ -1,5 +1,6 @@
 <template>
 	<div class="block-item wrapper">
+<<<<<<< HEAD
     <div class="block-header-out">
       <div class="block-header">
         <div class="block-name"><img class="img-icon" src="../../../static/images/block-icon.png" alt="">{{blockName}}</div>
@@ -7,6 +8,12 @@
         <a href="" class="more-entry look-more" v-if="moreClass">查看更多></a>
         <a href="#" class="more-entry" v-else>查看更多 <img src="../../../static/images/more-icon.png" alt="" class="more-icon"></a>
       </div>
+=======
+	  <div class="block-header">
+      <div class="block-name"><img class="img-icon" src="../../../static/images/block-icon.png" alt="">{{blockName}}</div>
+      <div class="header-center"><slot name="headCenter"></slot></div>
+      <a href="#" class="more-entry" :class="moreClass">查看更多 <img src="../../../static/images/more-icon.png" alt="" class="more-icon"></a>
+>>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
     </div>
     <slot name="blockContent"></slot>
 	</div>
@@ -69,6 +76,7 @@
         height: 34px;vertical-align: middle;
         margin-left: 10px;
       }
+<<<<<<< HEAD
       &.look-more {
         @extend .look-more;
         background-image: url("#{$img-base}more.png");
@@ -86,6 +94,8 @@
     padding: 0;
     .block-header-out {
       padding: 0 30px;
+=======
+>>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
     }
   }
 }

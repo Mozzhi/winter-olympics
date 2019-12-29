@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 @mixin td-hover {
   color: #fff;
   border-radius: 50%;
   background: $theme-color;
 }
+=======
+>>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
 .game-content {
   width: 1140px;
   min-height: 278px;
@@ -17,6 +20,7 @@
   }
   .calendar-box {
     width: 550px;
+<<<<<<< HEAD
     text-align: center;
     .feb {
       width: 250px;
@@ -63,6 +67,8 @@
         }
       }
     }
+=======
+>>>>>>> cf8acaf34946d01af07f72c1242d8c69350ee8e1
   }
   .game-lists {
     float: right;
