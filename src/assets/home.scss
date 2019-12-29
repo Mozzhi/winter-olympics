@@ -66,6 +66,58 @@
       }
     }
   }
+  .venue {
+    width: 754px;
+  }
+  .splendid {
+    @include base-bg;
+    background-image: url("#{$img-base1}perfect-border.png");
+    height: 350px;
+    background-size: 100% 100%;
+    padding: 58px 30px;
+    .pic-show {
+      .img-out {
+        width: 368px;
+        display: inline-block;
+        margin-right: 18px;
+        padding-bottom: 35px;
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+      .pic-show-box {
+        height: 207px;
+        width: 368px;
+        overflow: hidden;
+        cursor: pointer;
+        &:hover {
+          img{
+            transition: all 0.5s linear;
+            transform: scale(1.5);
+          }
+        }
+      }
+      .video-show {
+        position: relative;
+        .play-icon {
+          position: absolute;
+          width: 80px;
+          height: 66px;
+          background: url("#{$img-base1}play.png") center center no-repeat;
+          background-size: 80px 66px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 10;
+        }
+      }
+      .img-introduce {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+    }
+  }
   .interview-date-bar {
     text-align: center;
     margin-top: 20px;
@@ -125,5 +177,132 @@
   }
   .city-view {
     margin-top: 30px;
+  }
+  .opening {
+    float: right;
+    .wrapper {
+      width: 470px;
+    }
+  }
+  .game-content {
+    padding-top: 30px;
+    background: {
+      repeat: no-repeat;
+      size: 100% 14px;
+      image: url("#{$img-base1}devide.png");
+    };
+    .news-lists {
+      padding-left: 15px;
+      width: 379px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+      line-height: 34px;
+      font-size: 16px;
+      &:after {
+        @include pseudo-class;
+        width: 3px;/*no*/
+        height: 3px;/*no*/
+        background: $theme-color;
+        left: 0;
+      }
+    }
+  }
+  .jalousie {
+    width: 720px;
+    background: #fff;
+    margin-top: 30px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    height: 350px;
+    .jalousie-per {
+      position: relative;
+      vertical-align: top;
+      width: 56px;
+      overflow: hidden;
+      height: 350px;
+      transition: all 0.5s linear;
+      .out-title {
+        position: absolute;
+        width: 56px;
+        height: 350px;
+        top: 0;
+        left: 0;
+        @include base-bg;
+        background-image: url("#{$img-base1}kuang.png");
+        padding-top: 60px;
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+        color: $theme-color;
+        span {
+          padding: 0 17px;
+          font-size: 18px;
+          display: inline-block;
+        }
+      }
+      .which-one {
+        position: absolute;
+        width: 51px;
+        height: 77px;
+        @include base-bg;
+        background-image: url("#{$img-base1}which-one.png");
+        background-size: 51px 77px;
+        line-height: 55px;
+        text-align: center;
+        top: 0;
+        left: 0;
+        font-size: 40px;
+        color: #fff;
+        display: none;
+      }
+      .jalousie-content {
+        padding: 0 35px 0 44px;
+        .jalousie-title {
+          width: 178px;
+          height: 46px;
+          @include base-bg;
+          background-image: url("#{$img-base1}title-border.png");
+          background-size: 178px 46px;
+          line-height: 46px;
+          text-align: center;
+          color: $theme-color;
+          font-size: 24px;
+          font-weight: bold;
+          margin: 20px auto;
+        }
+        .jalousie-detail {
+          height: 180px;
+          .ellipsis {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 360px;
+            line-height: 36px;
+            font-size: 16px;
+          }
+        }
+      }
+      .look-more {
+        @extend .look-more;
+        background-image: url("#{$img-base1}more.png");
+        margin-top: 20px;
+        &:hover {
+          background-image: url("#{$img-base1}mores.jpeg");
+        }
+      }
+      &.hover-show {
+        width: 440px;
+        .out-title {
+          display: none;
+        }
+        .which-one {
+          display: block;
+        }
+      }
+    }
+  }
+  .hulun-buir {
+    margin-top: 40px;
   }
 }

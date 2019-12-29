@@ -16,7 +16,7 @@
 </template>
 <script>
 	export default {
-		name: '',
+		name: 'DailyNews',
 		data() {
 			return {}
 		}
@@ -26,6 +26,7 @@
   @import '../../assets/commom';
   @import '../GameContent/gamecontent';
   .game-content {
+    margin-top: 5px;
     min-height: 0;
     background: {
       size: 1140px 14px;

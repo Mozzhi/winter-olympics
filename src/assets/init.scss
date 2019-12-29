@@ -53,3 +53,25 @@ html{overflow-x:hidden;}
   font-size: 16px;
   padding: 2.2968rem 0 0.29166rem;
 }
+.swiper-pagination-bullet {
+  width: 20px;
+  height: 20px;
+  background: url("../../static/images/1.png") center center no-repeat;
+  background-size: 0.104167rem 0.104167rem;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-image: url("../../static/images/2.png");
+}
+.swiper-pagination.swiper-pagination-bullets {
+  bottom: 0px;
+}
+.new-banner .swiper-pagination.swiper-pagination-bullets{
+  text-align: right;
+  padding-bottom: 20px;
+  padding-right: 20px;
+}
+.new-banner .swiper-pagination-bullet{
+  background-size: 0.07291rem 0.07291rem;
+  width: 0.07291rem;
+  height: 0.07291rem;
+}

@@ -1,3 +1,8 @@
+@mixin td-hover {
+  color: #fff;
+  border-radius: 50%;
+  background: $theme-color;
+}
 .game-content {
   width: 1140px;
   min-height: 278px;
@@ -12,6 +17,52 @@
   }
   .calendar-box {
     width: 550px;
+    text-align: center;
+    .feb {
+      width: 250px;
+      font-size: 16px;
+      color: $theme-color;
+      letter-spacing: 4px;
+      font-weight: bold;
+      margin: 25px auto 15px;
+      height: 30px;
+      line-height: 30px;
+      background: url("#{$img-base}563left.png") left center no-repeat,
+                  url("#{$img-base}563right.png") right center no-repeat;
+      background-size: 26px 30px;
+      span {
+        font-size: 24px;
+      }
+    }
+    .table {
+      margin: 0 auto;
+      line-height: 30px;
+    }
+    th{
+      width: 64px;
+      color: $theme-color;
+      font-size: 16px;
+    }
+    td{
+      font-size: 16px;
+      cursor: pointer;
+      .inner-date {
+        width: 30px;
+        height: 30px;
+        margin: 0 auto;
+      }
+      &.active{
+        .inner-date{
+          @include td-hover;
+        }
+        
+      }
+      &:hover {
+        .inner-date {
+          @include td-hover;
+        }
+      }
+    }
   }
   .game-lists {
     float: right;

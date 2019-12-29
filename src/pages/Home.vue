@@ -3,7 +3,7 @@
 	  <header-bar active="home"></header-bar>
     <news-box></news-box>
     <msg-service></msg-service>
-    <block-item block-name="赛事服务" more-class="none-bg">
+    <block-item block-name="赛事服务">
       <div class="game-tabs" slot="headCenter">
         <div class="game-tab game-date"><span class="tab-text">赛事日程</span></div>
         <div class="game-tab game-house"><span class="tab-text">赛事场馆</span></div>
@@ -13,18 +13,85 @@
         <game-content></game-content>
       </div>
     </block-item>
-    <block-item block-name="每日新闻" more-class="none-bg">
+    <block-item block-name="每日新闻">
       <div class="venue" slot="headCenter">
-      
+        <swiper :options="swiperOption" ref="mySwiper">
+          <!-- slides -->
+          <swiper-slide v-for="i in 4"  :key="i"><img src="../../static/images/training-center.png" alt=""></swiper-slide>
+        </swiper>
       </div>
       <div class="daily" slot="blockContent">
         <daily-news></daily-news>
       </div>
     </block-item>
-    <div class="hulun-buir">
-      <img src="../../static/images/snow-forest.png" alt="">
+    <div class="wrapper clearfix">
+      <div class="inline-box jalousie">
+        <div class="inline-box jalousie-per"
+             v-for="(item, index) in jalousieList"
+             :class="{'hover-show': index == jalousieIndex}" @mouseenter.stop="jalousieIndex = index">
+          <div class="out-title">{{item.index}}<span>{{item.title}}</span></div>
+          <div class="which-one">{{item.index}}</div>
+          <div class="jalousie-content">
+            <div class="jalousie-title">即时引语</div>
+            <div class="jalousie-detail">
+              <div class="ellipsis" v-for="i in 5"><a href="">国际雪联滑轮世界杯圆满收官 中国选手王强夺冠...</a></div>
+            </div>
+            <a href="" class="look-more">查看更多></a>
+          </div>
+        </div>
+      </div>
+      <div class="inline-box opening">
+        <block-item block-name="开闭幕式">
+          <div class="game-content" slot="blockContent">
+            <div class="news-lists" v-for="i in 5">体育总局竞体司关于调整第十四届全国冬季运动会冰...</div>
+          </div>
+        </block-item>
+      </div>
     </div>
-    <block-item block-name="城市采访线" more-class="none-bg">
+    <block-item class="splendid-box" block-name="精彩图片" more-class="none-bg">
+      <div class="splendid" slot="blockContent">
+        <div class="pic-show" @mouseenter="stopSwiper" @mouseleave="startSwiper">
+          <swiper :options="imgSwiperOption" ref="imgSwiper">
+            <!-- slides -->
+            <swiper-slide v-for="i in 2" :key="i">
+              <div class="img-out" v-for="i in 3">
+                <div class="pic-show-box">
+                  <img src="http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg" alt="">
+                </div>
+                <div class="img-introduce">“十四冬”火炬传递现场——包头站</div>
+              </div>
+            </swiper-slide>
+            <div class="swiper-pagination"  slot="pagination"></div>
+          </swiper>
+        </div>
+      </div>
+    </block-item>
+    <block-item class="splendid-box" block-name="精彩视频" more-class="none-bg">
+      <div class="splendid" slot="blockContent">
+        <div class="pic-show">
+          <swiper :options="imgSwiperOption" ref="videoSwiper">
+            <!-- slides -->
+            <swiper-slide v-for="i in 2" :key="i">
+              <div class="img-out" v-for="i in 3">
+                <div class="pic-show-box video-show">
+                  <span class="play-icon"></span>
+                  <img src="http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg" alt="">
+                </div>
+                <div class="img-introduce">“十四冬”火炬传递现场——包头站</div>
+              </div>
+            </swiper-slide>
+            <div class="swiper-pagination"  slot="pagination"></div>
+          </swiper>
+        </div>
+      </div>
+    </block-item>
+    <div class="hulun-buir">
+      <swiper :options="swiperOption" ref="hulunSwiper">
+        <!-- slides -->
+        <swiper-slide v-for="i in 3"  :key="i"><img src="../../static/images/snow-forest.png" alt=""></swiper-slide>
+      </swiper>
+    </div>
+    <block-item block-name="城市采访线">
       <div class="interview-date-bar" slot="headCenter">
         <span class="inline-box contr-btn"></span>
         <div class="inline-box date-lists" ref="dateScroll">
@@ -49,11 +116,32 @@
   import DailyNews from '../components/DailyNews/DailyNews';
   import CityInterview from '../components/CityInterview/CityInterview';
   import Bscroll from 'better-scroll';
+  import { swiper, swiperSlide } from 'vue-awesome-swiper';
+  let jalousie = [
+    {index: '一', title: "即时引语"},
+    {index: '二', title: "发布会摘要"},
+    {index: '三', title: "综合新闻"},
+    {index: '四', title: "赛事前瞻"},
+    {index: '五', title: "比赛赛况"},
+    {index: '六', title: "背景资料"},
+  ]
 	export default {
 		name: 'Home',
 		data() {
 			return {
-			  
+        swiperOption: {
+          autoplay: true,
+          loop: true
+        },
+        imgSwiperOption: {
+          autoplay: true,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination'
+          }
+        },
+        jalousieList: jalousie,
+        jalousieIndex: 0,
       }
 		},
     components: {
@@ -63,7 +151,9 @@
       BlockItem,
       GameContent,
       DailyNews,
-      CityInterview
+      CityInterview,
+      swiper,
+      swiperSlide
     },
     created() {
 		  this.$http.getTags()
@@ -89,6 +179,12 @@
             this.scroll.refresh();
           }
         })
+      },
+      stopSwiper () {
+		    this.$refs.imgSwiper.swiper.autoplay.stop();
+      },
+      startSwiper () {
+		    this.$refs.imgSwiper.swiper.autoplay.start();
       }
     }
   }

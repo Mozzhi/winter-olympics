@@ -9,6 +9,7 @@
     left: 64px;
     padding: 40px;
     font-size: 14px;
+    z-index: 999;
     .news-title {
       font-size: 20px;
       font-weight: 700;
@@ -26,6 +27,9 @@
       @extend .look-more;
       background-image: url("#{$img-base}more.png");
       margin-top: 20px;
+      &:hover {
+        background-image: url("#{$img-base}mores.jpeg");
+      }
     }
   }
   .logout {
@@ -36,6 +40,7 @@
     overflow: hidden;
     border-radius: 4px;
     background: rgba(55,117,189,0.7);
+    z-index: 999;
     .side-btn {
       border-bottom: 1px solid #fff;
       height: 110px;
