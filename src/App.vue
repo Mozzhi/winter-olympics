@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <news-box v-if="$route.path !== '/Login'"></news-box>
+    <news-box v-if="$route.path !== '/login'"></news-box>
     <router-view/>
   </div>
 </template>
