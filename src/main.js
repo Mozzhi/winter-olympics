@@ -19,6 +19,9 @@ router.beforeEach((to, from, next) => {
 	iView.LoadingBar.start();
 	//  console.log(9999)
 	//  console.log(getToken())
+  if(to.meta.title) {
+    document.title = to.meta.title;
+  }
 	next();
 	//  if(getToken()==undefined || getToken()==""){
 	//  	next('/login');

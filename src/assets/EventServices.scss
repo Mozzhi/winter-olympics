@@ -12,7 +12,24 @@
         padding-bottom: 20px;
         padding-top: 20px;
         overflow: hidden;
-        
+        &:hover .divImg{
+             box-shadow: 0px 0px 20px #dadada;
+        }
+        &:hover .title{
+              font-size: 20px;
+                font-weight: normal;
+                font-stretch: normal;
+                letter-spacing: 0px;
+                color: #3775bd;
+                cursor: pointer;
+                height: 60px;
+                line-height:60px;   
+                background: url("#{$img-base1}events/left.png") left center no-repeat,url("#{$img-base1}events/right.png") right center no-repeat #fff;
+                background-size: contain;
+                border-radius: 0px 0px 4px 4px;
+                 transform:translateY(-20px);
+                 bottom: 0px;
+        }
         .title{
              width: 260px;
              margin-left: -130px;
@@ -20,24 +37,16 @@
             bottom: 44px;
             left: 50%;
             text-align: center;
-            &:hover{
-             font-size: 20px;
-                font-weight: normal;
-                font-stretch: normal;
-                letter-spacing: 0px;
-                color: #3775bd;
-                cursor: pointer;
-                height: 60px;
-                line-height:60px;   
-                background: url("#{$img-base1}events/left.png") left center no-repeat,url("#{$img-base1}events/right.png") right center no-repeat #fff;
-                background-size: contain;
-                border-radius: 0px 0px 4px 4px;
-                 transform:translateY(-20px);
-                 bottom: 0px;
+  
         }
-        }
+        
         .divImg{
-            
+            display: block;
+                width: 260px;
+                height: 360px;
+                background-color: #a3c9f5;
+                border-radius: 4px;
+                margin: 0 auto;
             img{
                 display: block;
                 width: 260px;
@@ -45,30 +54,12 @@
                 background-color: #a3c9f5;
                 border-radius: 4px;
                 margin: 0 auto;
-                 &:hover{
-                    box-shadow: 0px 0px 20px #dadada;
-                }
+               
             }
-            &:hover{
-                    box-shadow: 0px 0px 20px #dadada;
-                }
+            
 
         }
-        .divImg:hover+.title{
-             font-size: 20px;
-                font-weight: normal;
-                font-stretch: normal;
-                letter-spacing: 0px;
-                color: #3775bd;
-                cursor: pointer;
-                height: 60px;
-                line-height:60px;   
-                background: url("#{$img-base1}events/left.png") left center no-repeat,url("#{$img-base1}events/right.png") right center no-repeat #fff;
-                background-size: contain;
-                border-radius: 0px 0px 4px 4px;
-                 transform:translateY(-20px);
-                 bottom: 0px;
-        }
+
         
         
     }

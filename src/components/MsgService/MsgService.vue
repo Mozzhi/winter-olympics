@@ -1,5 +1,6 @@
 <template>
 	<div class="msg-service wrapper clearfix">
+    <div class="meet-in-neimoongu"></div>
 	  <div class="inline-box msg-left">
       <div class="new-banner">
         <swiper :options="swiperOption" ref="mySwiper">

@@ -11,9 +11,6 @@ export default {
   name: 'App',
   components: {
     NewsBox
-  },
-  created() {
-    console.log(this.$route)
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-	<div class="news-box">
+	<div class="news-box" :class="{'box-show' : pagePath !== '/Login'}">
 	  <div class="new-center">
       <div class="news-title">新闻中心</div>
       <div class="news-list">
@@ -19,9 +19,14 @@
 	export default {
 		name: 'NewsBox',
 		data() {
-			return {}
-		}
-	}
+			return {
+			  pagePath: '',
+      }
+		},
+    created() {
+    
+    }
+  }
 </script>
 <style lang="scss" scoped>
   @import "../../assets/commom";

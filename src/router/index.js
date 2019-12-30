@@ -24,5 +24,10 @@ export default new Router({
 			name:'赛事服务',
 			component: (resolve) => require(['@/pages/EventServices.vue'], resolve)
     },
+    {
+			path: '/cityline',
+			name:'城市采访线',
+			component: (resolve) => require(['@/pages/CityLine.vue'], resolve)
+    },
   ]
 })
