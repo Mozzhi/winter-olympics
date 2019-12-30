@@ -4,9 +4,7 @@
     <msg-service></msg-service>
     <block-item block-name="赛事服务">
       <div class="game-tabs" slot="headCenter">
-        <div class="game-tab game-date"><span class="tab-text">赛事日程</span></div>
-        <div class="game-tab game-house"><span class="tab-text">赛事场馆</span></div>
-        <div class="game-tab games"><span class="tab-text">比赛项目</span></div>
+        <tabs :tab-arr="gameTab"></tabs>
       </div>
       <div class="main-content" slot="blockContent">
         <game-content></game-content>
@@ -115,6 +113,7 @@
   import GameContent from '../components/GameContent/GameContent';
   import DailyNews from '../components/DailyNews/DailyNews';
   import CityInterview from '../components/CityInterview/CityInterview';
+  import Tabs from '../components/Tabs/Tabs';
   import Bscroll from 'better-scroll';
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
   let jalousie = [
@@ -124,7 +123,12 @@
     {index: '四', title: "赛事前瞻"},
     {index: '五', title: "比赛赛况"},
     {index: '六', title: "背景资料"},
-  ]
+  ];
+  let gameTab = [
+    {key: 'date', text: '赛事日程'},
+    {key: 'game-house', text: '赛事场馆'},
+    {key: 'games', text: '比赛项目'},
+  ];
 	export default {
 		name: 'Home',
 		data() {
@@ -142,6 +146,7 @@
         },
         jalousieList: jalousie,
         jalousieIndex: 0,
+        gameTab: gameTab
       }
 		},
     components: {
@@ -154,7 +159,7 @@
       CityInterview,
       swiper,
       swiperSlide,
-      CityInterview,
+      Tabs
     },
     created() {
 		  this.$http.getTags()

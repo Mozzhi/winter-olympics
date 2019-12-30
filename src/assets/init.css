@@ -75,3 +75,21 @@ html{overflow-x:hidden;}
   width: 0.07291rem;
   height: 0.07291rem;
 }
+.m-pages .ivu-page-item {
+  border: none;
+}
+.m-pages .ivu-page-item-active {
+  border-radius: 50%;
+  background: #3775BD;
+}
+.m-pages .ivu-page-item-active a {
+  color: #fff;
+}
+.m-pages .ivu-page-prev, .m-pages .ivu-page-next{
+  border: none;
+  background: url("../../static/images/right-icon.png") center no-repeat;
+  background-size: 0.1rem 0.104rem;
+}
+.m-pages .ivu-page-next {
+  background-image: url("../../static/images/left-icon.png");
+}

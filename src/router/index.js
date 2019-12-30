@@ -29,5 +29,10 @@ export default new Router({
 			name:'城市采访线',
 			component: (resolve) => require(['@/pages/CityLine.vue'], resolve)
     },
+    {
+			path: '/list_pages/:list_type',
+			name:'城市采访线',
+			component: (resolve) => require(['@/pages/ListPages.vue'], resolve)
+    },
   ]
 })
