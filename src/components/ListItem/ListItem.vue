@@ -59,5 +59,8 @@
     height: 112px;
     overflow: hidden;
   }
+  &:hover {
+    background: #F0EFF1;
+  }
 }
 </style>

@@ -30,6 +30,11 @@ export default new Router({
 			component: (resolve) => require(['@/pages/CityLine.vue'], resolve)
     },
     {
+			path: '/list_pages/:list_type',
+			name:'城市采访线',
+			component: (resolve) => require(['@/pages/ListPages.vue'], resolve)
+    },
+    {
 			path: '/Details',
 			name:'正文',
 			component: (resolve) => require(['@/pages/Details.vue'], resolve)
@@ -37,7 +42,6 @@ export default new Router({
     {
         path: '/preview',
         component: (resolve) => require(['@/pages/preview.vue'], resolve)
-	    
-    },
+		}
   ]
 })
