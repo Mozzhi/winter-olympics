@@ -52,3 +52,18 @@ $img-base1: '../../static/images/';
 .Breadcrumb{
     margin-bottom: 11px;
 }
+.dNone{
+    display: none;
+}
+.ellipsis{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.de-main img ,.de-main video{
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

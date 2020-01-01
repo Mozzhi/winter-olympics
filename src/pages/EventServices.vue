@@ -5,14 +5,38 @@
 	     	<!--面包屑-->
 	     	<div class="Breadcrumb">5555</div>
 	     	<subpage-title block-name="赛事服务"></subpage-title>
-	     	<div class="samll-nav">ssss</div>
+	     	<div class="samllNav">
+	     		<span class="tab-text">赛事日程</span>
+	     		<span class="tab-text">赛事场馆</span>
+	     		<span class="tab-text">比赛项目</span>
+	     	</div>
 	     	<!--比赛项目-->
-	     	<div class="contestEvent">
+	     	<div class=" dNone">
 	     		<Row>
 			        <Col span="6" v-for="(item,index) in list" :key="index" >
 			       		<div class="e-bolck">
 							<div  class="divImg"><img :src="'../../static/images/events/'+item.id+'.png'"/></div>
-							<div class="title bounceInUp">{{item.name}}</div>
+							<div class="title ellipsis">{{item.name}}</div>
+			       		</div>
+			        </Col>
+			    </Row>
+	     	</div>
+	     	<!--比赛日程-->
+	     	<div class="scheduleEvent dNone">
+	     		<div class="s-line" v-for="(item, index) in 5" :key="index">
+	     			<img src="../../static/images/events/dw2.png"/>
+	     			<div class="time">02-01 08:30</div>
+	     			<div class="title ellipsis">第十四届全国冬季运动会钢架雪车项目比赛在挪威利勒哈默尔圆满落第十四届全国冬季运动会钢架雪车项目比赛在挪威利勒哈默尔圆满落</div>
+	     		</div>
+	     		
+	     	</div>
+	     	<!--赛事场馆-->
+	     	<div class="venues contestEvent">
+	     		<Row>
+			        <Col span="8" v-for="(item,index) in list" :key="index" >
+			       		<div class="e-bolck">
+							<div  class="divImg"></div>
+							<div class="title ellipsis">{{item.name}}四届全国冬季运动会钢架雪车四届全国冬季运动会钢架雪车</div>
 			       		</div>
 			        </Col>
 			    </Row>

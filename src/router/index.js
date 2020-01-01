@@ -29,5 +29,15 @@ export default new Router({
 			name:'城市采访线',
 			component: (resolve) => require(['@/pages/CityLine.vue'], resolve)
     },
+    {
+			path: '/Details',
+			name:'正文',
+			component: (resolve) => require(['@/pages/Details.vue'], resolve)
+    },
+    {
+        path: '/preview',
+        component: (resolve) => require(['@/pages/preview.vue'], resolve)
+	    
+    },
   ]
 })
