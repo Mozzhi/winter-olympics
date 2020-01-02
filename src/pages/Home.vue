@@ -146,7 +146,8 @@
         },
         jalousieList: jalousie,
         jalousieIndex: 0,
-        gameTab: gameTab
+        gameTab: gameTab,
+        indexData: {}
       }
 		},
     components: {
@@ -162,7 +163,7 @@
       Tabs
     },
     created() {
-		  this.$http.getTags()
+		  this.getIndexData();
     },
     mounted() {
       this.$nextTick(() => {
@@ -170,6 +171,13 @@
       })
     },
     methods: {
+		  getIndexData () {
+		    this.$http.getIndex()
+          .then((res) => {
+            this.indexData = res.data;
+            console.log(res.data)
+          })
+      },
 		  scrollInit () {
 		    this.$refs.dateContent.style.width = 9 * 100 + 'px'
         this.$nextTick(() => {

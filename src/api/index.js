@@ -37,16 +37,8 @@ export class Api {
   constructor(){};
 
   /*默认标签*/
-  getTags (){
-    return get('', {type: 'tags'})
-  }
-
-
-  /*搜索*/
-  doSearch(params = {}) {
-    const Url = '';
-    params = Object.assign({}, params, { type: 'search' })
-    return get(Url, params);
+  getIndex (){
+    return post('Pcapi/index')
   }
 
 
