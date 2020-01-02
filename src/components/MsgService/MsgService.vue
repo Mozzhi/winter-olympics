@@ -12,18 +12,18 @@
       </div>
     </div>
 	  <div class="inline-box msg-right">
-      <div class="wish">
+      <div class="wish" v-if="message.length">
         <div class="inline-box">寄语：</div>
         <div class="inline-box wish-run">
-          <div class="run-text">精心做好各项筹备工作，全力以赴办好“十四冬”，向党和人民交上一份满意答卷。</div>
+          <div class="run-text">{{message[0].details}}</div>
         </div>
       </div>
       <div class="news-content">
         <div class="top-line">
-          <div class="line-item" v-for="i in 2">
-            <div class="line-title">体育总局竞体司关于公示第十四届全国冬届全国冬</div>
+          <div class="line-item" v-for="(item, index) in stickShow">
+            <div class="line-title">{{item.title}}</div>
             <div class="line-detail">
-              各省、自治区、直辖市、新疆生产建设兵团体育局，中央军委训练管理部军事体育训练中心，冬运中心，中国滑冰协会、中国
+              {{item.details}}
             </div>
           </div>
         </div>
@@ -39,6 +39,7 @@
  
 	export default {
 		name: 'MsgService',
+    props: ['stick', 'message'],
 		data() {
 			return {
         swiperOption: {
@@ -57,6 +58,10 @@
     computed: {
       swiper() {
         return this.$refs.mySwiper.swiper
+      },
+      stickShow() {
+        return this.stick.slice(0,2);
+        
       }
     },
     mounted() {

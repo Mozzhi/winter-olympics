@@ -36,10 +36,14 @@ function get(pUrl, params) {
 export class Api {
   constructor(){};
 
-  /*默认标签*/
+  /*首页数据*/
   getIndex (){
     return post('Pcapi/index', {})
   }
 
+  /*悬浮窗新闻*/
+  getNotice () {
+    return post('Pcapi/float_notice', {})
+  }
 }
 
