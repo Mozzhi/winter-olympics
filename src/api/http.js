@@ -20,7 +20,7 @@ axios.interceptors.request.use(set => {
  */
 function doPost(url, params = {}){
   const promise = new Promise((resolve, reject) => {
-    axios.post(url, params, {withCredentials: true})
+    axios.post(url, params, {withCredentials: false})
       .then(resp => {
         resolve(resp.data);
       }, err => {
