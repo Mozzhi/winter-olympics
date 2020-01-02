@@ -14,7 +14,8 @@
 <script>
 
 	import LoginForm from '../components/LoginForm/login-form'
-
+	import secret from '../libs/secret'
+	import { setToken, getToken, removeToken} from '../libs/auth'
 	export default {
 	    name: 'Login',
 		data () {
@@ -32,6 +33,23 @@
 				password
 			}) {
 								console.log(userName, password)
+								let dto = {
+								'username': userName,
+								'verify': code,
+								'password': secret.encrypt(password)
+							}
+							http.login(dto, (e, data) => {
+								if(data.status == 1) {
+									this.$Modal.info({
+										title: '提示',
+										content: data.msg
+									});
+									return
+								}
+								setisAdmin(data.data.is_admin);
+								setToken(data.data.token);
+								this.$router.push('index');
+							})
 
 			},
 			

@@ -40,6 +40,13 @@ export class Api {
   getIndex (){
     return post('Pcapi/index')
   }
+   /**
+   * 登录
+   * @param {*} callBack 回调
+   */
+  login (dto) {
+  	return post('/api/loginapi/pcdologin',dto)
+  }
 
 
 }
