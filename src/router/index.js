@@ -54,5 +54,14 @@ export default new Router({
 			name:'这里是呼伦贝尔',
 			component: (resolve) => require(['@/pages/Blessing.vue'], resolve)
     },
+    {
+			path: '/Details',
+			name:'正文',
+			component: (resolve) => require(['@/pages/Details.vue'], resolve)
+    },
+    {
+        path: '/preview',
+        component: (resolve) => require(['@/pages/preview.vue'], resolve)
+		}
   ]
 })

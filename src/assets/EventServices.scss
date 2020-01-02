@@ -1,3 +1,56 @@
+.samllNav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:20px;
+    font-family:Microsoft YaHei;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    line-height: 42px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 40px;
+    span{ 
+        &:nth-child(1){
+            display: block;
+            width:176px;
+            height:42px;
+            margin-right: 2px;
+            padding-left: 38px;
+            box-sizing: border-box;
+            background-image::url("#{$img-base1}events/l-1.png");
+            background-size: 176px 42px;
+        }
+        &:nth-child(2){
+            width:138px;
+            height:42px;
+            background:rgba(138,185,241,1);
+            margin-right: 2px;
+        }
+        &:nth-child(3){
+            display: block;
+            width:176px;
+            height:42px;
+            padding-right: 38px;
+            box-sizing: border-box;
+            background-image::url("#{$img-base1}events/r-1.png");
+            background-size: 176px 42px;
+        }
+        &:hover:nth-child(1){
+            background-image::url("#{$img-base1}events/l-2.png");
+             background-size: 176px 42px;
+        }
+         &:hover:nth-child(2){
+              background:rgba(55,117,189,1);
+        }
+        &:hover:nth-child(3){
+             background-image::url("#{$img-base1}events/r-2.png");
+              background-size: 176px 42px;
+        }
+    }
+    
+}
+//比赛项目
 .contestEvent{
     margin-top: 20px;
     .e-bolck{
@@ -31,8 +84,8 @@
                  bottom: 0px;
         }
         .title{
-             width: 260px;
-             margin-left: -130px;
+            width: 260px;
+            margin-left: -130px;
             position: absolute;
             bottom: 44px;
             left: 50%;
@@ -59,9 +112,82 @@
             
 
         }
-
-        
-        
+    }
+    
+}
+//比赛日程
+.scheduleEvent{
+    padding: 83px 159px;
+    box-sizing: border-box;
+    .s-line{
+        display: flex;
+        align-items: center;
+        margin-bottom:40px;
+        height: 28px;
+        line-height: 28px;
+        color:rgba(48,48,48,1);
+        cursor: pointer;
+        .time{
+            font-size:20px;
+            font-family:Adobe Heiti Std;
+            font-weight:normal;
+            position:relative; 
+            margin-right:60px;
+            width: 1rem;
+        }
+        img{
+            width:14px;
+            height:28px;
+            margin-right: 17px;
+        }
+        .title{
+            font-size:18px;
+            font-family:Microsoft YaHei;
+            font-weight:400;
+        }
+        &:hover{
+            color:rgba(55,117,189,1);
+            img{
+                transform:rotate(90deg);
+                -ms-transform:rotate(90deg); /* IE 9 */
+                -webkit-transform:rotate(90deg); /* Safari and Chrome */
+            }
+        }
+    }
+}
+.venues{
+    .e-bolck{
+        height:auto;
+        .title{
+             width:368px;
+             margin-left: -184px;
+             position: relative;
+             bottom: 0px;
+             height: 93px;
+             padding-top: 20px;
+             box-sizing: border-box; 
+                
+            
+        }
+         &:hover .title{
+             padding-top:0px;
+            background-size: inherit;
+            position: relative;
+             bottom: -18px;
+             height: 93px;
+             line-height: 93px;
+                 box-shadow: 0px 0px 20px #dadada;
+                 padding: 0px 36px;
+                 box-sizing: border-box;
+         }
+         
+        .divImg{
+            width:368px;
+            height:207px;
+            background:rgba(255,254,247,1);
+            border-radius:4px;
+            background:#ccc;
+        }
     }
     
 }
