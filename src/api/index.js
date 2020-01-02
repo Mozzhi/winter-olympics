@@ -38,7 +38,7 @@ export class Api {
 
   /*默认标签*/
   getIndex (){
-    return post('Pcapi/index')
+    return post('Pcapi/index', {})
   }
    /**
    * 登录
@@ -47,7 +47,6 @@ export class Api {
   login (dto) {
   	return post('/api/loginapi/pcdologin',dto)
   }
-
 
 }
 
