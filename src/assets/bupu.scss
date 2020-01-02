@@ -1,0 +1,76 @@
+.charm-inner-mongolia {
+  .list-devide {
+    padding: 0 47px;
+    .wrapper {
+      width: auto;
+    }
+  }
+  .parts {
+    .part-item {
+      width: 253px;
+      height: 292px;
+      border-radius: 4px;/*no*/
+      @include base-bg;
+      float: left;
+      margin-right: 10px;
+      position: relative;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .matter {
+      @extend .part-item;
+      height: 141px;
+      margin: 0 0 10px 0;
+    }
+    .mask-bar {
+      position: absolute;
+      text-align: center;
+      left: 0;
+      width: 100%;
+      bottom: 0;
+      background: rgba(0,0,0,0.4);
+      height: 50px;
+      line-height: 50px;
+      color: #fff;
+      font-size: 18px;
+    }
+    .mask-text {
+      display: inline-block;
+      padding: 0 30px;
+      background: leftAndRightBg('other/charmb-l.png', 'other/charmb-r.png');
+      background-size: 15px 18px;
+    }
+    .survey {
+      width: 520px;
+      .mask {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        top: 0;
+        left: 0;
+      }
+      .mask-text{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        color: #fff;
+        background-size: 20px 24px;
+        font-size: 30px;
+        &:before, &:after {
+          @include pseudo-class;
+          width: 100px;
+          border-bottom: 1px solid #fff;/*no*/
+        }
+        &:before {
+          left: -140px;
+        }
+        &:after {
+          right: -140px;
+        }
+      }
+    }
+  }
+}

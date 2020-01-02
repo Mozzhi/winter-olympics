@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.timeout = 20000;
-axios.defaults.baseURL = process.env.baseURL;
-console.log(process.env)
+axios.defaults.baseURL = 'https://info.dah.isport.nm.cn/index.php/api/';
 
 // 请求拦截器配置
 axios.interceptors.request.use(set => {

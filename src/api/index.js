@@ -38,7 +38,6 @@ export class Api {
 
   /*默认标签*/
   getTags (){
-    toast('sss')
     return get('', {type: 'tags'})
   }
 

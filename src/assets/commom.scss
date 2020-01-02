@@ -22,6 +22,11 @@ $img-base1: '../../static/images/';
   transform: translateY(-50%);
 }
 
+@function leftAndRightBg($left-bg, $right-bg) {
+  @return url("#{$img-base1}#{$left-bg}") left center no-repeat,url("#{$img-base1}#{$right-bg}") right center no-repeat;
+}
+
+
 .wrapper{width: 1200px;margin: 0 auto;}
 .inline-box {
   display: inline-block;

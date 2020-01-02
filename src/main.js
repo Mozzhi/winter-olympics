@@ -47,6 +47,14 @@ window.addEventListener("resize", function () {
   setRem();
 });
 
+//自定义背景指令
+Vue.directive('bg', {
+  bind: function (el, binding, vnode) {
+    el.style.backgroundImage = `url(${binding.value})`;
+  }
+});
+
+
 Vue.prototype.$http = new Api();
 
 Vue.config.productionTip = false

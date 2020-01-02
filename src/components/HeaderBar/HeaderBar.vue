@@ -21,44 +21,53 @@
 			  tabs: [
           {
             text: '首页',
-            url:'#',
+            url:'/',
             key: 'home'
           },
           {
             text: '信息服务',
-            url:'#'
+            url:'#',
+            key: 'home'
           },
           {
             text: '赛事服务',
-            url:'#'
+            url:'#',
+            key: 'home'
           },
           {
             text: '精彩图片',
-            url:'#'
+            url:'s',
+            key: 'home'
           },
           {
             text: '精彩视频',
-            url:'#'
+            url:'#',
+            key: 'home'
           },
           {
             text: '竞赛成绩',
-            url:'#'
+            url:'#',
+            key: 'home'
           },
           {
             text: '每日新闻',
-            url:'#'
+            url:'#',
+            key: 'home'
           },
           {
             text: '开闭幕式',
-            url:'#'
+            url:'#',
+            key: 'home'
           },
           {
             text: '魅力内蒙古',
-            url:'#'
+            url:'/charm_inner_mongolia',
+            key: 'charm'
           },
           {
             text: '这里是呼伦贝尔',
-            url:'#'
+            url:'/hulun_buir',
+            key: 'hulun_buir'
           },
         ]
       }

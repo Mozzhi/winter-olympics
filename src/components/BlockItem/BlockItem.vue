@@ -75,8 +75,11 @@
         margin-top: 20px;
         width: 132px;
         &:hover {
-        background-image: url("#{$img-base}mores.jpeg");
+          background-image: url("#{$img-base}mores.jpeg");
+        }
       }
+      &.no-more {
+        display: none;
       }
     }
     
@@ -86,6 +89,12 @@
     padding: 0;
     .block-header-out {
       padding: 0 30px;
+    }
+  }
+  &.no-more {
+    box-shadow: none;
+    .more-entry {
+      display: none;
     }
   }
 }

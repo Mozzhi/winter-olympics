@@ -34,5 +34,25 @@ export default new Router({
 			name:'城市采访线',
 			component: (resolve) => require(['@/pages/ListPages.vue'], resolve)
     },
+    {
+			path: '/splendid_pages/:list_type',
+			name:'精彩图片',
+			component: (resolve) => require(['@/pages/SplendidPages.vue'], resolve)
+    },
+    {
+			path: '/charm_inner_mongolia',
+			name:'魅力内蒙古',
+			component: (resolve) => require(['@/pages/CharmInnerMongolia.vue'], resolve)
+    },
+    {
+			path: '/hulun_buir',
+			name:'这里是呼伦贝尔',
+			component: (resolve) => require(['@/pages/HulunBuir.vue'], resolve)
+    },
+    {
+			path: '/blessing',
+			name:'这里是呼伦贝尔',
+			component: (resolve) => require(['@/pages/Blessing.vue'], resolve)
+    },
   ]
 })
