@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import qs from 'qs';
 axios.defaults.timeout = 20000;
 axios.defaults.baseURL = 'https://info.dah.isport.nm.cn/index.php/api/';
 
@@ -8,6 +8,9 @@ axios.interceptors.request.use(set => {
   set.headers = {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
   };
+  if(set.method  === 'post' || set.method === 'put'){
+    set.data = qs.stringify(set.data);
+  }
 
   return set;
 }, err => {

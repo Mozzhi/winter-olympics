@@ -26,7 +26,7 @@
 			<div class="ym-img">
 				<div class="code" >
 					<!--<s-identify :identifyCode="identifyCode"></s-identify>-->
-					 <img :src="UrL+Date.parse(new Date())" style="width: 110px;height: 40px;"/>
+					 <img :src="UrL+Time" style="width: 110px;height: 40px;" @click="refresh"/>
 				</div>
 
 			</div>
@@ -81,16 +81,6 @@
 					}]
 				}
 			},
-			codeRules: {
-				type: Array,
-				default: () => {
-					return [{
-						required: true,
-						message: '验证码不能为空',
-						trigger: 'blur'
-					}]
-				}
-			},
 			enuserNameRules: {
 				type: Array,
 				default: () => {
@@ -110,22 +100,13 @@
 						trigger: 'blur'
 					}]
 				}
-			},
-			encodeRules: {
-				type: Array,
-				default: () => {
-					return [{
-						required: true,
-						message: 'The captcha cannot be empty',
-						trigger: 'blur'
-					}]
-				}
 			}
 		},
 		data() {
 			return {
 				identifyCodes: "1234567890",
 				identifyCode: "",
+				Time:Date.parse(new Date()),
 				UrL: 'http://info.dah.isport.nm.cn/index.php?g=api&m=checkcode&a=index&length=4&font_size=20&width=248&height=42&use_noise=1&use_curve=0&token_code=',
 				form: {
 					code: '',
@@ -138,7 +119,6 @@
 			rules() {
 				return {
 						userName: this.userNameRules,
-						code: this.codeRules,
 						password: this.passwordRules
 					}
 			}
@@ -159,6 +139,11 @@
 				this.makeCode(this.identifyCodes, 4);
 				
 			},
+			refresh(){
+				var t=Date.parse(new Date())+Math.random();
+				this.Time=t;
+				console.log(this.Time)
+			},
 			makeCode(o, l) {
 				for(let i = 0; i < l; i++) {
 					this.identifyCode += this.identifyCodes[
@@ -178,6 +163,7 @@
 						this.$emit('on-success-valid', {
 							userName: this.form.userName,
 							code: this.form.code,
+							token_code: this.Time,
 							password: this.form.password
 						})
 					}
@@ -187,6 +173,10 @@
 	}
 </script>
 <style type="text/css">
+	.ivu-btn, .ivu-btn:active, .ivu-btn:focus{
+		border-color:rgba(0, 0, 0, 0);
+		box-shadow:none;
+	}
 	.linput .ivu-input {
 		height: 46px;
 		border:none;

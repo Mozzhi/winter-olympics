@@ -29,30 +29,33 @@
 		methods: {
 			handleSubmit({
 				userName,
+				token_code,
 				code,
 				password
 			}) {
-								console.log(userName, password)
-								let dto = {
-									'username': userName,
-									'verify': code,
-									'password': secret.encrypt(password),
-									'token_code':Date.parse(new Date())
-								}
-							
-							this.$http.login(dto)
-					          .then((res) => {
-					            if(data.status == 1) {
-									this.$Modal.info({
-										title: '提示',
-										content: data.msg
-									});
-									return
-								}
-//					            setToken(data.data.token);
-//								this.$router.push('index');
-					            console.log(res.data)
-					          })
+//				console.log(userName,token_code, password)
+				let dto = {
+					'username': userName,
+					'verify': code,
+					'password': secret.encrypt(password),
+					'token_code':token_code
+				}
+			
+			this.$http.login(dto)
+	          .then((res) => {
+	            if(res.status == 1) {
+					this.$Modal.info({
+						title: '提示',
+						content:res.msg
+					});
+					return
+				}
+	         
+	            setToken(res.data.token);
+				this.$Message.success(res.msg);
+				this.$router.push('/');
+
+	          })
 
 			},
 			

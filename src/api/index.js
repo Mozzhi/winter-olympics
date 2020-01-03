@@ -1,7 +1,6 @@
 import http from './http'
 import Vue from 'vue'
 import { Toast } from 'wc-messagebox'
-import qs from 'qs';
 Vue.use(Toast);
 
 function toast(msg, cb) {
@@ -36,7 +35,7 @@ function get(pUrl, params) {
 export class Api {
   constructor(){};
 
-  /*默认标签*/
+  /*首页数据*/
   getIndex (){
     return post('Pcapi/index', {})
   }
@@ -46,7 +45,13 @@ export class Api {
    * @param {*} callBack 回调
    */
   login (dto) {
-  	return post('loginapi/pcdologin',qs.stringify(dto))
+  	return post('loginapi/pcdologin',dto)
+  }
+
+
+  /*悬浮窗新闻*/
+  getNotice () {
+    return post('Pcapi/float_notice', {})
   }
 
 }

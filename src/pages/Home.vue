@@ -1,7 +1,7 @@
 <template>
 	<div class="home">
 	  <header-bar active="home"></header-bar>
-    <msg-service></msg-service>
+    <msg-service :stick="indexData.stick" :message="indexData.Message"></msg-service>
     <block-item block-name="赛事服务">
       <div class="game-tabs" slot="headCenter">
         <tabs :tab-arr="gameTab"></tabs>
@@ -147,7 +147,7 @@
         jalousieList: jalousie,
         jalousieIndex: 0,
         gameTab: gameTab,
-        indexData: {}
+        indexData: {},
       }
 		},
     components: {
@@ -164,6 +164,7 @@
     },
     created() {
 		  this.getIndexData();
+		  this.getFloatNotice();
     },
     mounted() {
       this.$nextTick(() => {

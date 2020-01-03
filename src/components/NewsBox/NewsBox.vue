@@ -3,8 +3,7 @@
 	  <div class="new-center">
       <div class="news-title">新闻中心</div>
       <div class="news-list">
-        <div class="list">2月18日扎兰屯：我们用剪纸作品为“十四冬”喝彩！</div>
-        <div class="list">2月18日扎兰屯：我们用剪纸作品为“十四冬”喝彩！</div>
+        <div class="list" v-for="notice in floatNotice" :key="notice.id"><a href="">{{notice.title}}</a></div>
       </div>
       <a href="" class="look-more">查看更多></a>
     </div>
@@ -21,10 +20,19 @@
 		data() {
 			return {
 			  pagePath: '',
+        floatNotice: [],
       }
 		},
     created() {
-    
+      this.getFloatNotice();
+    },
+    methods: {
+      getFloatNotice () {
+        this.$http.getNotice()
+          .then((res) => {
+            this.floatNotice = res.data
+          })
+      }
     }
   }
 </script>
