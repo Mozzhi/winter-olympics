@@ -16,6 +16,7 @@
     "iview": "^3.5.4",
     "js-cookie": "^2.2.1",
     "lib-flexible": "^0.3.2",
+    "qs": "^6.9.1",
     "view-design": "^4.0.2",
     "vue": "^2.5.2",
     "vue-awesome-swiper": "^3.1.3",

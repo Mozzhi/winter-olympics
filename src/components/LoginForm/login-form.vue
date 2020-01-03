@@ -24,9 +24,9 @@
 				<Input type="text" v-model="form.code" placeholder="请输入验证码" class="linput ym" size="large"></Input>
 			</FormItem>
 			<div class="ym-img">
-				<div class="code" @click="refreshCode">
-					<s-identify :identifyCode="identifyCode"></s-identify>
-					<!-- <img :src="UrL" style="width: 110px;height: 40px;"/>-->
+				<div class="code" >
+					<!--<s-identify :identifyCode="identifyCode"></s-identify>-->
+					 <img :src="UrL+Date.parse(new Date())" style="width: 110px;height: 40px;"/>
 				</div>
 
 			</div>
@@ -126,7 +126,7 @@
 			return {
 				identifyCodes: "1234567890",
 				identifyCode: "",
-				UrL: '',
+				UrL: 'http://info.dah.isport.nm.cn/index.php?g=api&m=checkcode&a=index&length=4&font_size=20&width=248&height=42&use_noise=1&use_curve=0&token_code=',
 				form: {
 					code: '',
 					userName: '',
@@ -171,10 +171,10 @@
 			handleSubmit() {
 				this.$refs.loginForm.validate((valid) => {
 					if(valid) {
-						if(this.identifyCode != this.form.code) {
-							this.$Message.info('请输入正确的验证码');
-							return
-						}
+//						if(this.identifyCode != this.form.code) {
+//							this.$Message.info('请输入正确的验证码');
+//							return
+//						}
 						this.$emit('on-success-valid', {
 							userName: this.form.userName,
 							code: this.form.code,
