@@ -54,5 +54,9 @@ export class Api {
     return post('Pcapi/float_notice', {})
   }
 
+  /*获取轮播图*/
+  getBanner () {
+    return post( 'Pcapi/carousel', {})
+  }
 }
 

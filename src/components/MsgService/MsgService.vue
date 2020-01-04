@@ -5,7 +5,7 @@
       <div class="new-banner">
         <swiper :options="swiperOption" ref="mySwiper">
           <!-- slides -->
-          <swiper-slide v-for="i in 4"  :key="i"><img src="http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg" alt=""></swiper-slide>
+          <swiper-slide v-for="item in banner"  :key="item.id"><img :src="item.thumb" alt=""></swiper-slide>
           <!-- Optional controls -->
           <div class="swiper-pagination"  slot="pagination"></div>
         </swiper>
@@ -48,7 +48,8 @@
           pagination: {
             el: '.swiper-pagination'
           }
-        }
+        },
+        banner: [],
       }
 		},
     components: {
@@ -61,13 +62,25 @@
       },
       stickShow() {
         return this.stick.slice(0,2);
-        
       }
+    },
+    created () {
+		  this.getBanners();
+		  console.log(this.message)
     },
     mounted() {
       // current swiper instance
       // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
       console.log('this is current swiper instance object', this.swiper)
+    },
+    methods: {
+		  getBanners () {
+		    this.$http.getBanner()
+          .then((res) => {
+            this.banner = res.data;
+            console.log(res);
+          })
+      }
     }
 	}
 </script>

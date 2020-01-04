@@ -1,7 +1,7 @@
 <template>
 	<div class="home">
 	  <header-bar active="home"></header-bar>
-    <msg-service :stick="indexData.stick" :message="indexData.Message"></msg-service>
+    <msg-service :stick="stick" :message="message"></msg-service>
     <block-item block-name="赛事服务">
       <div class="game-tabs" slot="headCenter">
         <tabs :tab-arr="gameTab"></tabs>
@@ -18,20 +18,21 @@
         </swiper>
       </div>
       <div class="daily" slot="blockContent">
-        <daily-news></daily-news>
+        <daily-news :daily-news="dailyNews"></daily-news>
       </div>
     </block-item>
     <div class="wrapper clearfix">
       <div class="inline-box jalousie">
         <div class="inline-box jalousie-per"
              v-for="(item, index) in jalousieList"
-             :class="{'hover-show': index == jalousieIndex}" @mouseenter.stop="jalousieIndex = index">
+             :class="{'hover-show': index == jalousieIndex}"
+             @mouseenter.stop="jalousieIndex = index">
           <div class="out-title">{{item.index}}<span>{{item.title}}</span></div>
           <div class="which-one">{{item.index}}</div>
           <div class="jalousie-content">
-            <div class="jalousie-title">即时引语</div>
+            <div class="jalousie-title">{{item.title}}</div>
             <div class="jalousie-detail">
-              <div class="ellipsis" v-for="i in 5"><a href="">国际雪联滑轮世界杯圆满收官 中国选手王强夺冠...</a></div>
+              <div class="ellipsis" v-for="list in item.content"><a href="">{{list.title}}</a></div>
             </div>
             <a href="" class="look-more">查看更多></a>
           </div>
@@ -40,7 +41,7 @@
       <div class="inline-box opening">
         <block-item block-name="开闭幕式">
           <div class="game-content" slot="blockContent">
-            <div class="news-lists" v-for="i in 5">体育总局竞体司关于调整第十四届全国冬季运动会冰...</div>
+            <div class="news-lists" v-for="item in indexData.Ceremony">{{item.title}}</div>
           </div>
         </block-item>
       </div>
@@ -148,6 +149,9 @@
         jalousieIndex: 0,
         gameTab: gameTab,
         indexData: {},
+        message: [],
+        stick: [],
+        dailyNews: [],
       }
 		},
     components: {
@@ -164,7 +168,6 @@
     },
     created() {
 		  this.getIndexData();
-		  this.getFloatNotice();
     },
     mounted() {
       this.$nextTick(() => {
@@ -176,6 +179,15 @@
 		    this.$http.getIndex()
           .then((res) => {
             this.indexData = res.data;
+            this.jalousieList[0]['content'] = res.data.Instant_quotation;
+            this.jalousieList[1]['content'] = res.data.Conference_summary;
+            this.jalousieList[2]['content'] = res.data.General_News;
+            this.jalousieList[3]['content'] = res.data.Tournament_Preview;
+            this.jalousieList[4]['content'] = res.data.Match_status;
+            this.jalousieList[5]['content'] = res.data.Background_information;
+            this.message = res.data.Message;
+            this.stick = res.data.stick;
+            this.dailyNews = res.data.Daily_News;
             console.log(res.data)
           })
       },
