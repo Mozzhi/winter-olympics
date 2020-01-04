@@ -3,15 +3,15 @@ import Cookies from 'js-cookie'
 // const TokenKey = 'token';
 // 取token
 export function getToken() {
-  return Cookies.get('tokens')
+  return Cookies.get('token')
 }
 
 export function setToken(token) {
-  return Cookies.set('tokens', token)
+  return Cookies.set('token', token)
 }
 
 export function removeToken() {
-  return Cookies.remove('tokens');
+  return Cookies.remove('token');
 }
 
 export function getDay() {
