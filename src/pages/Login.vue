@@ -53,7 +53,7 @@
 	         
 	            setToken(res.data.token);
 				this.$Message.success(res.msg);
-				this.$router.push('/');
+				this.$router.push('/index');
 
 	          })
 

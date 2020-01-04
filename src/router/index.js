@@ -1,19 +1,29 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/pages/Home'
-
+import {getToken} from '@/libs/auth'
 Vue.use(Router)
 
 export default new Router({
-  mode: "history",
+   mode: 'history',
   routes: [
+		{
+        path: '*',
+        redirect: to => {
+          if (getToken() != undefined) {
+            return "/index"
+          } else {
+            return "/login"
+          }
+        }
+    },
     {
-      path: '/',
+      path: '/index',
       name: 'Home',
       component: Home
     },
     {
-			path: '/Login',
+			path: '/login',
 			meta: {
 			    title: '登录'
 			},
