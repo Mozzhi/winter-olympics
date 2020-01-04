@@ -5,7 +5,10 @@
       <div class="new-banner">
         <swiper :options="swiperOption" ref="mySwiper">
           <!-- slides -->
-          <swiper-slide v-for="item in banner"  :key="item.id"><img :src="item.thumb" alt=""></swiper-slide>
+          <swiper-slide v-for="item in banner"  :key="item.id">
+            <img :src="item.thumb" alt="">
+            <div class="thumb-title">{{item.title}}</div>
+          </swiper-slide>
           <!-- Optional controls -->
           <div class="swiper-pagination"  slot="pagination"></div>
         </swiper>

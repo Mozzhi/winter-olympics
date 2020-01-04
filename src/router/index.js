@@ -41,7 +41,7 @@ export default new Router({
     },
     {
 			path: '/list_pages/:list_type',
-			name:'城市采访线',
+			name:'每日新闻',
 			component: (resolve) => require(['@/pages/ListPages.vue'], resolve)
     },
     {
