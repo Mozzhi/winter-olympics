@@ -79,3 +79,12 @@ $img-base1: '../../static/images/';
   text-align: center;
 }
 
+.downDetail video::-internal-media-controls-download-button {
+    display:none;
+}
+.downDetail video::-webkit-media-controls-enclosure {
+    overflow:hidden;
+}
+.downDetail video::-webkit-media-controls-panel {
+    width: calc(100% + 30px); 
+}

@@ -56,7 +56,14 @@ export class Api {
   	return post('Pcapi/article_details',dto)
   }
 
-
+	 /**
+   * 文章附件下载
+   * @param {*} callBack 回调
+   */
+  download (dto) {
+  	return post('Pcapi/download',dto)
+  }
+  
   /*悬浮窗新闻*/
   getNotice () {
     return post('Pcapi/float_notice', {})
