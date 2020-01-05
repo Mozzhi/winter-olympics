@@ -1,7 +1,8 @@
 <template>
 	<div class="home">
 	  <header-bar active="home"></header-bar>
-    <msg-service :stick="indexData.stick" :message="indexData.Message"></msg-service>
+    <news-box></news-box>
+    <msg-service :stick="stick" :message="message"></msg-service>
     <block-item block-name="赛事服务">
       <div class="game-tabs" slot="headCenter">
         <tabs :tab-arr="gameTab"></tabs>
@@ -18,20 +19,21 @@
         </swiper>
       </div>
       <div class="daily" slot="blockContent">
-        <daily-news></daily-news>
+        <daily-news :daily-news="dailyNews"></daily-news>
       </div>
     </block-item>
     <div class="wrapper clearfix">
       <div class="inline-box jalousie">
         <div class="inline-box jalousie-per"
              v-for="(item, index) in jalousieList"
-             :class="{'hover-show': index == jalousieIndex}" @mouseenter.stop="jalousieIndex = index">
+             :class="{'hover-show': index == jalousieIndex}"
+             @mouseenter.stop="jalousieIndex = index">
           <div class="out-title">{{item.index}}<span>{{item.title}}</span></div>
           <div class="which-one">{{item.index}}</div>
           <div class="jalousie-content">
-            <div class="jalousie-title">即时引语</div>
+            <div class="jalousie-title">{{item.title}}</div>
             <div class="jalousie-detail">
-              <div class="ellipsis" v-for="i in 5"><a href="">国际雪联滑轮世界杯圆满收官 中国选手王强夺冠...</a></div>
+              <div class="ellipsis" v-for="list in item.content"><a href="">{{list.title}}</a></div>
             </div>
             <a href="" class="look-more">查看更多></a>
           </div>
@@ -39,24 +41,24 @@
       </div>
       <div class="inline-box opening">
         <block-item block-name="开闭幕式">
-          <div class="game-content" slot="blockContent">
-            <div class="news-lists" v-for="i in 5">体育总局竞体司关于调整第十四届全国冬季运动会冰...</div>
+          <div class="game-content open-short" slot="blockContent">
+            <a href="" class="news-lists" v-for="item in indexData.Ceremony">{{item.title}}</a>
           </div>
         </block-item>
       </div>
     </div>
     <block-item class="splendid-box" block-name="精彩图片" more-class="none-bg">
       <div class="splendid" slot="blockContent">
-        <div class="pic-show" @mouseenter="stopSwiper" @mouseleave="startSwiper">
+        <div class="pic-show" @mouseenter="stopSwiper($refs.imgSwiper)" @mouseleave="startSwiper($refs.imgSwiper)">
           <swiper :options="imgSwiperOption" ref="imgSwiper">
             <!-- slides -->
-            <swiper-slide v-for="i in 2" :key="i">
-              <div class="img-out" v-for="i in 3">
+            <swiper-slide v-for="item in imgNumber" :key="item">
+              <a href="" class="img-out" v-for="img in showList(item, Wonderful_picture)">
                 <div class="pic-show-box">
-                  <img src="http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg" alt="">
+                  <img :src="img.thumb" alt="">
                 </div>
-                <div class="img-introduce">“十四冬”火炬传递现场——包头站</div>
-              </div>
+                <div class="img-introduce">{{img.title}}</div>
+              </a>
             </swiper-slide>
             <div class="swiper-pagination"  slot="pagination"></div>
           </swiper>
@@ -65,16 +67,16 @@
     </block-item>
     <block-item class="splendid-box" block-name="精彩视频" more-class="none-bg">
       <div class="splendid" slot="blockContent">
-        <div class="pic-show">
+        <div class="pic-show" @mouseenter="stopSwiper($refs.videoSwiper)" @mouseleave="startSwiper($refs.videoSwiper)">
           <swiper :options="imgSwiperOption" ref="videoSwiper">
             <!-- slides -->
-            <swiper-slide v-for="i in 2" :key="i">
-              <div class="img-out" v-for="i in 3">
+            <swiper-slide v-for="item in videoNumber" :key="item">
+              <div class="img-out" v-for="video in showList(item, Wonderful_video)">
                 <div class="pic-show-box video-show">
                   <span class="play-icon"></span>
-                  <img src="http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg" alt="">
+                  <img :src="video.thumb" alt="">
                 </div>
-                <div class="img-introduce">“十四冬”火炬传递现场——包头站</div>
+                <div class="img-introduce">{{video.title}}</div>
               </div>
             </swiper-slide>
             <div class="swiper-pagination"  slot="pagination"></div>
@@ -99,7 +101,7 @@
         <span class="inline-box contr-btn next-btn"></span>
       </div>
       <div class="city-view" slot="blockContent">
-        <city-interview></city-interview>
+        <city-interview :city-data="City_Visiting_Line"></city-interview>
       </div>
     </block-item>
     <Footer></Footer>
@@ -114,6 +116,7 @@
   import DailyNews from '../components/DailyNews/DailyNews';
   import CityInterview from '../components/CityInterview/CityInterview';
   import Tabs from '../components/Tabs/Tabs';
+  import NewsBox from '../components/NewsBox/NewsBox';
   import Bscroll from 'better-scroll';
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
   let jalousie = [
@@ -148,6 +151,12 @@
         jalousieIndex: 0,
         gameTab: gameTab,
         indexData: {},
+        message: [],
+        stick: [],
+        dailyNews: [],
+        Wonderful_picture: [],
+        Wonderful_video: [],
+        City_Visiting_Line: [],
       }
 		},
     components: {
@@ -160,11 +169,19 @@
       CityInterview,
       swiper,
       swiperSlide,
-      Tabs
+      Tabs,
+      NewsBox
+    },
+    computed: {
+		  imgNumber () {
+		    return Math.ceil(this.Wonderful_picture.length / 3);
+      },
+      videoNumber () {
+		    return Math.ceil(this.Wonderful_video.length / 3);
+      }
     },
     created() {
 		  this.getIndexData();
-		  this.getFloatNotice();
     },
     mounted() {
       this.$nextTick(() => {
@@ -176,8 +193,25 @@
 		    this.$http.getIndex()
           .then((res) => {
             this.indexData = res.data;
+            this.jalousieList[0]['content'] = res.data.Instant_quotation;
+            this.jalousieList[1]['content'] = res.data.Conference_summary;
+            this.jalousieList[2]['content'] = res.data.General_News;
+            this.jalousieList[3]['content'] = res.data.Tournament_Preview;
+            this.jalousieList[4]['content'] = res.data.Match_status;
+            this.jalousieList[5]['content'] = res.data.Background_information;
+            this.message = res.data.Message;
+            this.stick = res.data.stick;
+            this.dailyNews = res.data.Daily_News;
+            this.Wonderful_picture = res.data.Wonderful_picture;
+            this.Wonderful_video = res.data.Wonderful_video;
+            this.City_Visiting_Line = res.data.City_Visiting_Line;
             console.log(res.data)
           })
+      },
+      showList (i, data){
+        let start = 3*i - 3,
+          end = 3*i;
+        return data.slice(start, end);
       },
 		  scrollInit () {
 		    this.$refs.dateContent.style.width = 9 * 100 + 'px'
@@ -195,11 +229,11 @@
           }
         })
       },
-      stopSwiper () {
-		    this.$refs.imgSwiper.swiper.autoplay.stop();
+      stopSwiper (refs) {
+		    refs.swiper.autoplay.stop();
       },
-      startSwiper () {
-		    this.$refs.imgSwiper.swiper.autoplay.start();
+      startSwiper (refs) {
+		    refs.swiper.autoplay.start();
       }
     }
   }

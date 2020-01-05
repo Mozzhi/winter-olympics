@@ -17,6 +17,7 @@
         display: inline-block;
         margin-right: 18px;
         padding-bottom: 35px;
+        vertical-align: top;
         &:last-child{
           margin-right: 0;
         }
@@ -50,7 +51,9 @@
       .img-introduce {
         text-align: center;
         font-size: 16px;
-        margin-top: 20px;
+        margin-top: 15px;
+        height: 24px;
+        overflow: hidden;
       }
     }
   }
@@ -127,6 +130,9 @@
       size: 100% 14px;
       image: url("#{$img-base1}devide.png");
     };
+    &.open-short {
+      background-image: url("#{$img-base1}devides.png");
+    }
     .news-lists {
       padding-left: 15px;
       width: 379px;
@@ -134,8 +140,9 @@
       white-space: nowrap;
       overflow: hidden;
       position: relative;
-      line-height: 34px;
+      line-height: 42px;
       font-size: 16px;
+      display: block;
       &:after {
         @include pseudo-class;
         width: 3px;/*no*/

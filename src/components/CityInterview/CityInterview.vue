@@ -1,20 +1,21 @@
 <template>
 	<div class="city-interview">
-	  <div class="content-item" v-for="i in 4">
+	  <div class="content-item" v-for="item in cityData">
       <div class="city-introduce">
-        <div class="interview-title">走进蒙古</div>
-        <div class="interview-detail">接待保障部召开接待酒店第五次业务指导工作会议接待保障部召开接待酒店第五次业务指导工作会议</div>
-        <div class="interview-date">02-18 08:30</div>
+        <div class="interview-title">{{item.title}}</div>
+        <div class="interview-detail">{{item.detail}}</div>
+        <div class="interview-date">{{item.published_at}}</div>
       </div>
       <div class="city-img">
-        <img src="http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg" alt="">
+        <img :src="item.thumb" alt="">
       </div>
     </div>
 	</div>
 </template>
 <script>
 	export default {
-		name: '',
+		name: 'CityInterview',
+    props: ['cityData'],
 		data() {
 			return {}
 		}

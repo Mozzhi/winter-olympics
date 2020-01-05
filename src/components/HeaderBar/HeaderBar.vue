@@ -26,8 +26,8 @@
           },
           {
             text: '信息服务',
-            url:'#',
-            key: 'home'
+            url:'/list_pages/msg_service',
+            key: 'msg_service'
           },
           {
             text: '赛事服务',
@@ -51,13 +51,13 @@
           },
           {
             text: '每日新闻',
-            url:'#',
-            key: 'home'
+            url:'/list_pages/Daily_News',
+            key: 'Daily_News'
           },
           {
             text: '开闭幕式',
-            url:'#',
-            key: 'home'
+            url:'/list_pages/Ceremony',
+            key: 'Ceremony'
           },
           {
             text: '魅力内蒙古',

@@ -70,11 +70,11 @@ html{overflow-x:hidden;}
   padding-bottom: 20px;
   padding-right: 20px;
 }
-.new-banner .swiper-pagination-bullet{
-  background-size: 0.07291rem 0.07291rem;
-  width: 0.07291rem;
-  height: 0.07291rem;
-}
+/*.new-banner .swiper-pagination-bullet{*/
+  /*background-size: 0.1rem 0.1rem;*/
+  /*width: 0.07291rem;*/
+  /*height: 0.07291rem;*/
+/*}*/
 .m-pages .ivu-page-item {
   border: none;
 }

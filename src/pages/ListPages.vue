@@ -1,34 +1,36 @@
 <template>
   <div class="city-line">
-    <header-bar active="home"></header-bar>
+    <header-bar :active="headerKey"></header-bar>
+    <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
       <div class="Breadcrumb">5555</div>
-      <subpage-title block-name="每日新闻"></subpage-title>
+      <subpage-title :block-name="pageTitle[headerKey]"></subpage-title>
+      <tabs class="list-tab" :tab-arr="tabs" :current-key="tabKey" @switchoverKey="getKey"></tabs>
       <div class="list-devide">
         <div class="inline-box article-list">
-          <list-item v-for="i in 10" :no-img="i == 5 ? true : false"></list-item>
-          <Page class="m-pages" :total="100"></Page>
+          <list-item v-for="list in mainList" :key="list.id" :list="list" :no-img="list.thumb !== '' ? false : true"></list-item>
+          <Page class="m-pages" :total="mainList.length"></Page>
         </div>
         <div class="inline-box right-sider">
           <div class="sider-block">
             <div class="sider-block-name">精彩图片 <img src="../../static/images/other/right-arrow.png" alt=""></div>
-            <div class="sider-block-show">
-              <img src="http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg" alt="">
-              <span class="bottom-text">“十四冬”火炬传递现场——包头站</span>
-            </div>
+            <a href="" class="sider-block-show">
+              <img :src="Wonderful_picture[0]['thumb']" alt="">
+              <span class="bottom-text">{{Wonderful_picture[0]['title']}}</span>
+            </a>
             <div class="topline-list">
-              <div class="lines" v-for="i in 5"><a href="">“十四冬”冰球测试赛落幕了，冠军是谁？“十四冬”冰球测试赛落幕了，冠军是谁？</a></div>
+              <div class="lines" v-for="item in imgNumber" :key="item.id"><a href="">{{item.title}}</a></div>
             </div>
           </div>
           <div class="sider-block">
-            <div class="sider-block-name">精彩图片 <img src="../../static/images/other/right-arrow.png" alt=""></div>
-            <div class="sider-block-show video-block">
-              <img src="http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg" alt="">
-              <span class="bottom-text">“十四冬”火炬传递现场——包头站</span>
-            </div>
+            <div class="sider-block-name">精彩视频 <img src="../../static/images/other/right-arrow.png" alt=""></div>
+            <a href="" class="sider-block-show video-block">
+              <img :src="Wonderful_video[0]['thumb']" alt="">
+              <span class="bottom-text">{{Wonderful_video[0]['title']}}</span>
+            </a>
             <div class="topline-list">
-              <div class="lines" v-for="i in 5"><a href="">“十四冬”冰球测试赛落幕了，冠军是谁？“十四冬”冰球测试赛落幕了，冠军是谁？</a></div>
+              <div class="lines" v-for="item in videoNumber" :key="item.id"><a href="">{{item.title}}</a></div>
             </div>
           </div>
         </div>
@@ -42,11 +44,42 @@
   import Footer from '../components/Footer/Footer.vue';
   import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
   import ListItem from '../components/ListItem/ListItem.vue';
+  import NewsBox from '../components/NewsBox/NewsBox';
+  import Tabs from '../components/Tabs/Tabs';
+  let title = {
+    Ceremony: '开闭幕式',
+    Daily_News: '每日新闻',
+    msg_service: '信息服务'
+  };
+  let tabs = [
+    {text: '媒体通告', key: 'Match_status'},
+    {text: '即时引语', key: 'Instant_quotation'},
+    {text: '发布会摘要', key: 'Conference_summary'},
+    {text: '综合新闻', key: 'General_News'},
+    {text: '赛前信息', key: 'Tournament_Preview'},
+    {text: '背景资料', key: 'Background_information'},
+  ];
+  let baseArr = [{
+    details: "",
+    id: "",
+    published_at: "",
+    published_at1: "",
+    published_at2: "",
+    thumb: "",
+    title: "",
+  }]
   export default {
-    name: 'EventServices',
+    name: 'ListPages',
     data() {
       return {
-      
+        headerKey: this.$route.params.list_type,
+        mainList: baseArr,
+        Wonderful_picture: baseArr,
+        Wonderful_video: baseArr,
+        pageTitle: title,
+        tabs: tabs,
+        tabKey: 'Instant_quotation',
+        indexData: {},
       }
     },
     components: {
@@ -54,12 +87,49 @@
       Footer,
       SubpageTitle,
       ListItem,
+      NewsBox,
+      Tabs
     },
+    computed: {
+      imgNumber() {
+        return this.Wonderful_picture.slice(1, 6);
+      },
+      videoNumber() {
+        return this.Wonderful_video.slice(1, 6);
+      }
+    },
+    created() {
+      this.getIndexData();
+    },
+    methods: {
+      getIndexData () {
+        this.$http.getIndex()
+          .then((res) => {
+            this.indexData = res.data;
+            this.Wonderful_picture = res.data.Wonderful_picture;
+            this.Wonderful_video = res.data.Wonderful_video;
+            if(this.headerKey !== 'msg_service'){
+              this.mainList = res.data[this.headerKey];
+            }else {
+              this.mainList = res.data.Instant_quotation
+            }
+            console.log(res.data)
+          })
+      },
+      getKey(key) {
+        this.tabKey = key;
+        this.mainList = this.indexData[key];
+        console.log(key);
+      }
+    }
   }
 </script>
 <style lang="scss" scoped>
   @import "../assets/commom";
 .city-line {
+  .list-tab {
+    margin-top: 20px;
+  }
   .article-list {
     width: 870px;
   }
@@ -103,6 +173,7 @@
     height: 168px;
     overflow: hidden;
     cursor: pointer;
+    display: block;
     .bottom-text {
       position: absolute;
       text-align: center;
