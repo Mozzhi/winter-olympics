@@ -40,12 +40,20 @@ export class Api {
     return post('Pcapi/index', {})
   }
 
-   /**
+  /**
    * 登录
    * @param {*} callBack 回调
    */
   login (dto) {
   	return post('loginapi/pcdologin',dto)
+  }
+  
+  /**
+   * 详情
+   * @param {*} callBack 回调
+   */
+  articleDetails (dto) {
+  	return post('Pcapi/article_details',dto)
   }
 
 

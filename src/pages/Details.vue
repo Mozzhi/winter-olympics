@@ -55,6 +55,7 @@
 	import HeaderBar from '../components/HeaderBar/HeaderBar.vue';
 	import Footer from '../components/Footer/Footer.vue';
 	import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
+	import getToken from '../libs/auth'
 	export default {
 		name: 'EventServices',
 		data() {
@@ -72,14 +73,60 @@
 			Footer,
 			SubpageTitle
 		},
-		created() {
-
+		created(){
+			this.id=this.$route.query.id || 1;
+			this.init()
 		},
+		watch:{
+	        $route(val){//普通的watch监听
+	            //console.log(val.query.id);
+	            if(val.query.id){
+	            	this.id=val.query.id;
+					this.init()
+	            }
+	            
+	        },
+	    },
 		mounted() {
 
 		},
 		methods: {
-
+			//			download(item){
+////					let dto={
+////						article_id:item.article_id,
+////						accessory_id:item.accessory_id,
+////						language:this.language,
+////					}
+////					http.download(dto,(e, data) => {
+//////						if(data.status == 0) {
+//////							console.log("")
+//////						} else {
+//////							this.$Modal.info({
+//////								title: '提示',
+//////								content: data.msg
+//////							});
+//////						}
+////					})
+//				},
+				init() {
+					let dto={
+						id:this.id
+					}
+					this.$http.articleDetails(dto)
+		          	.then((res) => {
+		          	if(res.status == 0) {
+		          		console.log(res)
+							this.list=res.data;
+							
+						} else {
+							this.$Modal.info({
+								title: '提示',
+								content: res.msg
+							});
+						}
+		          	})
+					
+				},
 		}
 	}
 </script>
