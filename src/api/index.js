@@ -40,15 +40,30 @@ export class Api {
     return post('Pcapi/index', {})
   }
 
-   /**
+  /**
    * 登录
    * @param {*} callBack 回调
    */
   login (dto) {
   	return post('loginapi/pcdologin',dto)
   }
+  
+  /**
+   * 详情
+   * @param {*} callBack 回调
+   */
+  articleDetails (dto) {
+  	return post('Pcapi/article_details',dto)
+  }
 
-
+	 /**
+   * 文章附件下载
+   * @param {*} callBack 回调
+   */
+  download (dto) {
+  	return post('Pcapi/download',dto)
+  }
+  
   /*悬浮窗新闻*/
   getNotice () {
     return post('Pcapi/float_notice', {})

@@ -14,11 +14,11 @@
 						<p>{{list.source}}</p>
 					</div>
 				</div>
-				<div class="de-main" v-html="list.details">
+				<div class="de-main" :class="{'downDetail': groupId == 1}" v-html="list.details">
 
 				</div>
 				<!--文件-->
-				<div class="de-botm">
+				<div class="de-botm"  v-if="list.accessory&&language==2">
 					<div class="title">
 						<div class="about">相关附件</div>
 
@@ -55,16 +55,14 @@
 	import HeaderBar from '../components/HeaderBar/HeaderBar.vue';
 	import Footer from '../components/Footer/Footer.vue';
 	import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
+	import getToken from '../libs/auth'
 	export default {
 		name: 'EventServices',
 		data() {
 			return {
-				list: {
-					'title': '“十四冬”走进校园 海拉尔区三万名中小学生共唱冰雪欢歌',
-					'published_at': '2019-12-13  18:30',
-					'source':"组委会",
-					'accessory': '33'
-				}
+				groupId:'',
+				id:'',
+				list:[]
 			}
 		},
 		components: {
@@ -72,20 +70,76 @@
 			Footer,
 			SubpageTitle
 		},
-		created() {
-
+		created(){
+			this.id=this.$route.query.id || 867;
+			this.init()
 		},
+		watch:{
+	        $route(val){//普通的watch监听
+	            //console.log(val.query.id);
+	            if(val.query.id){
+	            	this.id=val.query.id;
+					this.init()
+	            }
+	            
+	        },
+	    },
 		mounted() {
 
 		},
 		methods: {
-
+				download(item){
+					let dto={
+						article_id:item.article_id,
+						accessory_id:item.accessory_id
+					}
+					this.$http.download(dto)
+		          	.then((res) => {
+		          			this.$Modal.info({
+								title: '提示',
+								content: res.msg
+							});
+		          	})
+					
+				},
+				stopsVideo(){
+					document.oncontextmenu = function(){
+					　　return false;
+					}
+					
+				},
+				init() {
+					let dto={
+						id:this.id
+					}
+					this.$http.articleDetails(dto)
+		          	.then((res) => {
+		          	if(res.status == 0) {
+							this.list=res.data;
+							this.groupId=res.data.group_id;
+							//1-视频要不下载，2-视频可以下载
+							if(res.data.group_id==1){	
+								this.stopsVideo()
+       						 	var dat = res.data.details.replace(/\<video /gi, '<video controlsList="nodownload"');
+       						 	this.list.details=dat;
+							}
+							
+						} else {
+							this.$Modal.info({
+								title: '提示',
+								content: res.msg
+							});
+						}
+		          	})
+					
+				},
 		}
 	}
 </script>
 
 <style scoped lang="scss">
 	@import "../assets/commom";
+	
 	.p100{
 		padding: 0px 100px;
 		box-sizing:border-box;
@@ -95,7 +149,7 @@
 		.de-head{
 			text-align: center;
 			border-bottom: 1px dashed rgba(224, 224, 224, 1);
-	/*		margin-bottom: 20px;*/
+			margin-bottom: 27px;
 			.de-title{
 				font-size:30px;
 				font-family:Microsoft YaHei;
