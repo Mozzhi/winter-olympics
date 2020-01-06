@@ -35,7 +35,7 @@ export default new Router({
 			component: (resolve) => require(['@/pages/EventServices.vue'], resolve)
     },
     {
-			path: '/cityline',
+			path: '/cityline/:list_type/:keyword?',
 			name:'城市采访线',
 			component: (resolve) => require(['@/pages/CityLine.vue'], resolve)
     },

@@ -4,8 +4,8 @@
       <div class="block-header">
         <div class="block-name"><img class="img-icon" src="../../../static/images/block-icon.png" alt="">{{blockName}}</div>
         <div class="header-center"><slot name="headCenter"></slot></div>
-        <a href="" class="more-entry look-more" v-if="moreClass">查看更多></a>
-        <a href="#" class="more-entry" v-else>查看更多 <img src="../../../static/images/more-icon.png" alt="" class="more-icon"></a>
+        <a :href="link" class="more-entry look-more" v-if="moreClass">查看更多></a>
+        <a :href="link" class="more-entry" v-else>查看更多 <img src="../../../static/images/more-icon.png" alt="" class="more-icon"></a>
       </div>
     <slot name="blockContent"></slot>
 	</div>
@@ -14,7 +14,7 @@
 <script>
 	export default {
 		name: 'BlockItem',
-    props: ['blockName', 'moreClass'],
+    props: ['blockName', 'moreClass', 'link'],
 		data() {
 			return {}
 		},

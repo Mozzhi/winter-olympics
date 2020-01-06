@@ -6,11 +6,12 @@
       <!--面包屑-->
       <div class="Breadcrumb">5555</div>
       <subpage-title :block-name="pageTitle[headerKey]"></subpage-title>
-      <tabs class="list-tab" :tab-arr="tabs" :current-key="tabKey" @switchoverKey="getKey"></tabs>
-      <div class="list-devide">
+      <tabs class="list-tab" :tab-arr="tabs" :current-key="tabKey" @switchoverKey="getKey" v-if="headerKey == 'msg_service'"></tabs>
+      <div class="list-devide clearfix">
         <div class="inline-box article-list">
           <list-item v-for="list in mainList" :key="list.id" :list="list" :no-img="list.thumb !== '' ? false : true"></list-item>
-          <Page class="m-pages" :total="mainList.length"></Page>
+          <div class="no-more" v-show="!mainList.length"><span class="nothing">没有更多了</span></div>
+          <Page class="m-pages" v-show="totalPages > 1" :total="totalPages*10" @on-change="pageChange"></Page>
         </div>
         <div class="inline-box right-sider">
           <div class="sider-block">
@@ -46,18 +47,25 @@
   import ListItem from '../components/ListItem/ListItem.vue';
   import NewsBox from '../components/NewsBox/NewsBox';
   import Tabs from '../components/Tabs/Tabs';
+  import { saveData } from "../util";
+
   let title = {
     Ceremony: '开闭幕式',
     Daily_News: '每日新闻',
     msg_service: '信息服务'
   };
+  let column_id = {
+    Ceremony: '8',
+    Daily_News: '7',
+    msg_service: '16'
+  };
   let tabs = [
-    {text: '媒体通告', key: 'Match_status'},
-    {text: '即时引语', key: 'Instant_quotation'},
-    {text: '发布会摘要', key: 'Conference_summary'},
-    {text: '综合新闻', key: 'General_News'},
-    {text: '赛前信息', key: 'Tournament_Preview'},
-    {text: '背景资料', key: 'Background_information'},
+    {text: '媒体通告', key: '16'},
+    {text: '即时引语', key: '13'},
+    {text: '发布会摘要', key: '14'},
+    {text: '综合新闻', key: '15'},
+    {text: '赛前信息', key: '17'},
+    {text: '背景资料', key: '18'},
   ];
   let baseArr = [{
     details: "",
@@ -78,8 +86,11 @@
         Wonderful_video: baseArr,
         pageTitle: title,
         tabs: tabs,
-        tabKey: 'Instant_quotation',
+        tabKey: '16',
         indexData: {},
+        page: 1,
+        totalPages: 1,
+        column_id: column_id[this.$route.params.list_type],
       }
     },
     components: {
@@ -100,26 +111,46 @@
     },
     created() {
       this.getIndexData();
+      this.getArticle();
     },
     methods: {
       getIndexData () {
-        this.$http.getIndex()
-          .then((res) => {
-            this.indexData = res.data;
-            this.Wonderful_picture = res.data.Wonderful_picture;
-            this.Wonderful_video = res.data.Wonderful_video;
-            if(this.headerKey !== 'msg_service'){
-              this.mainList = res.data[this.headerKey];
-            }else {
-              this.mainList = res.data.Instant_quotation
-            }
-            console.log(res.data)
-          })
+        let storeIndexData = this.$store.getters.getMainData;
+        if(storeIndexData.hasOwnProperty('Daily_News')){
+          this.getData(storeIndexData);
+        }else {
+          this.$http.getIndex()
+            .then((res) => {
+              this.$store.commit('INDEXDATA', res.data);
+              saveData('indexData', res.data);
+              this.getData(res.data);
+            })
+        }
       },
       getKey(key) {
         this.tabKey = key;
-        this.mainList = this.indexData[key];
-        console.log(key);
+        this.column_id = key;
+        this.getArticle();
+      },
+      getData(data) {
+        this.indexData = data;
+        this.Wonderful_picture = data.Wonderful_picture;
+        this.Wonderful_video = data.Wonderful_video;
+      },
+      getArticle() {
+        let params = {
+          column_id: this.column_id,
+          p: this.page
+        };
+        this.$http.getArticleList(params)
+          .then(res => {
+            this.mainList = res.data.list;
+            this.totalPages = res.data.total_page;
+          })
+      },
+      pageChange(p) {
+        this.page = p;
+        this.getArticle();
       }
     }
   }
@@ -223,6 +254,24 @@
       &:after {
         background-image: url("#{$img-base1}other/play-w.png");
       }
+    }
+  }
+  .no-more {
+    text-align: center;
+    position: relative;
+    background: #fff;
+    margin-top: -2px;
+    .nothing {
+      position: relative;
+      z-index: 2;
+      background: #fff;
+      padding: 5px 10px;
+    }
+    &:before {
+      @include pseudo-class;
+      border-bottom: 1px solid #F0EFF1;
+      width: 100%;
+      left: 0;
     }
   }
 }

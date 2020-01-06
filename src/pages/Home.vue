@@ -90,7 +90,7 @@
         <swiper-slide v-for="i in 3"  :key="i"><img src="../../static/images/snow-forest.png" alt=""></swiper-slide>
       </swiper>
     </div>
-    <block-item block-name="城市采访线" more-class="none-bg">
+    <block-item block-name="城市采访线" more-class="none-bg" link="/cityline/city_visiting">
       <div class="interview-date-bar" slot="headCenter">
         <span class="inline-box contr-btn"></span>
         <div class="inline-box date-lists" ref="dateScroll">
@@ -117,6 +117,7 @@
   import CityInterview from '../components/CityInterview/CityInterview';
   import Tabs from '../components/Tabs/Tabs';
   import NewsBox from '../components/NewsBox/NewsBox';
+  import { getSessionData, saveData } from "../util";
   import Bscroll from 'better-scroll';
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
   let jalousie = [
@@ -190,23 +191,32 @@
     },
     methods: {
 		  getIndexData () {
-		    this.$http.getIndex()
-          .then((res) => {
-            this.indexData = res.data;
-            this.jalousieList[0]['content'] = res.data.Instant_quotation;
-            this.jalousieList[1]['content'] = res.data.Conference_summary;
-            this.jalousieList[2]['content'] = res.data.General_News;
-            this.jalousieList[3]['content'] = res.data.Tournament_Preview;
-            this.jalousieList[4]['content'] = res.data.Match_status;
-            this.jalousieList[5]['content'] = res.data.Background_information;
-            this.message = res.data.Message;
-            this.stick = res.data.stick;
-            this.dailyNews = res.data.Daily_News;
-            this.Wonderful_picture = res.data.Wonderful_picture;
-            this.Wonderful_video = res.data.Wonderful_video;
-            this.City_Visiting_Line = res.data.City_Visiting_Line;
-            console.log(res.data)
-          })
+		    let storeIndexData = this.$store.getters.getMainData;
+		    if(storeIndexData.hasOwnProperty('Daily_News')) {
+          this.setData(storeIndexData);
+        }else {
+          this.$http.getIndex()
+            .then((res) => {
+              this.$store.commit('INDEXDATA',res.data);
+              saveData('indexData', res.data);
+              this.setData(res.data);
+            })
+        }
+      },
+      setData(data) {
+        this.indexData = data;
+        this.jalousieList[0]['content'] = data.Instant_quotation;
+        this.jalousieList[1]['content'] = data.Conference_summary;
+        this.jalousieList[2]['content'] = data.General_News;
+        this.jalousieList[3]['content'] = data.Tournament_Preview;
+        this.jalousieList[4]['content'] = data.Match_status;
+        this.jalousieList[5]['content'] = data.Background_information;
+        this.message = data.Message;
+        this.stick = data.stick;
+        this.dailyNews = data.Daily_News;
+        this.Wonderful_picture = data.Wonderful_picture;
+        this.Wonderful_video = data.Wonderful_video;
+        this.City_Visiting_Line = data.City_Visiting_Line;
       },
       showList (i, data){
         let start = 3*i - 3,

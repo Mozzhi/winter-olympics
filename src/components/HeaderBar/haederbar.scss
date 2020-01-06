@@ -22,17 +22,20 @@
   .search-box {
     width: 295px;
     text-align: right;
-    position: relative;
     padding-bottom: 10px;
-    &:after {
-      @include pseudo-class;
-      width: 20px;
-      height: 20px;
-      @include base-bg;
-      background-image: url("#{$img-base}search-icon.png");
-      right: 20px;
-      transform: none;
-      margin-top: -15px;
+    .search-form {
+      width: 220px;
+      float: right;
+      height: 36px;
+      position: relative;
+      &:after {
+        @include pseudo-class;
+        width: 20px;
+        height: 20px;
+        @include base-bg;
+        background-image: url("#{$img-base}search-icon.png");
+        right: 20px;
+      }
     }
     .search {
       width: 220px;
@@ -40,6 +43,9 @@
       border: 1px solid $theme-color;/*no*/
       border-radius: 36px;
       padding: 0 20px;
+    }
+    .submit {
+      display: none;
     }
   }
   .s-img {

@@ -54,9 +54,32 @@ export class Api {
     return post('Pcapi/float_notice', {})
   }
 
-  /*获取轮播图*/
+  /**
+  *获取轮播图
+  * */
   getBanner () {
     return post( 'Pcapi/carousel', {})
   }
+
+  /**
+   * 搜索*/
+  search(params) {
+    let base_params = {
+      p: 1,
+      psize: 10
+    };
+    params = Object.assign(base_params, params);
+    return post('Pcapi/search', params)
+  }
+
+  /**
+   * 文章列表
+   * */
+  getArticleList (params) {
+    let base = {psize: 10, type: 1};
+    params = Object.assign(base, params);
+    return post('Pcapi/article_list', params)
+  }
+
 }
 

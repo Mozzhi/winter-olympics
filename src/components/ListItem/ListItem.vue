@@ -49,6 +49,7 @@
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
       overflow: hidden;
+      height: 60px;
     }
   }
   .list-img-show {

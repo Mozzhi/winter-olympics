@@ -3,7 +3,7 @@
 	  <span class="date-btn across-contr-btn" @click="calendarMove()" v-show="left > 0"></span>
     <div class="date-out-box">
       <div class="date-box" :style="{'left': -(78/192) * left + 'rem'}">
-        <div class="date-btn" v-for="(date, index) in Feb" @mouseenter="current = index">
+        <div class="date-btn" v-for="(date, index) in Feb" @mouseenter="changeDate(index)" >
           <div class="date-btn-inner" :class="{'active': index == current}">
           <div class="date-text">{{date}}</div>
           <span class="febb"></span>
@@ -28,6 +28,7 @@
         left: 0,
         clientW: document.documentElement.clientWidth,
         current: 0,
+        timer: null
       }
 		},
     methods: {
@@ -37,6 +38,13 @@
         }else {
 		      this.left--;
         }
+      },
+      changeDate(index) {
+		    clearTimeout(this.timer);
+		    this.timer = setTimeout(() => {
+          this.current = index;
+          this.$emit('getDate', index);
+        }, 300);
       }
     }
 	}

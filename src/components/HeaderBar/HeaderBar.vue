@@ -3,7 +3,9 @@
 	  <div class="logo-search inline-box-container">
       <div class="inline-box sports-meet"></div>
       <div class="inline-box search-box">
-        <input type="text" class="search" placeholder="搜索">
+        <form class="search-form"  autocomplete="off" @submit.prevent="onSubmit">
+          <input type="text" class="search" placeholder="搜索" v-model="keyword">
+        </form>
       </div>
       <div class="inline-box s-img"></div>
     </div>
@@ -69,9 +71,19 @@
             url:'/hulun_buir',
             key: 'hulun_buir'
           },
-        ]
+        ],
+        keyword: '',
       }
-		}
+		},
+    methods: {
+      onSubmit () {
+        if(!this.keyword) {
+          this.$toast('请输入要查找的内容')
+        }else {
+          this.$router.push({path: `/cityline/search/${this.keyword}`});
+        }
+      }
+    }
 	}
 </script>
 <style lang="scss" scoped>

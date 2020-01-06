@@ -4,10 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import { Api } from './api'
+import store from './store'
 import 'wc-messagebox/style.css'
 import 'swiper/dist/css/swiper.css'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
+import { getSessionData } from "./util";
+import { Toast } from 'wc-messagebox'
+Vue.use(Toast);
 Vue.use(iView);
 // 进度条配置
 Vue.prototype.$Loading.config({
@@ -54,6 +58,11 @@ Vue.directive('bg', {
   }
 });
 
+// 初始化首页数据
+let indexData = getSessionData('indexData');
+if(indexData) {
+  store.commit('INDEXDATA', indexData);
+}
 
 Vue.prototype.$http = new Api();
 
@@ -63,5 +72,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })
