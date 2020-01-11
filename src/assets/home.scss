@@ -1,4 +1,19 @@
 .home {
+  .competition {
+    position: fixed;
+    width: 321px;
+    height: 287px;
+    @include base-bg;
+    background-image: url("#{$img-base1}mascot.png");
+    right: 64px;
+    bottom: 10px;
+    z-index: 99;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: $theme-color;
+    padding-top: 73px;
+  }
   .game-tabs {
   
   }
@@ -80,6 +95,14 @@
       height: 100px;
       padding-bottom: 30px;
       margin: 0 20px;
+      position: relative;
+      .content {
+        width: 2900px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: all 0.3s linear;
+      }
       .dates {
         display: inline-block;
         width: 100px;

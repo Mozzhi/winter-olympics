@@ -93,4 +93,66 @@
       }
     }
   }
+  &.house {
+    background-image: none;
+    .swiper-pagination {
+      bottom: -7px;
+    }
+  }
+  .game-house {
+    text-align: center;
+    width: 368px;
+    height: 300px;
+    margin-right: 18px;
+    display: inline-block;
+    margin-bottom: 30px;
+    &:last-child {
+      margin-right: 0;
+    }
+    .house-img {
+      width: 368px;
+      height: 207px;
+      @include base-bg;
+    }
+    .house-name {
+      height: 93px;
+      line-height: 93px;
+      overflow: hidden;
+    }
+    &:hover {
+      box-shadow: 0px 0px 20px #dadada;
+      .house-name {
+        background: url("#{$img-base}events/left.png") left center no-repeat,url("#{$img-base}events/right.png") right center no-repeat #fff;
+        color: $theme-color;
+      }
+    }
+  }
+  &.project {
+    .game-house {
+      width: 260px;
+      height: 360px;
+      position: relative;
+      margin-right: 33px;
+      &:last-child {
+        margin-right: 0;
+      }
+      &:hover {
+        .house-name {
+          background-size: auto 90%;
+        }
+      }
+    }
+    .house-img {
+      width: 260px;
+      height: 360px;
+    }
+    .house-name {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      height: 60px;
+      line-height: 60px;
+    }
+  }
 }

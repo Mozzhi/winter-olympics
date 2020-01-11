@@ -33,23 +33,23 @@
           },
           {
             text: '赛事服务',
-            url:'#',
-            key: 'home'
+            url:'/EventServices',
+            key: 'eventServices'
           },
           {
             text: '精彩图片',
-            url:'s',
-            key: 'home'
+            url:'/splendid_pages/splendid_img',
+            key: 'splendid_img'
           },
           {
             text: '精彩视频',
-            url:'#',
-            key: 'home'
+            url:'/splendid_pages/splendid_video',
+            key: 'splendid_video'
           },
           {
             text: '竞赛成绩',
             url:'#',
-            key: 'home'
+            key: 'grade'
           },
           {
             text: '每日新闻',
@@ -78,7 +78,7 @@
     methods: {
       onSubmit () {
         if(!this.keyword) {
-          this.$toast('请输入要查找的内容')
+          this.$Message.error('请输入要查找的内容');
         }else {
           this.$router.push({path: `/cityline/search/${this.keyword}`});
         }

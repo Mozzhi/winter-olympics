@@ -12,7 +12,7 @@ function toast(msg, cb) {
 
 /*post请求*/
 
-function post(pUrl, params) {
+function post(pUrl, params = {}) {
   return http.doPost(pUrl, params)
     .then(res => {
       return res;
@@ -47,7 +47,7 @@ export class Api {
   login (dto) {
   	return post('loginapi/pcdologin',dto)
   }
-  
+
   /**
    * 详情
    * @param {*} callBack 回调
@@ -63,7 +63,7 @@ export class Api {
   download (dto) {
   	return post('Pcapi/download',dto)
   }
-  
+
   /*悬浮窗新闻*/
   getNotice () {
     return post('Pcapi/float_notice', {})
@@ -94,6 +94,20 @@ export class Api {
     let base = {psize: 10, type: 1};
     params = Object.assign(base, params);
     return post('Pcapi/article_list', params)
+  }
+
+  /**
+   * 登出
+   * */
+  logout () {
+    return post('loginapi/logout')
+  }
+
+  /**
+   * 登出
+   * */
+  siderData () {
+    return post('Pcapi/sidebar')
   }
 
 }

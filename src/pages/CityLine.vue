@@ -10,7 +10,7 @@
       <div class="article-list">
         <list-item v-for="list in mainList" :key="list.id" :list="list" :no-img="list.thumb !== '' ? false : true"></list-item>
         <div class="no-more"><span class="nothing">没有更多了</span></div>
-        <Page class="m-pages" v-if="headerKey == 'search'" v-show="totalPages > 1" :total="totalPages*10" @on-change="pageChange"></Page>
+        <Page class="m-pages" v-if="headerKey == 'search'" v-show="totalPages > 1" :total="totalPages*10" @on-change="doSearch"></Page>
       </div>
     </div>
     <Footer></Footer>
@@ -47,7 +47,11 @@
       NewsBox
     },
     created() {
-      this.getArticle();
+      if(this.headerKey == 'city_visiting'){
+        this.getArticle();
+      }else {
+        this.doSearch();
+      }
     },
     mounted() {
     
@@ -56,7 +60,7 @@
       getArticle() {
         let params = {
           column_id: this.column_id,
-          p: this.page,
+          p: this.p,
           psize: 100,
           schedule_at: this.schedule_at
         };
@@ -70,8 +74,17 @@
         this.schedule_at = date + 1;
         this.getArticle();
       },
-      doSearch() {
-      
+      doSearch(p = 1) {
+        let params = {
+          title: this.$route.params.keyword,
+          p: p,
+          psize: 10,
+        };
+        this.$http.search(params)
+          .then(res => {
+            this.mainList = res.data.list;
+            this.totalPages = res.data.total_page;
+          })
       }
     }
   }

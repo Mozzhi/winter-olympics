@@ -1,6 +1,6 @@
 <template>
 	<div class="list-item clearfix" :class="{'no-img': NoImg}">
-    <a href="">
+    <a :href="`/details?id=${list.id}`" target="_blank">
 	  <div class="inline-box list-text">
       <div class="list-title">{{list.title}}</div>
       <div class="list-detail">{{list.details}}</div>

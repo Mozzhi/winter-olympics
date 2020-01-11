@@ -14,24 +14,26 @@
         </swiper>
       </div>
     </div>
-	  <div class="inline-box msg-right">
-      <div class="wish" v-if="message.length">
+	  <div class="inline-box msg-right" :class="{'no-wish': !message.length}">
+      <a href="/blessing" class="wish" v-if="message.length">
         <div class="inline-box">寄语：</div>
         <div class="inline-box wish-run">
           <div class="run-text">{{message[0].details}}</div>
         </div>
-      </div>
+      </a>
       <div class="news-content">
         <div class="top-line">
           <div class="line-item" v-for="(item, index) in stickShow">
+            <a :href="`/details?id=${item.id}`" target="_blank">
             <div class="line-title">{{item.title}}</div>
             <div class="line-detail">
               {{item.details}}
             </div>
+            </a>
           </div>
         </div>
         <div class="topline-list">
-          <div class="lines" v-for="i in 5"><a href="">“十四冬”冰球测试赛落幕了，冠军是谁？“十四冬”冰球测试赛落幕了，冠军是谁？</a></div>
+          <div class="lines" v-for="(list, index) in stick" :key="list.id" v-if="index > 1"><a :href="`/details?id=${list.id}`" target="_blank">{{list.title}}</a></div>
         </div>
       </div>
     </div>

@@ -10,8 +10,6 @@ import 'swiper/dist/css/swiper.css'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import { getSessionData } from "./util";
-import { Toast } from 'wc-messagebox'
-Vue.use(Toast);
 Vue.use(iView);
 // 进度条配置
 Vue.prototype.$Loading.config({

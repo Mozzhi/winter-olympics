@@ -46,7 +46,7 @@ export default new Router({
     },
     {
 			path: '/splendid_pages/:list_type',
-			name:'精彩图片',
+			name:'精彩',
 			component: (resolve) => require(['@/pages/SplendidPages.vue'], resolve)
     },
     {
@@ -61,7 +61,7 @@ export default new Router({
     },
     {
 			path: '/blessing',
-			name:'这里是呼伦贝尔',
+			name:'寄语',
 			component: (resolve) => require(['@/pages/Blessing.vue'], resolve)
     },
     {
@@ -72,6 +72,10 @@ export default new Router({
     {
         path: '/preview',
         component: (resolve) => require(['@/pages/preview.vue'], resolve)
+		},
+    {
+        path: '/news_center',
+        component: (resolve) => require(['@/pages/NewsCenter.vue'], resolve)
 		}
   ]
 })

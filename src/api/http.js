@@ -41,7 +41,7 @@ service.interceptors.response.use(
   },
 
   error => {
-  	console.log("error") 
+  	console.log("error")
     console.log(error) // for debug
     this.$Modal.info({
 				title: '提示',

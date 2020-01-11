@@ -1,27 +1,25 @@
 <template>
   <div class="splendid-pages">
-    <header-bar active="home"></header-bar>
+    <header-bar :active="listType"></header-bar>
+    <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
       <div class="Breadcrumb">5555</div>
-      <subpage-title block-name="精彩图片"></subpage-title>
+      <subpage-title :block-name="`精彩${type[listType]}`"></subpage-title>
       <div class="filtrate">
-        <div class="filtrate-title">图片筛选</div>
+        <div class="filtrate-title">{{type[listType]}}筛选</div>
         <div class="filtrate-item">
-          <span class="filter-tags" v-for="i in 10" :class="{'active': i == 1 }">全部{{i}}</span>
+          <span class="filter-tags" v-for="classis in classId" :class="{'active': classis.id == currentId }" @click="doFilter(classis.id)">{{classis.text}}</span>
         </div>
       </div>
       <div class="list-devide">
         <div class="splendids">
-          <div class="inline-box splendid-list" v-for="i in 18">
-            <div class="show-range"><img src="http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg" alt=""></div>
-            <div class="list-introduce">
-              中华人民共和国第十四届冬季运动会雪橇项目比
-              赛圆满落下帷幕
-            </div>
+          <div class="inline-box splendid-list" v-for="item in mainList" :key="item.id" @click="toDetail(item.id)">
+            <div class="show-range" :class="{'video-block': listType == 'splendid_video'}"><img :src="item.thumb" alt=""></div>
+            <div class="list-introduce">{{item.details}}</div>
           </div>
         </div>
-        <Page class="m-pages" :total="100"></Page>
+        <Page class="m-pages" :total="totalPage" v-show="totalPage > 1" @on-change="changePage"></Page>
       </div>
     </div>
     <Footer></Footer>
@@ -31,18 +29,65 @@
   import HeaderBar from '../components/HeaderBar/HeaderBar.vue';
   import Footer from '../components/Footer/Footer.vue';
   import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
+  import NewsBox from '../components/NewsBox/NewsBox'
+  import { details } from "../util";
+
+  let type = {
+    splendid_img: '图片',
+    splendid_video: '视频',
+  };
+  let column_id = {
+    splendid_img: 5,
+    splendid_video: 6,
+  };
   export default {
     name: 'SplendidPages',
     data() {
+      let list_type = this.$route.params.list_type;
       return {
-      
+        listType: list_type,
+        type: type,
+        classId: this.$store.getters.getClassId,
+        currentId: 0,
+        mainList: [],
+        column_id: column_id[list_type],
+        p: 1,
+        totalPage: 1,
       }
     },
     components: {
       HeaderBar,
       Footer,
       SubpageTitle,
+      NewsBox
     },
+    created() {
+      this.getList();
+    },
+    methods: {
+      doFilter (id) {
+        this.currentId = id;
+        this.getList();
+      },
+      getList () {
+        let params = {
+          column_id: this.column_id,
+          p: this.p,
+          classify_id: this.currentId
+        };
+        this.$http.getArticleList(params)
+          .then(res => {
+            this.mainList = res.data.list;
+          })
+      },
+      changePage (p) {
+        this.p = p;
+        this.getList();
+      },
+      toDetail (id) {
+        details.call(this, id);
+      }
+    }
   }
 </script>
 <style lang="scss" scoped>
@@ -120,6 +165,7 @@
       }
       &:hover {
         box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        color: #303030;
         .list-introduce {
           background: url("#{$img-base1}other/n-left.png") left center no-repeat,
           url("#{$img-base1}other/n-right.png") right center no-repeat;
@@ -130,12 +176,31 @@
         height: 207px;
         overflow: hidden;
         border-radius: 4px 4px 0 0;/*no*/
+        &.video-block {
+          position: relative;
+          &:after {
+            @include pseudo-class;
+            width: 58px;/*no*/
+            height: 48px;/*no*/
+            background: {
+              repeat: no-repeat;
+              size: 58px 48px;
+              image: url("#{$img-base1}other/play-b.png");
+            };
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+          }
+          &:hover {
+            &:after {
+              background-image: url("#{$img-base1}other/play-w.png");
+            }
+          }
+        }
       }
       .list-introduce {
-        height: 93px;
         transition: all 0.3s linear;
         line-height: 28px;
-        padding: 15px 18px;
+        padding: 0 18px;
         background: url("#{$img-base1}other/none.png") left center no-repeat,
       url("#{$img-base1}other/none.png") right center no-repeat;
         background-size: 33px 50px;
@@ -143,7 +208,8 @@
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
         overflow: hidden;
-  
+        height: 56px;
+        margin: 18px 0;
       }
     }
   }

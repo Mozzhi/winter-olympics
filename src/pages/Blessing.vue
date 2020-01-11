@@ -1,17 +1,18 @@
 <template>
   <div class="blessing">
     <header-bar active="home"></header-bar>
+    <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
       <div class="Breadcrumb">5555</div>
       <subpage-title block-name="寄语"></subpage-title>
       <div class="list-devide">
-        <a href="" class="blessing-list" v-for="i in 8">
-          <div class="time inline-box">02-01 08:30</div>
-          <div class="inline-box blessing-title">精心做好各项筹备工作，全力以赴办好“十四冬”，向党和人民交上一份满意答卷。</div>
+        <a :href="`/details?id=${list.id}`" target="_blank" class="blessing-list" v-for="list in mainList">
+          <div class="time inline-box">{{list.published_at1}}</div>
+          <div class="inline-box blessing-title">{{list.title}}</div>
         </a>
       </div>
-      <Page class="m-pages" :total="100"></Page>
+      <Page class="m-pages" :total="totalPage" @on-change="changePage"></Page>
     </div>
     <Footer></Footer>
   </div>
@@ -20,19 +21,43 @@
   import HeaderBar from '../components/HeaderBar/HeaderBar.vue';
   import Footer from '../components/Footer/Footer.vue';
   import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
+  import NewsBox from '../components/NewsBox/NewsBox.vue';
   import ListItem from '../components/ListItem/ListItem.vue';
   export default {
     name: 'Blessing',
     data() {
       return {
-      
+        mainList: [],
+        page: 1,
+        totalPage: 0,
       }
     },
     components: {
       HeaderBar,
       Footer,
       SubpageTitle,
+      NewsBox
     },
+    created() {
+      this.getBlessing();
+    },
+    methods: {
+      getBlessing () {
+        let params = {
+          column_id: 38,
+          p: this.page
+        };
+        this.$http.getArticleList(params)
+          .then(res => {
+            this.mainList = res.data.list;
+            this.totalPage = res.data.totalPage;
+          })
+      },
+      changePage (p) {
+        this.page = p;
+        this.getBlessing();
+      }
+    }
   }
 </script>
 <style lang="scss" scoped>
@@ -58,9 +83,9 @@
             repeat: no-repeat;
             size: 14px 28px;
             position: left center;
-            image: url("#{$img-base1}game-icon.png");
+            image: url("#{$img-base1}ra.png");
           };
-          transition: all 0.3s linear;
+          transition: all 0.2s linear;
         }
         &:hover {
           color: $theme-color;

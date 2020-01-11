@@ -11,27 +11,27 @@
         <div class="inline-box article-list">
           <list-item v-for="list in mainList" :key="list.id" :list="list" :no-img="list.thumb !== '' ? false : true"></list-item>
           <div class="no-more" v-show="!mainList.length"><span class="nothing">没有更多了</span></div>
-          <Page class="m-pages" v-show="totalPages > 1" :total="totalPages*10" @on-change="pageChange"></Page>
+          <Page class="m-pages" :current="page" v-show="totalPages > 1" :total="totalPages" @on-change="pageChange"></Page>
         </div>
         <div class="inline-box right-sider">
           <div class="sider-block">
-            <div class="sider-block-name">精彩图片 <img src="../../static/images/other/right-arrow.png" alt=""></div>
-            <a href="" class="sider-block-show">
+            <a href="/splendid_pages/splendid_img"><div class="sider-block-name">精彩图片 <img src="../../static/images/other/right-arrow.png" alt=""></div></a>
+            <a :href="`/details?id=${Wonderful_picture[0]['id']}`" target="_blank" class="sider-block-show">
               <img :src="Wonderful_picture[0]['thumb']" alt="">
               <span class="bottom-text">{{Wonderful_picture[0]['title']}}</span>
             </a>
             <div class="topline-list">
-              <div class="lines" v-for="item in imgNumber" :key="item.id"><a href="">{{item.title}}</a></div>
+              <div class="lines" v-for="item in imgNumber" :key="item.id"><a :href="`/details?id=${item.id}`" target="_blank">{{item.title}}</a></div>
             </div>
           </div>
           <div class="sider-block">
-            <div class="sider-block-name">精彩视频 <img src="../../static/images/other/right-arrow.png" alt=""></div>
-            <a href="" class="sider-block-show video-block">
+            <a href="/splendid_pages/splendid_video"><div class="sider-block-name" >精彩视频 <img src="../../static/images/other/right-arrow.png" alt=""></div></a>
+            <a :href="`/details?id=${Wonderful_video[0]['id']}`" target="_blank" class="sider-block-show video-block">
               <img :src="Wonderful_video[0]['thumb']" alt="">
               <span class="bottom-text">{{Wonderful_video[0]['title']}}</span>
             </a>
             <div class="topline-list">
-              <div class="lines" v-for="item in videoNumber" :key="item.id"><a href="">{{item.title}}</a></div>
+              <div class="lines" v-for="item in videoNumber" :key="item.id"><a :href="`/details?id=${item.id}`" target="_blank">{{item.title}}</a></div>
             </div>
           </div>
         </div>
@@ -110,32 +110,15 @@
       }
     },
     created() {
-      this.getIndexData();
       this.getArticle();
+      this.getSiderData();
     },
     methods: {
-      getIndexData () {
-        let storeIndexData = this.$store.getters.getMainData;
-        if(storeIndexData.hasOwnProperty('Daily_News')){
-          this.getData(storeIndexData);
-        }else {
-          this.$http.getIndex()
-            .then((res) => {
-              this.$store.commit('INDEXDATA', res.data);
-              saveData('indexData', res.data);
-              this.getData(res.data);
-            })
-        }
-      },
       getKey(key) {
         this.tabKey = key;
         this.column_id = key;
+        this.page = 1;
         this.getArticle();
-      },
-      getData(data) {
-        this.indexData = data;
-        this.Wonderful_picture = data.Wonderful_picture;
-        this.Wonderful_video = data.Wonderful_video;
       },
       getArticle() {
         let params = {
@@ -151,6 +134,13 @@
       pageChange(p) {
         this.page = p;
         this.getArticle();
+      },
+      getSiderData() {
+        this.$http.siderData()
+          .then(res => {
+            this.Wonderful_picture = res.data.Wonderful_picture;
+            this.Wonderful_video = res.data.Wonderful_video;
+          })
       }
     }
   }
