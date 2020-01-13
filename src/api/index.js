@@ -15,6 +15,9 @@ function toast(msg, cb) {
 function post(pUrl, params = {}) {
   return http.doPost(pUrl, params)
     .then(res => {
+      if(res.status == 1){
+        toast(res.msg);
+      }
       return res;
     }).catch(err => {
       toast(err.toString());
@@ -104,10 +107,17 @@ export class Api {
   }
 
   /**
-   * 登出
+   * 右边侧栏数据
    * */
   siderData () {
     return post('Pcapi/sidebar')
+  }
+
+  /**
+   * 这里是呼伦贝尔
+   * */
+  getHulunbuirData () {
+    return post('Pcapi/flbe')
   }
 
 }

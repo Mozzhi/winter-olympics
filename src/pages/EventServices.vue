@@ -9,7 +9,7 @@
 	     	<div class="tabs-box">
           <tabs :tab-arr="tabs" :current-key="column_id" @switchoverKey="changeId"></tabs>
         </div>
-         <across-calendar v-show="column_id == 2"></across-calendar>
+         <across-calendar v-show="column_id == 2" @getDate="changeDate"></across-calendar>
 	     	<!--比赛项目-->
 	     	<div class="game-project" v-if="column_id == 4">
 	     		<Row>
@@ -28,7 +28,7 @@
 	     			<div class="time">{{item.published_at1}}</div>
 	     			<div class="title ellipsis">{{item.title}}</div>
 	     		</a>
-          <Page class="m-pages" :total="totalPage" @on-change="changePage"></Page>
+          <Page class="m-pages" :total="totalPage - 0" @on-change="changePage" v-show="totalPage > 1"></Page>
 	     	</div>
 	     	<!--赛事场馆-->
 	     	<div class="venues contestEvent" v-if="column_id == 3">
@@ -65,6 +65,7 @@
 			return {
         tabs: tabs,
         column_id: 2,
+        selectDay: new Date().getDate(),
 			  list:[
 				{
 				 name:"雪橇",
@@ -161,8 +162,16 @@
         if(this.column_id == 3) {
           params['psize'] = 99
         }
+        if(this.column_id == 2){
+          params['schedule_at'] = this.selectDay;
+        }
+        const loading = this.$Message.loading({
+          content: '正在加载中...',
+          duration: 0
+        });
         this.$http.getArticleList(params)
           .then(res => {
+            loading();
             this.mainList = res.data.list;
             this.totalPage = res.data.total_page;
           })
@@ -171,6 +180,10 @@
 		    this.page = p;
 		    console.log(this.page)
 		    this.getData();
+      },
+      changeDate(date) {
+		    this.selectDay = date;
+		    this.getData()
       }
     }
   }

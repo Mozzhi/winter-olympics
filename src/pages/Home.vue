@@ -36,14 +36,14 @@
             <div class="jalousie-detail">
               <div class="ellipsis" v-for="list in item.content"><a :href="`/details?id=${list.id}`" target="_blank">{{list.title}}</a></div>
             </div>
-            <a href="" class="look-more">查看更多></a>
+            <a :href="`/list_pages/msg_service/${item.id}`" class="look-more">查看更多></a>
           </div>
         </div>
       </div>
       <div class="inline-box opening">
         <block-item block-name="开闭幕式" link="/list_pages/Ceremony">
           <div class="game-content open-short" slot="blockContent">
-            <a href="" class="news-lists" v-for="item in indexData.Ceremony">{{item.title}}</a>
+            <a :href="`/details?id=${item.id}`" target="_blank" class="news-lists" v-for="item in indexData.Ceremony">{{item.title}}</a>
           </div>
         </block-item>
       </div>
@@ -54,7 +54,7 @@
           <swiper :options="imgSwiperOption" ref="imgSwiper">
             <!-- slides -->
             <swiper-slide v-for="item in imgNumber" :key="item">
-              <a  :href="`/details?id=${img.id}`" target="_blank" class="img-out" v-for="img in showList(item, Wonderful_picture)">
+              <a :href="`/details?id=${img.id}`" target="_blank" class="img-out" v-for="img in showList(item, Wonderful_picture)">
                 <div class="pic-show-box">
                   <img :src="img.thumb" alt="">
                 </div>
@@ -86,10 +86,13 @@
       </div>
     </block-item>
     <div class="hulun-buir">
-      <swiper :options="swiperOption" ref="hulunSwiper">
+      <swiper :options="hulunSwiperOption" ref="hulunSwiper">
         <!-- slides -->
-        <swiper-slide v-for="i in 3"  :key="i"><img src="../../static/images/snow-forest.png" alt=""></swiper-slide>
+        <swiper-slide><a href="/hulun_buir"><img src="../../static/images/snow-forest.png" alt=""></a></swiper-slide>
+        <swiper-slide><a href="/hulun_buir"><img src="../../static/images/forest2.png" alt=""></a></swiper-slide>
+        <swiper-slide><a href="/hulun_buir"><img src="../../static/images/forest3.png" alt=""></a></swiper-slide>
       </swiper>
+      <img src="../../static/images/Hulun.png" class="hunlun-buir-text" />
     </div>
     <block-item block-name="城市采访线" more-class="none-bg" link="/cityline/city_visiting">
       <div class="interview-date-bar" slot="headCenter">
@@ -118,15 +121,14 @@
   import CityInterview from '../components/CityInterview/CityInterview';
   import Tabs from '../components/Tabs/Tabs';
   import NewsBox from '../components/NewsBox/NewsBox';
-  import { getSessionData, saveData } from "../util";
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
   let jalousie = [
-    {index: '一', title: "即时引语"},
-    {index: '二', title: "发布会摘要"},
-    {index: '三', title: "综合新闻"},
-    {index: '四', title: "赛事前瞻"},
-    {index: '五', title: "比赛赛况"},
-    {index: '六', title: "背景资料"},
+    {content: [], index: '一', title: "媒体通告", id: '16'},
+    {content: [], index: '二', title: "即时引语", id: '13'},
+    {content: [], index: '三', title: "发布会摘要", id: '14'},
+    {content: [], index: '四', title: "综合新闻", id: '15'},
+    {content: [], index: '五', title: "赛事前瞻", id: '17'},
+    {content: [], index: '六', title: "背景资料", id: '18'},
   ];
   let gameTab = [
     {key: 'date', text: '赛事日程'},
@@ -139,6 +141,12 @@
 		data() {
 			return {
         swiperOption: {
+          autoplay: true,
+          loop: true,
+          clickable: true
+        },
+        hulunSwiperOption: {
+          effect : 'fade',
           autoplay: true,
           loop: true,
           clickable: true
@@ -194,26 +202,44 @@
 		  this.getIndexData();
     },
     mounted() {
-      this.$nextTick(() => {
-        this.scrollInit();
-      })
+		  
     },
     methods: {
 		  getIndexData () {
+        const loading = this.$Message.loading({
+          content: '正在加载中...',
+          duration: 0
+        });
         this.$http.getIndex()
           .then((res) => {
-            this.$store.commit('INDEXDATA',res.data);
-            saveData('indexData', res.data);
+            loading()
             this.setData(res.data);
+          })
+      },
+      getCityLineList(date) {
+		    let params = {
+          column_id: 12,
+          schedule_at: date,
+          p: 1,
+          psize: 4
+        };
+		    const msg = this.$Message.loading({
+          content: '正在加载中...',
+          duration: 0
+        });
+        this.$http.getArticleList(params)
+          .then(res => {
+            msg();
+            this.City_Visiting_Line = res.data.list;
           })
       },
       setData(data) {
         this.indexData = data;
-        this.jalousieList[0]['content'] = data.Instant_quotation;
-        this.jalousieList[1]['content'] = data.Conference_summary;
-        this.jalousieList[2]['content'] = data.General_News;
-        this.jalousieList[3]['content'] = data.Tournament_Preview;
-        this.jalousieList[4]['content'] = data.Match_status;
+        this.jalousieList[0]['content'] = data.Match_status;
+        this.jalousieList[1]['content'] = data.Instant_quotation;
+        this.jalousieList[2]['content'] = data.Conference_summary;
+        this.jalousieList[3]['content'] = data.General_News;
+        this.jalousieList[4]['content'] = data.Tournament_Preview;
         this.jalousieList[5]['content'] = data.Background_information;
         this.message = data.Message;
         this.stick = data.stick;
@@ -247,6 +273,7 @@
       chooseDate(date) {
 		    this.dateTo = date > 24 ? 24 : ((date - 1)  < 2 ? 0 : date - 3);
 		    this.dateChoose = date;
+		    this.getCityLineList(date);
       }
     }
   }

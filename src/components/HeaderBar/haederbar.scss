@@ -1,8 +1,7 @@
 @mixin hover-bg {
-  background: url("#{$img-base}tl.png") left center no-repeat, url("#{$img-base}tr.png") right center no-repeat;
+  background: url("#{$img-base}tl.png") left center no-repeat, url("#{$img-base}tr.png") right center no-repeat #3775BD;
   background-size: auto 100%;
   color: #fff;
-  background-color: #3775BD;
 }
 .header {
   //position: fixed;
@@ -43,6 +42,7 @@
       border: 1px solid $theme-color;/*no*/
       border-radius: 36px;
       padding: 0 20px;
+      background: #fff;
     }
     .submit {
       display: none;
@@ -64,7 +64,7 @@
   width: 1300px;
   .tab {
     padding: 10px 29px;
-    background: #fff;
+    background: #FFFEF7;
     display: inline-block;
     &.active {
       @include hover-bg

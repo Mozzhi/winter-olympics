@@ -1,6 +1,7 @@
 <template>
 	<div class="home">
 		<header-bar active="home"></header-bar>
+    <news-box></news-box>
 		<div class="centerMain wrapper">
 			<!--面包屑-->
 			<div class="Breadcrumb">5555</div>
@@ -55,6 +56,7 @@
 	import HeaderBar from '../components/HeaderBar/HeaderBar.vue';
 	import Footer from '../components/Footer/Footer.vue';
 	import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
+  import NewsBox from '../components/NewsBox/NewsBox';
 	import getToken from '../libs/auth'
 	export default {
 		name: 'EventServices',
@@ -68,7 +70,8 @@
 		components: {
 			HeaderBar,
 			Footer,
-			SubpageTitle
+			SubpageTitle,
+      NewsBox
 		},
 		created(){
 			this.id=this.$route.query.id || 867;
@@ -118,7 +121,7 @@
 							this.list=res.data;
 							this.groupId=res.data.group_id;
 							//1-视频要不下载，2-视频可以下载
-							if(res.data.group_id==1){	
+							if(res.data.group_id==1){
 								this.stopsVideo()
        						 	var dat = res.data.details.replace(/\<video /gi, '<video controlsList="nodownload"');
        						 	this.list.details=dat;

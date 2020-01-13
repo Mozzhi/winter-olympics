@@ -10,7 +10,10 @@
     <div class="logout">
       <div class="side-btn logout-btn" @click="logout">退出登录</div>
       <div class="side-btn manage-btn">管理后台</div>
-      <div class="side-btn wechat-btn">小程序</div>
+      <div class="side-btn wechat-btn">
+        小程序
+        <div class="qr-code"><div class="qr-code-inner"><img src="../../../static/images/login/qr-code.png" alt=""></div></div>
+      </div>
     </div>
 	</div>
 </template>

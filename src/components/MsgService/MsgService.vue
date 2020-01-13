@@ -2,7 +2,7 @@
 	<div class="msg-service wrapper clearfix">
     <div class="meet-in-neimoongu"></div>
 	  <div class="inline-box msg-left">
-      <div class="new-banner">
+      <div class="new-banner" v-if="banner.length">
         <swiper :options="swiperOption" ref="mySwiper">
           <!-- slides -->
           <swiper-slide v-for="item in banner"  :key="item.id">
@@ -51,7 +51,8 @@
           autoplay: true,
           loop: true,
           pagination: {
-            el: '.swiper-pagination'
+            el: '.swiper-pagination',
+            clickable: true
           }
         },
         banner: [],
@@ -74,15 +75,24 @@
 		  console.log(this.message)
     },
     mounted() {
-      // current swiper instance
-      // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-      console.log('this is current swiper instance object', this.swiper)
+		  
     },
     methods: {
 		  getBanners () {
+		    let that = this;
 		    this.$http.getBanner()
           .then((res) => {
             this.banner = res.data;
+            this.$nextTick(() => {
+              console.log(this.swiper.pagination.bullets);
+              for(let i = 0; i < this.swiper.pagination.bullets.length; i++ ){
+                this.swiper.pagination.bullets[i].onmouseover = function () {
+                  console.log(1)
+                  this.click();
+                  that.swiper.autoplay.start();
+                }
+              }
+            });
             console.log(res);
           })
       }

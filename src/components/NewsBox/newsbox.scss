@@ -41,7 +41,7 @@
     right: 240px;
     top: 257px;
     width: 80px;
-    overflow: hidden;
+    //overflow: hidden;
     border-radius: 4px;
     background: rgba(55,117,189,0.7);
     z-index: 999;
@@ -65,7 +65,42 @@
       }
       &.wechat-btn {
         background-image: url("#{$img-base}wechat-pg.png");
+        position: relative;
+        &:hover {
+          .qr-code {
+            display: block;
+          }
+        }
       }
+    }
+  }
+  .qr-code {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background:rgba(55,117,189,0.75);
+    border-radius: 4px;
+    padding: 10px;
+    left: -160px;
+    bottom: 0;
+    display: none;
+    .qr-code-inner {
+      border-radius: 4px;
+      padding: 10px;
+      background: #fff;
+      img {
+        width: 110px;
+        height: 110px;
+      }
+    }
+    &:after {
+      @include pseudo-class;
+      border: {
+        style: solid;
+        width: 10px;
+        color: transparent transparent transparent rgba(55,117,189,0.75);
+      }
+      right: -20px;
     }
   }
 }

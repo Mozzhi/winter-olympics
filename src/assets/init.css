@@ -30,7 +30,7 @@ vertical-align: top;
 /* 初始化 */
 body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,input,textarea,select,p,dl,dt,dd,a,img,button,form,table,th,tr,td,tbody,article,
 aside, details,figcaption,figure,footer,header,hgroup, menu,nav,section{margin:0; padding:0; border:none;box-sizing: border-box;}
-body{font-family:"Microsoft Yahei",Tahoma,"Lucida Grande",Verdana,STXihei,hei;background:#fff;height: 100%;overflow:auto;font-size:14px;}
+body{font-family:"Microsoft Yahei",Tahoma,"Lucida Grande",Verdana,STXihei,hei;background:#fffef7;height: 100%;overflow:auto;font-size:14px;}
 body,html{overflow-x:hidden;height: 100%;}
 em,i{font-style:normal;}
 strong{font-weight: normal;}

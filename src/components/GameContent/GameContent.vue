@@ -11,13 +11,13 @@
           </thead>
           <tbody>
             <tr v-for="i in 5">
-              <td v-for="(date, index) in febArr" v-if="index <= 7*i && index > 7*(i-1)" :class="{'active': choosed > 5 && choosed == date}"><div class="inner-date" v-if="date">{{date}}</div></td>
+              <td v-for="(date, index) in febArr" v-if="index <= 7*i && index > 7*(i-1)" :class="{'active': choosed > 5 && choosed == date}" @click="chooseDate(date)"><div class="inner-date" v-if="date">{{date}}</div></td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="inline-box game-lists">
-        <a href="" v-for="item in gamesData.Competition"><div class="game-list clearfix">
+        <a href="" v-for="item in Competition"><div class="game-list clearfix">
           <span class="game-title"><img class="game-icon" src="../../../static/images/game-icon.png" alt="">{{item.title}}</span>
           <span class="date">02-18 08:30</span>
         </div></a>
@@ -28,7 +28,7 @@
         <!-- slides -->
         <swiper-slide v-for="item in houseNum" :key="item">
           <div class="game-house" v-for="house in showList(item, gamesData.Tournament_venues, 3)">
-            <div class="house-img" v-bg="house.thumb"></div>
+            <div class="house-img"><img :src="house.thumb" alt=""></div>
             <div class="house-name">{{house.title}}</div>
           </div>
         </swiper-slide>
@@ -40,7 +40,7 @@
         <!-- slides -->
         <swiper-slide v-for="item in projectNum" :key="item">
           <div class="game-house" v-for="project in showList(item, gamesData.Competition_items, 4)">
-            <div class="house-img" v-bg="project.thumb"></div>
+            <div class="house-img"><img :src="project.thumb" alt=""></div>
             <div class="house-name">{{project.title}}</div>
           </div>
         </swiper-slide>
@@ -48,7 +48,6 @@
       </swiper>
     </div>
   </div>
-
 </template>
 <script>
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
@@ -58,6 +57,7 @@
   for(let i = 1; i < 30; i++) {
     arr.push(i);
   }
+  let today = new  Date().getDate();
   console.log(arr)
 	export default {
 		name: 'GameContent',
@@ -75,7 +75,7 @@
       return {
         febArr: arr,
         weekday: ['一','二','三','四','五','六','日'],
-        choosed: 18,
+        choosed: today,
         value2: 0,
         swiperOption: {
           autoplay: true,
@@ -85,7 +85,8 @@
             clickable: true
           }
         },
-        gamesProject: gamesProject
+        gamesProject: gamesProject,
+        Competition: [],
       };
     },
     components: {
@@ -100,12 +101,39 @@
 		    return Math.ceil(this.gamesData.Tournament_venues.length/3);
       },
     },
+    created() {
+		  this.getList();
+    },
     methods: {
       showList (i, data, length){
         let start = length*i - length,
           end = length*i;
         return data.slice(start, end);
       },
+      getList(date = today) {
+        let params = {
+          column_id: 2,
+          schedule_at: date,
+          p: 1,
+          psize: 5
+        };
+        this.$Message.destroy()
+        const msg = this.$Message.loading({
+          content: '正在加载中...',
+          duration: 0
+        });
+        this.$http.getArticleList(params)
+          .then(res => {
+            msg();
+            this.Competition = res.data.list;
+          })
+      },
+      chooseDate(date) {
+        if(date){
+          this.choosed = date;
+          this.getList(date);
+        }
+      }
     }
   };
 </script>

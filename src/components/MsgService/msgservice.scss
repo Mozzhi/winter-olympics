@@ -17,7 +17,7 @@
     padding-top: 40px;
     float: left;
     .new-banner {
-      background: #fff;
+      background: #FFFEF7;
       width: 720px;
       height: 405px;
       overflow: hidden;
@@ -79,9 +79,9 @@
     }
     .news-content {
       background: url("#{$img-base}top-border.png") center top no-repeat,
-      url("#{$img-base}bottom-border.png") center bottom no-repeat;
+      url("#{$img-base}bottom-border.png") center bottom no-repeat #FFFEF7;
       background-size: 470px auto;
-      background-color: #fff;
+      //background-color: #FFFEF7;
       padding: 18px 0;
       box-shadow: 0 0 15px rgba(0,0,0,0.05);
       .line-item {

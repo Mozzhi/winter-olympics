@@ -80,7 +80,11 @@
         if(!this.keyword) {
           this.$Message.error('请输入要查找的内容');
         }else {
+          let listType = this.$route.params.list_type || '';
           this.$router.push({path: `/cityline/search/${this.keyword}`});
+          if(listType == 'city_visiting') {
+            window.location.reload();
+          }
         }
       }
     }

@@ -40,12 +40,12 @@ export default new Router({
 			component: (resolve) => require(['@/pages/CityLine.vue'], resolve)
     },
     {
-			path: '/list_pages/:list_type',
+			path: '/list_pages/:list_type/:type_id?',
 			name:'每日新闻',
 			component: (resolve) => require(['@/pages/ListPages.vue'], resolve)
     },
     {
-			path: '/splendid_pages/:list_type',
+			path: '/splendid_pages/:list_type/:type_id?',
 			name:'精彩',
 			component: (resolve) => require(['@/pages/SplendidPages.vue'], resolve)
     },

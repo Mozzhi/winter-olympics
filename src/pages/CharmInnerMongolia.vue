@@ -7,22 +7,22 @@
       <div class="Breadcrumb">5555</div>
       <subpage-title block-name="魅力内蒙古"></subpage-title>
       <div class="list-devide">
-        <block-item :block-name="item.name" class="no-more" v-for="item in charmData" >
+        <block-item :block-name="item.name" class="no-more" v-for="item in charmData" :key="item.id">
           <div class="parts clearfix" slot="blockContent" v-if="item.id !== 48">
-            <a href="" class="inline-box part-item survey" v-bg="item.survey_img">
+            <a :href="`/details?id=${item.id}`" class="inline-box part-item survey" v-bg="item.survey_img">
               <div class="mask"><span class="mask-text">概况</span></div>
             </a>
-            <a href="" class="inline-box part-item" v-bg="item.video_matter">
+            <a :href="`/splendid_pages/splendid_video/${item.id}`" class="inline-box part-item" v-bg="item.video_matter">
               <div class="mask-bar"><span class="mask-text">视频素材</span></div>
             </a>
-            <a href="" class="inline-box part-item">
-              <div class="matter" v-bg="item.word_matter">
+            <div class="inline-box part-item">
+              <a :href="`/cityline/article_list?id=${item.id}`" class="matter" v-bg="item.word_matter">
                 <div class="mask-bar"><span class="mask-text">文字素材</span></div>
-              </div>
-              <div class="matter" v-bg="item.img_matter">
+              </a>
+              <a :href="`/splendid_pages/splendid_img/${item.id}`" class="matter" v-bg="item.img_matter">
                 <div class="mask-bar"><span class="mask-text">图片素材</span></div>
-              </div>
-            </a>
+              </a>
+            </div>
           </div>
           <a href="/hulun_buir" class="link-to" slot="headCenter" v-if="item.id == 48">跳转 <img src="../../static/images/ra.png" alt=""></a>
         </block-item>

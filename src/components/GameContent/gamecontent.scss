@@ -113,11 +113,18 @@
       width: 368px;
       height: 207px;
       @include base-bg;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
     .house-name {
       height: 93px;
       line-height: 93px;
       overflow: hidden;
+      color: #303030;
+      font-size: 16px;
     }
     &:hover {
       box-shadow: 0px 0px 20px #dadada;

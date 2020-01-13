@@ -7,27 +7,29 @@
       <div class="Breadcrumb">5555</div>
       <subpage-title block-name="这里是呼伦贝尔"></subpage-title>
       <div class="list-devide">
-        <block-item block-name="内蒙古概况" class="">
+        <block-item :block-name="item.name" :small-name="item.intro" class="" v-for="item in hulunData" :key="item.id" :link="`/splendid_pages/splendid_img/${item.id}`">
           <div class="parts clearfix" slot="blockContent">
-            <a href="" class="inline-box part-item survey" v-bg="'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg'">
-              <div class="mask"><span class="mask-text">概况</span></div>
+            <a :href="`/details?id=${list.id}`" target="_blank" class="inline-box part-item survey"
+               v-for="(list, index) in item.content" v-if="index == 0" :key="list.id">
+              <img :src="list.thumb" alt="">
+              <div class="mask-texts">{{list.title}}</div>
             </a>
-            <a href="" class="inline-box part-item">
-              <div class="matter" v-bg="'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg'">
-                <div class="mask-bar"><span class="mask-text">概况</span></div>
-              </div>
-              <div class="matter" v-bg="'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg'">
-                <div class="mask-bar"><span class="mask-text">概况</span></div>
-              </div>
-            </a>
-            <a href="" class="inline-box part-item">
-              <div class="matter" v-bg="'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg'">
-                <div class="mask-bar"><span class="mask-text">概况</span></div>
-              </div>
-              <div class="matter" v-bg="'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg'">
-                <div class="mask-bar"><span class="mask-text">概况</span></div>
-              </div>
-            </a>
+            <div class="inline-box part-item">
+              <a :href="`/details?id=${list.id}`" target="_blank" class="matter" v-for="(list, index) in item.content" v-if="index == 1">
+                <img :src="list.thumb" alt="">
+              </a>
+              <a :href="`/details?id=${list.id}`" target="_blank" class="matter" v-for="(list, index) in item.content" v-if="index == 2">
+                <img :src="list.thumb" alt="">
+              </a>
+            </div>
+            <div class="inline-box part-item">
+              <a :href="`/details?id=${list.id}`" target="_blank" class="matter" v-for="(list, index) in item.content" v-if="index == 3">
+                <img :src="list.thumb" alt="">
+              </a>
+              <a :href="`/details?id=${list.id}`" target="_blank" class="matter" v-for="(list, index) in item.content" v-if="index == 4">
+                <img :src="list.thumb" alt="">
+              </a>
+            </div>
           </div>
         </block-item>
       </div>
@@ -41,11 +43,13 @@
   import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
   import BlockItem from '../components/BlockItem/BlockItem.vue';
   import NewsBox from '../components/NewsBox/NewsBox';
+  import { hulunData } from "../util/static_data";
+
   export default {
     name: 'CharmInnerMongolia',
     data() {
       return {
-        mainList: [],
+        hulunData: hulunData
       }
     },
     components: {
@@ -55,19 +59,20 @@
       BlockItem,
       NewsBox
     },
-    created() {
+    mounted() {
       this.getData();
     },
     methods: {
       getData() {
-        let params = {
-          column_id: 10,
-          p: 1
-        };
-        this.$http.getArticleList(params)
+        this.$http.getHulunbuirData()
           .then(res => {
-            this.mainList = res.data.list;
-            console.log(this.mainList)
+            this.hulunData[0]['content'] = res.data.Physical_geography;
+            this.hulunData[1]['content'] = res.data.Historical_tracing;
+            this.hulunData[2]['content'] = res.data.Political_economy;
+            this.hulunData[3]['content'] = res.data.Tourism_culture;
+            this.hulunData[4]['content'] = res.data.Future_outloo;
+            this.hulunData[5]['content'] = res.data.winter_rhyme;
+            console.log(this.hulunData)
           })
       }
     }
@@ -76,4 +81,28 @@
 <style lang="scss" scoped>
   @import "../assets/commom";
   @import "../assets/bupu";
+  .charm-inner-mongolia {
+    .parts {
+      .survey, .matter {
+        overflow: hidden;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      .mask-texts {
+        width:520px;
+        height:60px;
+        background:linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+        border-radius:0px 0px 4px 4px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        color: #fff;
+        font-size: 16px;
+        line-height: 60px;
+        text-align: center;
+      }
+    }
+  }
 </style>

@@ -11,7 +11,7 @@
         <div class="inline-box article-list">
           <list-item v-for="list in mainList" :key="list.id" :list="list" :no-img="list.thumb !== '' ? false : true"></list-item>
           <div class="no-more" v-show="!mainList.length"><span class="nothing">没有更多了</span></div>
-          <Page class="m-pages" :current="page" v-show="totalPages > 1" :total="totalPages" @on-change="pageChange"></Page>
+          <Page class="m-pages" :current="page" v-show="totalPages > 1" :total="totalPages - 0" @on-change="pageChange"></Page>
         </div>
         <div class="inline-box right-sider">
           <div class="sider-block">
@@ -47,7 +47,6 @@
   import ListItem from '../components/ListItem/ListItem.vue';
   import NewsBox from '../components/NewsBox/NewsBox';
   import Tabs from '../components/Tabs/Tabs';
-  import { saveData } from "../util";
 
   let title = {
     Ceremony: '开闭幕式',
@@ -79,6 +78,7 @@
   export default {
     name: 'ListPages',
     data() {
+      let type_id = this.$route.params.type_id || '';
       return {
         headerKey: this.$route.params.list_type,
         mainList: baseArr,
@@ -90,7 +90,8 @@
         indexData: {},
         page: 1,
         totalPages: 1,
-        column_id: column_id[this.$route.params.list_type],
+        column_id: type_id || column_id[this.$route.params.list_type],
+        type_id: type_id
       }
     },
     components: {
@@ -110,7 +111,11 @@
       }
     },
     created() {
-      this.getArticle();
+      if(this.type_id) {
+        this.getKey(this.type_id);
+      }else {
+        this.getArticle();
+      }
       this.getSiderData();
     },
     methods: {
@@ -125,8 +130,13 @@
           column_id: this.column_id,
           p: this.page
         };
+        const loading = this.$Message.loading({
+          content: '正在加载中...',
+          duration: 0
+        });
         this.$http.getArticleList(params)
           .then(res => {
+            loading();
             this.mainList = res.data.list;
             this.totalPages = res.data.total_page;
           })
@@ -178,7 +188,7 @@
     background: {
       repeat: no-repeat;
       image: url("#{$img-base1}563left.png");
-      size: 24px 20px;
+      size: 20px 24px;
       position: left center;
     };
     padding-left: 33px;
@@ -249,13 +259,15 @@
   .no-more {
     text-align: center;
     position: relative;
-    background: #fff;
+    background: #FFFEF7;
     margin-top: -2px;
+    height: 30px;
     .nothing {
       position: relative;
       z-index: 2;
-      background: #fff;
+      background: #FFFEF7;
       padding: 5px 10px;
+      top: 5px;
     }
     &:before {
       @include pseudo-class;

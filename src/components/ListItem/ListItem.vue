@@ -20,7 +20,7 @@
 			return {}
 		},
     created() {
-		  console.log(this.NoImg)
+		  
     }
   }
 </script>

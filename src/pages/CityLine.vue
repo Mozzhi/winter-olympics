@@ -28,10 +28,11 @@
   export default {
     name: 'EventServices',
     data() {
+      let typeId = this.$route.query.id || '';
       return {
         mainList: [],
         listType: 'city_visiting',
-        column_id: 12,
+        column_id: typeId || 12,
         p: 1,
         schedule_at: 1,
         totalPages: 1,
@@ -47,10 +48,10 @@
       NewsBox
     },
     created() {
-      if(this.headerKey == 'city_visiting'){
-        this.getArticle();
-      }else {
+      if(this.headerKey == 'search'){
         this.doSearch();
+      }else {
+        this.getArticle();
       }
     },
     mounted() {
@@ -103,13 +104,16 @@
     .no-more {
       text-align: center;
       position: relative;
-      background: #fff;
+      background: #FFFEF7;
       margin-top: -2px;
+      height: 30px;
+      display: block;
       .nothing {
         position: relative;
         z-index: 2;
-        background: #fff;
+        background: #FFFEF7;
         padding: 5px 10px;
+        top: 5px;
       }
       &:before {
         @include pseudo-class;

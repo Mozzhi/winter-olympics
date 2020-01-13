@@ -1,4 +1,12 @@
 .home {
+  background: url("#{$img-base1}snow3.png") left 880px no-repeat,
+              url("#{$img-base1}snow1.png") 1650px 850px no-repeat,
+              url("#{$img-base1}snow-man.png") 0 1200px no-repeat,
+              url("#{$img-base1}l-snow.png") 0 2000px no-repeat,
+              url("#{$img-base1}miki-snow.png") 1650px 1200px no-repeat,
+              url("#{$img-base1}mb.png") 0 2700px no-repeat,
+              url("#{$img-base1}snow-s.png") right 2700px no-repeat,
+              url("#{$img-base1}hosis.png") right 2000px no-repeat;
   .competition {
     position: fixed;
     width: 321px;
@@ -177,7 +185,7 @@
   }
   .jalousie {
     width: 720px;
-    background: #fff;
+    background: #FFFEF7;
     margin-top: 30px;
     box-shadow: 0 0 15px rgba(0,0,0,0.05);
     height: 350px;
@@ -270,5 +278,15 @@
   }
   .hulun-buir {
     margin-top: 40px;
+    position: relative;
+    .hunlun-buir-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 495px;
+      height: 396px;
+      z-index: 2;
+    }
   }
 }

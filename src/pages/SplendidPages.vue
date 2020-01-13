@@ -5,8 +5,9 @@
     <div class="centerMain wrapper">
       <!--面包屑-->
       <div class="Breadcrumb">5555</div>
-      <subpage-title :block-name="`精彩${type[listType]}`"></subpage-title>
-      <div class="filtrate">
+      <subpage-title :block-name="`精彩${type[listType]}`" v-if="!type_id"></subpage-title>
+      <subpage-title :block-name="hulunTitle[type_id]" v-else></subpage-title>
+      <div class="filtrate" v-if="!type_id">
         <div class="filtrate-title">{{type[listType]}}筛选</div>
         <div class="filtrate-item">
           <span class="filter-tags" v-for="classis in classId" :class="{'active': classis.id == currentId }" @click="doFilter(classis.id)">{{classis.text}}</span>
@@ -31,6 +32,7 @@
   import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
   import NewsBox from '../components/NewsBox/NewsBox'
   import { details } from "../util";
+  import { hulunTitle } from "../util/static_data";
 
   let type = {
     splendid_img: '图片',
@@ -44,15 +46,18 @@
     name: 'SplendidPages',
     data() {
       let list_type = this.$route.params.list_type;
+      let type_id = this.$route.params.type_id;
       return {
         listType: list_type,
         type: type,
         classId: this.$store.getters.getClassId,
         currentId: 0,
         mainList: [],
-        column_id: column_id[list_type],
+        column_id: type_id ? type_id : column_id[list_type],
         p: 1,
         totalPage: 1,
+        type_id: type_id || '',
+        hulunTitle: hulunTitle
       }
     },
     components: {
@@ -75,8 +80,13 @@
           p: this.p,
           classify_id: this.currentId
         };
+        const loading = this.$Message.loading({
+          content: '正在加载中...',
+          duration: 0
+        });
         this.$http.getArticleList(params)
           .then(res => {
+            loading();
             this.mainList = res.data.list;
           })
       },

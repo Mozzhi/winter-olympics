@@ -3,7 +3,7 @@
 	  <span class="date-btn across-contr-btn" @click="calendarMove()" v-show="left > 0"></span>
     <div class="date-out-box">
       <div class="date-box" :style="{'left': -(78/192) * left + 'rem'}">
-        <div class="date-btn" v-for="(date, index) in Feb" @mouseenter="changeDate(index)" >
+        <div class="date-btn" v-for="(date, index) in Feb" @click="changeDate(index)" >
           <div class="date-btn-inner" :class="{'active': index == current}">
           <div class="date-text">{{date}}</div>
           <span class="febb"></span>
@@ -20,14 +20,16 @@
     let fdate = i < 10 ? '0' + i : i;
     Feb.push(fdate);
   }
+  let today = new Date().getDate();
+  let moveLeft = today > 18 ? 18 : today;
 	export default {
 		name: 'AcrossCalendar',
 		data() {
 			return {
 			  Feb: Feb,
-        left: 0,
+        left: today,
         clientW: document.documentElement.clientWidth,
-        current: 0,
+        current: today,
         timer: null
       }
 		},
@@ -40,11 +42,8 @@
         }
       },
       changeDate(index) {
-		    clearTimeout(this.timer);
-		    this.timer = setTimeout(() => {
           this.current = index;
           this.$emit('getDate', index);
-        }, 300);
       }
     }
 	}

@@ -2,7 +2,7 @@
 	<div class="block-item wrapper">
     <div class="block-header-out">
       <div class="block-header">
-        <div class="block-name"><img class="img-icon" src="../../../static/images/block-icon.png" alt="">{{blockName}}</div>
+        <div class="block-name"><img class="img-icon" src="../../../static/images/block-icon.png" alt="">{{blockName}}<span class="small-name" v-if="smallName">{{smallName}}</span></div>
         <div class="header-center"><slot name="headCenter"></slot></div>
         <a :href="link" class="more-entry look-more" v-if="moreClass">查看更多></a>
         <a :href="link" class="more-entry" v-else>查看更多 <img src="../../../static/images/more-icon.png" alt="" class="more-icon"></a>
@@ -14,7 +14,7 @@
 <script>
 	export default {
 		name: 'BlockItem',
-    props: ['blockName', 'moreClass', 'link'],
+    props: ['blockName', 'moreClass', 'link', 'smallName'],
 		data() {
 			return {}
 		},
@@ -26,7 +26,7 @@
 <style lang="scss" scoped>
   @import '../../assets/commom';
 .block-item {
-  background: #fff;
+  background: #FFFEF7;
   padding: 0 30px 30px;
   margin-top: 30px;
   box-shadow: 0 0 15px rgba(0,0,0,0.05);
@@ -50,6 +50,25 @@
         position: center center;
         image: url("#{$img-base}namebg.png");
       };
+      .small-name {
+        position: absolute;
+        display: block;
+        width: 200px;
+        font-size: 20px;
+        bottom: 25px;
+        height: 20px;
+        line-height: 20px;
+        padding-left: 30px;
+        left: 100%;
+        &:before{
+          @include pseudo-class;
+          width: 40px;
+          border: 1px solid $theme-color;
+          transform: rotate(-45deg);
+          left: -5px;
+          top: 30%;
+        }
+      }
       .img-icon{
         width: 22px;
         height: 22px;
