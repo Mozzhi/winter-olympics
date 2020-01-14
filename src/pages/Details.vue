@@ -4,7 +4,7 @@
     <news-box></news-box>
 		<div class="centerMain wrapper">
 			<!--面包屑-->
-			<div class="Breadcrumb">5555</div>
+      <breadcrumb current="正文"></breadcrumb>
 			<div class="details p100">
 				<div class="de-head">
 					<div class="de-title">{{list.title}}</div>
@@ -57,6 +57,7 @@
 	import Footer from '../components/Footer/Footer.vue';
 	import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
   import NewsBox from '../components/NewsBox/NewsBox';
+  import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
 	import getToken from '../libs/auth'
 	export default {
 		name: 'EventServices',
@@ -71,11 +72,13 @@
 			HeaderBar,
 			Footer,
 			SubpageTitle,
-      NewsBox
+      NewsBox,
+      Breadcrumb
 		},
 		created(){
 			this.id=this.$route.query.id || 867;
-			this.init()
+			this.init();
+			console.log(this.$router)
 		},
 		watch:{
 	        $route(val){//普通的watch监听

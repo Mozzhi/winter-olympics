@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="game-content house" v-show="projectKey == 'game-house'">
-      <swiper :options="swiperOption" ref="houseSwiper">
+      <swiper :options="swiperOption" ref="houseSwiper" v-if="houseNum">
         <!-- slides -->
         <swiper-slide v-for="item in houseNum" :key="item">
           <div class="game-house" v-for="house in showList(item, gamesData.Tournament_venues, 3)">
@@ -36,7 +36,7 @@
       </swiper>
     </div>
     <div class="game-content house project" v-show="projectKey == 'games'">
-      <swiper :options="swiperOption" ref="gamesSwiper">
+      <swiper :options="swiperOption" ref="gamesSwiper" v-if="projectNum">
         <!-- slides -->
         <swiper-slide v-for="item in projectNum" :key="item">
           <div class="game-house" v-for="project in showList(item, gamesData.Competition_items, 4)">
@@ -103,6 +103,12 @@
     },
     created() {
 		  this.getList();
+    },
+    watch: {
+		  
+    },
+    mounted() {
+		  
     },
     methods: {
       showList (i, data, length){

@@ -4,7 +4,7 @@
     <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
-      <div class="Breadcrumb">5555</div>
+      <breadcrumb current="寄语"></breadcrumb>
       <subpage-title block-name="寄语"></subpage-title>
       <div class="list-devide">
         <a :href="`/details?id=${list.id}`" target="_blank" class="blessing-list" v-for="list in mainList">
@@ -12,7 +12,8 @@
           <div class="inline-box blessing-title">{{list.title}}</div>
         </a>
       </div>
-      <Page class="m-pages" :total="totalPage" @on-change="changePage"></Page>
+      <Page class="m-pages" :total="totalPage" @on-change="changePage" v-if="totalPage"></Page>
+      <div class="no-data" v-if="!totalPage"><img src="../../static/images/nodata.png" alt=""></div>
     </div>
     <Footer></Footer>
   </div>
@@ -22,7 +23,7 @@
   import Footer from '../components/Footer/Footer.vue';
   import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
   import NewsBox from '../components/NewsBox/NewsBox.vue';
-  import ListItem from '../components/ListItem/ListItem.vue';
+  import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
   export default {
     name: 'Blessing',
     data() {
@@ -36,7 +37,8 @@
       HeaderBar,
       Footer,
       SubpageTitle,
-      NewsBox
+      NewsBox,
+      Breadcrumb
     },
     created() {
       this.getBlessing();

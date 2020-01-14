@@ -4,7 +4,7 @@
       <news-box></news-box>
 	     <div class="centerMain wrapper">
 	     	<!--面包屑-->
-	     	<div class="Breadcrumb">5555</div>
+         <breadcrumb :current="tabs[index]['text']"></breadcrumb>
 	     	<subpage-title block-name="赛事服务"></subpage-title>
 	     	<div class="tabs-box">
           <tabs :tab-arr="tabs" :current-key="column_id" @switchoverKey="changeId"></tabs>
@@ -12,14 +12,16 @@
          <across-calendar v-show="column_id == 2" @getDate="changeDate"></across-calendar>
 	     	<!--比赛项目-->
 	     	<div class="game-project" v-if="column_id == 4">
-	     		<Row>
-			        <Col span="6"  v-for="(item, index) in list" :key="item.id" class="e-outer">
-			       		<div class="e-bolck">
-							<div  class="divImg"><img :src="`../../static/images/events/${item.id}.png`"/></div>
-							<div class="title ellipsis">{{item.name}}</div>
-			       		</div>
-			        </Col>
-			    </Row>
+            <Row>
+                <Col span="6"  v-for="(item, index) in list" :key="item.id" class="e-outer">
+                  <a :href="`/splendid_pages/splendid_img/${item.id}`" target="_blank">
+                  <div class="e-bolck">
+                <div  class="divImg"><img :src="`../../static/images/events/${item.id - 22}.png`"/></div>
+                <div class="title ellipsis">{{item.name}}</div>
+                  </div>
+                  </a>
+                </Col>
+            </Row>
 	     	</div>
 	     	<!--比赛日程-->
 	     	<div class="scheduleEvent" v-if="column_id == 2">
@@ -34,12 +36,14 @@
 	     	<div class="venues contestEvent" v-if="column_id == 3">
 	     		<Row>
 			        <Col span="8" v-for="(item, index) in mainList" :key="item.id" >
+                <a :href="`/details?id=${item.id}`" target="_blank">
 			       		<div class="e-bolck">
 							<div class="divImg">
                 <img :src="item.thumb" alt="">
               </div>
 							<div class="title ellipsis">{{item.title}}</div>
 			       		</div>
+                </a>
 			        </Col>
 			    </Row>
 	     	</div>
@@ -54,6 +58,7 @@
   import Tabs from '../components/Tabs/Tabs';
   import AcrossCalendar from '../components/AcrossCalendar/AcrossCalendar';
   import NewsBox from '../components/NewsBox/NewsBox.vue';
+  import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
   let tabs = [
     { text: "赛事日程", key: 2 },
     { text: "赛事场馆", key: 3 },
@@ -64,68 +69,69 @@
 		data() {
 			return {
         tabs: tabs,
+        index: 0,
         column_id: 2,
         selectDay: new Date().getDate(),
 			  list:[
 				{
 				 name:"雪橇",
-				 id:"1"
+				 id:"23"
 				},
 				{
 				 name:"钢架雪车",
-				 id:"2"
+				 id:"24"
 				},
 				{
 				 name:"雪车",
-				 id:"3"
+				 id:"25"
 				},
 				{
 				 name:"自由式滑雪",
-				 id:"4"
+				 id:"26"
 				},
 				{
 				 name:"北欧两项",
-				 id:"5"
+				 id:"27"
 				},
 				{
 				 name:"跳台滑雪",
-				 id:"6"
+				 id:"28"
 				},
 				{
 				 name:"越野滑雪",
-				 id:"7"
+				 id:"29"
 				},
 				{
 				 name:"短道速滑",
-				 id:"8"
+				 id:"30"
 				},
 				{
 				 name:"速度滑冰",
-				 id:"9"
+				 id:"31"
 				},
 				{
 				 name:"单板滑雪",
-				 id:"10"
+				 id:"32"
 				},
 				{
 				 name:"高山滑雪",
-				 id:"11"
+				 id:"33"
 				},
 				{
 				 name:"冬季两项",
-				 id:"12"
+				 id:"34"
 				},
 				{
 				 name:"冰球",
-				 id:"13"
+				 id:"35"
 				},
 				{
 				 name:"冰壶",
-				 id:"14"
+				 id:"36"
 				},
 				{
 				 name:"花样滑冰",
-				 id:"15"
+				 id:"37"
 				},
 				
 			  ],
@@ -140,7 +146,8 @@
       SubpageTitle,
       Tabs,
       AcrossCalendar,
-      NewsBox
+      NewsBox,
+      Breadcrumb
     },
     created() {
       this.getData();
@@ -152,6 +159,7 @@
 		  changeId(id) {
 		    this.column_id = id;
 		    this.page = 1;
+		    this.index = id - 2;
 		    this.getData();
       },
       getData() {

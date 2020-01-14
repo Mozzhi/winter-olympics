@@ -26,9 +26,7 @@
           <div class="line-item" v-for="(item, index) in stickShow">
             <a :href="`/details?id=${item.id}`" target="_blank">
             <div class="line-title">{{item.title}}</div>
-            <div class="line-detail">
-              {{item.details}}
-            </div>
+            <div class="line-detail" v-html="sliceString(item.details)"></div>
             </a>
           </div>
         </div>
@@ -78,6 +76,9 @@
 		  
     },
     methods: {
+      sliceString(str) {
+        return str.slice(0, 57) + '<span class="red">[详情]</span>'
+      },
 		  getBanners () {
 		    let that = this;
 		    this.$http.getBanner()

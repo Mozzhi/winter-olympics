@@ -96,3 +96,14 @@ html{overflow-x:hidden;}
 .m-pages .ivu-page-next {
   background-image: url("../../static/images/left-icon.png");
 }
+[v-cloak] {
+  display: none;
+}
+.no-data {
+  width: 350px;
+  height: 417px;
+  margin: 20px auto;
+}
+.red {
+  color: #FF0000;
+}

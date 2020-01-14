@@ -4,12 +4,12 @@
     <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
-      <div class="Breadcrumb">5555</div>
+      <breadcrumb current="新闻中心"></breadcrumb>
       <subpage-title block-name="新闻中心"></subpage-title>
       <div class="news-type">
         <Row>
           <Col span="12">
-            <a href="" class="news-entry">
+            <a href="list_pages/Daily_News/22" class="news-entry">
               <div class="entry-inner">
                 <span class="type-text">
                   <img src="../../static/images/other/媒体手册icon.png" alt="">
@@ -19,7 +19,7 @@
             </a>
           </Col>
           <Col span="12">
-            <a href="" class="news-entry">
+            <a href="list_pages/Daily_News/19" class="news-entry">
               <div class="entry-inner">
                 <span class="type-text">
                   <img src="../../static/images/other/主新闻中心icon.png" alt="">
@@ -29,7 +29,7 @@
             </a>
           </Col>
           <Col span="12">
-            <a href="" class="news-entry">
+            <a href="list_pages/Daily_News/20" class="news-entry">
               <div class="entry-inner">
                 <span class="type-text">
                   <img src="../../static/images/other/场馆新闻中心icon.png" alt="">
@@ -39,7 +39,7 @@
             </a>
           </Col>
           <Col span="12">
-            <a href="" class="news-entry">
+            <a href="list_pages/Daily_News/21" class="news-entry">
               <div class="entry-inner">
                 <span class="type-text">
                   <img src="../../static/images/other/服务信息icon.png" alt="">
@@ -59,7 +59,7 @@
   import Footer from '../components/Footer/Footer.vue';
   import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
   import NewsBox from '../components/NewsBox/NewsBox.vue';
-  import ListItem from '../components/ListItem/ListItem.vue';
+  import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
   export default {
     name: 'Blessing',
     data() {
@@ -73,7 +73,8 @@
       HeaderBar,
       Footer,
       SubpageTitle,
-      NewsBox
+      NewsBox,
+      Breadcrumb
     },
     created() {
     

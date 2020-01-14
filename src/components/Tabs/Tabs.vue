@@ -59,7 +59,7 @@
           background-image: url("#{$img-base}game-l-hover.png")!important;
           color: #fff;
           .tab-text{
-            @extend .tab-text-hover;
+            /*@extend .tab-text-hover;*/
           }
         }
       }
@@ -70,7 +70,7 @@
           background: $theme-color!important;
           color: #fff;
           .tab-text{
-            @extend .tab-text-hover;
+            /*@extend .tab-text-hover;*/
           }
         }
       }
@@ -83,7 +83,7 @@
           background-image: url("#{$img-base}game-r-hove.png")!important;
           color: #fff;
           .tab-text{
-            @extend .tab-text-hover;
+            /*@extend .tab-text-hover;*/
           }
         }
       }
@@ -109,6 +109,31 @@
         .tab-text{
           &:before {
             display: none!important;
+          }
+        }
+      }
+    }
+  }
+  .tabs.home-page {
+    .game-tab {
+      &.tab-first {
+        &:hover, &.active {
+          .tab-text{
+            @extend .tab-text-hover;
+          }
+        }
+      }
+      &.tab {
+        &:hover, &.active {
+          .tab-text{
+            @extend .tab-text-hover;
+          }
+        }
+      }
+      &.tab-last {
+        &:hover, &.active {
+          .tab-text{
+            @extend .tab-text-hover;
           }
         }
       }

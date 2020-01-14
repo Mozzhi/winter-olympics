@@ -4,14 +4,17 @@
     <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
-      <div class="Breadcrumb">5555</div>
-      <subpage-title :block-name="pageTitle[headerKey]"></subpage-title>
+      <breadcrumb :current="newsType[type_id] || '每日新闻'" v-if="headerKey == 'Daily_News'"></breadcrumb>
+      <breadcrumb :current="pageTitle[headerKey]" v-else></breadcrumb>
+      <subpage-title :block-name="newsType[type_id] || '每日新闻'" v-if="headerKey == 'Daily_News'"></subpage-title>
+      <subpage-title :block-name="pageTitle[headerKey]" v-else></subpage-title>
       <tabs class="list-tab" :tab-arr="tabs" :current-key="tabKey" @switchoverKey="getKey" v-if="headerKey == 'msg_service'"></tabs>
       <div class="list-devide clearfix">
         <div class="inline-box article-list">
           <list-item v-for="list in mainList" :key="list.id" :list="list" :no-img="list.thumb !== '' ? false : true"></list-item>
-          <div class="no-more" v-show="!mainList.length"><span class="nothing">没有更多了</span></div>
+          <!--<div class="no-more" v-show="!mainList.length"><span class="nothing">没有更多了</span></div>-->
           <Page class="m-pages" :current="page" v-show="totalPages > 1" :total="totalPages - 0" @on-change="pageChange"></Page>
+          <div class="no-data" v-if="!mainList.length"><img src="../../static/images/nodata.png" alt=""></div>
         </div>
         <div class="inline-box right-sider">
           <div class="sider-block">
@@ -47,6 +50,7 @@
   import ListItem from '../components/ListItem/ListItem.vue';
   import NewsBox from '../components/NewsBox/NewsBox';
   import Tabs from '../components/Tabs/Tabs';
+  import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
 
   let title = {
     Ceremony: '开闭幕式',
@@ -66,6 +70,12 @@
     {text: '赛前信息', key: '17'},
     {text: '背景资料', key: '18'},
   ];
+  let newsType = {
+    19: '主新闻中心',
+    20: '场馆新闻中心',
+    21: '服务信息',
+    22: '媒体手册',
+  };
   let baseArr = [{
     details: "",
     id: "",
@@ -74,7 +84,7 @@
     published_at2: "",
     thumb: "",
     title: "",
-  }]
+  }];
   export default {
     name: 'ListPages',
     data() {
@@ -89,9 +99,10 @@
         tabKey: '16',
         indexData: {},
         page: 1,
-        totalPages: 1,
+        totalPages: 0,
         column_id: type_id || column_id[this.$route.params.list_type],
-        type_id: type_id
+        type_id: type_id,
+        newsType: newsType
       }
     },
     components: {
@@ -100,7 +111,8 @@
       SubpageTitle,
       ListItem,
       NewsBox,
-      Tabs
+      Tabs,
+      Breadcrumb
     },
     computed: {
       imgNumber() {

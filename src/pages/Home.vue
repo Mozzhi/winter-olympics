@@ -6,7 +6,7 @@
     <msg-service :stick="stick" :message="message"></msg-service>
     <block-item block-name="赛事服务" link="/EventServices">
       <div class="game-tabs" slot="headCenter">
-        <tabs :tab-arr="gameTab" :current-key="currentKey" @switchoverKey="changeKey"></tabs>
+        <tabs :tab-arr="gameTab" :current-key="currentKey" @switchoverKey="changeKey" class="home-page"></tabs>
       </div>
       <div class="main-content" slot="blockContent">
         <game-content :project-key="currentKey" :games-data="indexData"></game-content>
@@ -51,7 +51,7 @@
     <block-item class="splendid-box" block-name="精彩图片" more-class="none-bg" link="/splendid_pages/splendid_img">
       <div class="splendid" slot="blockContent">
         <div class="pic-show" @mouseenter="stopSwiper($refs.imgSwiper)" @mouseleave="startSwiper($refs.imgSwiper)">
-          <swiper :options="imgSwiperOption" ref="imgSwiper">
+          <swiper :options="imgSwiperOption" ref="imgSwiper" v-if="Wonderful_picture.length">
             <!-- slides -->
             <swiper-slide v-for="item in imgNumber" :key="item">
               <a :href="`/details?id=${img.id}`" target="_blank" class="img-out" v-for="img in showList(item, Wonderful_picture)">
@@ -69,7 +69,7 @@
     <block-item class="splendid-box" block-name="精彩视频" more-class="none-bg" link="/splendid_pages/splendid_video">
       <div class="splendid" slot="blockContent">
         <div class="pic-show" @mouseenter="stopSwiper($refs.videoSwiper)" @mouseleave="startSwiper($refs.videoSwiper)">
-          <swiper :options="imgSwiperOption" ref="videoSwiper">
+          <swiper :options="imgSwiperOption" ref="videoSwiper" v-if="Wonderful_video.length">
             <!-- slides -->
             <swiper-slide v-for="item in videoNumber" :key="item">
               <a :href="`/details?id=${video.id}`" target="_blank" class="img-out" v-for="video in showList(item, Wonderful_video)">
@@ -155,7 +155,8 @@
           autoplay: true,
           loop: true,
           pagination: {
-            el: '.swiper-pagination'
+            el: '.swiper-pagination',
+            clickable: true
           }
         },
         dateChoose: today,

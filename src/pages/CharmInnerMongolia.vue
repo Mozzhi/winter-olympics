@@ -4,7 +4,7 @@
     <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
-      <div class="Breadcrumb">5555</div>
+      <breadcrumb current="魅力内蒙古"></breadcrumb>
       <subpage-title block-name="魅力内蒙古"></subpage-title>
       <div class="list-devide">
         <block-item :block-name="item.name" class="no-more" v-for="item in charmData" :key="item.id">
@@ -38,6 +38,7 @@
   import BlockItem from '../components/BlockItem/BlockItem.vue';
   import NewsBox from '../components/NewsBox/NewsBox.vue';
   import { innerMongolia } from '../util/static_data';
+  import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
   console.log(innerMongolia)
   export default {
     name: 'CharmInnerMongolia',
@@ -51,7 +52,8 @@
       Footer,
       SubpageTitle,
       BlockItem,
-      NewsBox
+      NewsBox,
+      Breadcrumb
     },
   }
 </script>

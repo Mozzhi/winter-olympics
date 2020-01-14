@@ -4,7 +4,8 @@
     <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
-      <div class="Breadcrumb">5555</div>
+      <breadcrumb :current="`精彩${type[listType]}`" v-if="!type_id"></breadcrumb>
+      <breadcrumb :current="hulunTitle[type_id]" v-else></breadcrumb>
       <subpage-title :block-name="`精彩${type[listType]}`" v-if="!type_id"></subpage-title>
       <subpage-title :block-name="hulunTitle[type_id]" v-else></subpage-title>
       <div class="filtrate" v-if="!type_id">
@@ -21,6 +22,7 @@
           </div>
         </div>
         <Page class="m-pages" :total="totalPage" v-show="totalPage > 1" @on-change="changePage"></Page>
+        <div class="no-data" v-if="!mainList.length"><img src="../../static/images/nodata.png" alt=""></div>
       </div>
     </div>
     <Footer></Footer>
@@ -33,6 +35,7 @@
   import NewsBox from '../components/NewsBox/NewsBox'
   import { details } from "../util";
   import { hulunTitle } from "../util/static_data";
+  import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
 
   let type = {
     splendid_img: '图片',
@@ -64,7 +67,8 @@
       HeaderBar,
       Footer,
       SubpageTitle,
-      NewsBox
+      NewsBox,
+      Breadcrumb
     },
     created() {
       this.getList();

@@ -4,7 +4,7 @@
     <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
-      <div class="Breadcrumb">5555</div>
+      <breadcrumb current="这里是呼伦贝尔"></breadcrumb>
       <subpage-title block-name="这里是呼伦贝尔"></subpage-title>
       <div class="list-devide">
         <block-item :block-name="item.name" :small-name="item.intro" class="" v-for="item in hulunData" :key="item.id" :link="`/splendid_pages/splendid_img/${item.id}`">
@@ -44,6 +44,7 @@
   import BlockItem from '../components/BlockItem/BlockItem.vue';
   import NewsBox from '../components/NewsBox/NewsBox';
   import { hulunData } from "../util/static_data";
+  import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
 
   export default {
     name: 'CharmInnerMongolia',
@@ -57,7 +58,8 @@
       Footer,
       SubpageTitle,
       BlockItem,
-      NewsBox
+      NewsBox,
+      Breadcrumb
     },
     mounted() {
       this.getData();
