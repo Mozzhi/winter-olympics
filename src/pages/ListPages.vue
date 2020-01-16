@@ -4,8 +4,8 @@
     <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
-      <breadcrumb :current="newsType[type_id] || '每日新闻'" v-if="headerKey == 'Daily_News'"></breadcrumb>
-      <breadcrumb :current="pageTitle[headerKey]" v-else></breadcrumb>
+      <breadcrumb :current="newsType[type_id] || '每日新闻'" v-if="headerKey == 'Daily_News' || headerKey == 'msg_service'"></breadcrumb>
+      <breadcrumb :current="pageTitle[headerKey]" v-else ></breadcrumb>
       <subpage-title :block-name="newsType[type_id] || '每日新闻'" v-if="headerKey == 'Daily_News'"></subpage-title>
       <subpage-title :block-name="pageTitle[headerKey]" v-else></subpage-title>
       <tabs class="list-tab" :tab-arr="tabs" :current-key="tabKey" @switchoverKey="getKey" v-if="headerKey == 'msg_service'"></tabs>
@@ -75,6 +75,12 @@
     20: '场馆新闻中心',
     21: '服务信息',
     22: '媒体手册',
+    16: '媒体通告',
+    13: '即时引语',
+    14: '发布会摘要',
+    15: '综合新闻',
+    17: '赛前信息',
+    18: '背景资料',
   };
   let baseArr = [{
     details: "",
@@ -135,6 +141,7 @@
         this.tabKey = key;
         this.column_id = key;
         this.page = 1;
+        this.type_id = key;
         this.getArticle();
       },
       getArticle() {

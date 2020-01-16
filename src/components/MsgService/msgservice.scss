@@ -14,7 +14,7 @@
   .msg-left {
     width: 720px;
     height: 445px;
-    padding-top: 40px;
+    padding-top: 43px;
     float: left;
     .new-banner {
       background: #FFFEF7;
@@ -63,6 +63,8 @@
       line-height: 40px;
       padding: 0 15px 0 9px;
       display: block;
+      margin-bottom: 3px;
+      border-radius: 4px;
     }
     .wish-run {
       width: 380px;
@@ -84,6 +86,8 @@
       //background-color: #FFFEF7;
       padding: 18px 0;
       box-shadow: 0 0 15px rgba(0,0,0,0.05);
+      height: 405px;
+      border-radius: 4px;
       .line-item {
         padding: 0 30px 5px;
         .line-title {
@@ -96,8 +100,8 @@
           font-weight: 700;
         }
         .line-detail {
-          line-height: 30px;
-          height: 60px;
+          line-height: 25px;
+          height: 50px;
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;

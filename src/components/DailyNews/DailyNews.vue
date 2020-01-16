@@ -23,10 +23,10 @@
 		},
     computed: {
 		  news5 () {
-		    return this.dailyNews.slice(0, 6);
+		    return this.dailyNews.slice(0, 5);
       },
 		  news10 () {
-		    return this.dailyNews.slice(6, 11);
+		    return this.dailyNews.slice(5, 10);
       }
     }
 	}

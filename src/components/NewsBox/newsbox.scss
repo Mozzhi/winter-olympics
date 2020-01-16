@@ -9,7 +9,7 @@
     @include base-bg;
     background-image: url("#{$img-base}news-box.png");
     position: fixed;
-    top: 566px;
+    bottom: 40px;
     left: 64px;
     padding: 40px;
     font-size: 14px;
@@ -46,7 +46,7 @@
     background: rgba(55,117,189,0.7);
     z-index: 999;
     .side-btn {
-      border-bottom: 1px solid #fff;
+      border-bottom: 1px solid rgba(255,255,255,0.75);
       height: 110px;
       padding-top: 70px;
       @include base-bg;

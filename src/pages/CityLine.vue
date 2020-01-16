@@ -4,14 +4,15 @@
     <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
-      <breadcrumb :current="breadcrumbName"><span v-if="headerKey == 'search'">"{{keyword}}"找到相关稿件{{totalPages}}篇</span></breadcrumb>
+      <breadcrumb :current="hulunTitle[typeId]" v-if="headerKey == 'article_list'"></breadcrumb>
+      <breadcrumb :current="breadcrumbName" v-else ><span v-if="headerKey == 'search'">"{{keyword}}"找到相关稿件{{totalPages}}篇</span></breadcrumb>
       <subpage-title block-name="城市采访线" v-if="headerKey == 'city_visiting'"></subpage-title>
       <across-calendar @getDate="dateChange" v-if="headerKey == 'city_visiting'"></across-calendar>
       <div class="article-list">
         <list-item v-for="list in mainList" :key="list.id" :list="list" :no-img="list.thumb !== '' ? false : true"></list-item>
         <!--<div class="no-more"><span class="nothing">没有更多了</span></div>-->
         <Page class="m-pages" v-if="headerKey == 'search'" v-show="totalPages > 1" :total="totalPages*10" @on-change="doSearch"></Page>
-        <div class="no-data" v-if="!mainList.length" v-else><img src="../../static/images/nodata.png" alt=""></div>
+        <div class="no-data" v-if="!mainList.length"><img src="../../static/images/nodata.png" alt=""></div>
       </div>
     </div>
     <Footer></Footer>
@@ -25,7 +26,7 @@
   import AcrossCalendar from '../components/AcrossCalendar/AcrossCalendar.vue';
   import NewsBox from '../components/NewsBox/NewsBox.vue';
   import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
-  import { saveData } from "../util";
+  import { hulunTitle } from "../util/static_data";
 
   export default {
     name: 'EventServices',
@@ -39,7 +40,9 @@
         schedule_at: 1,
         totalPages: 0,
         headerKey: this.$route.params.list_type,
-        breadcrumbName: "城市采访线"
+        breadcrumbName: "城市采访线",
+        hulunTitle: hulunTitle,
+        typeId: typeId
       }
     },
     components: {

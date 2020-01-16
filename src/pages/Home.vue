@@ -28,7 +28,7 @@
         <div class="inline-box jalousie-per"
              v-for="(item, index) in jalousieList"
              :class="{'hover-show': index == jalousieIndex}"
-             @mouseenter.stop="jalousieIndex = index">
+             @mouseenter.stop="jalousieShow(index)">
           <div class="out-title">{{item.index}}<span>{{item.title}}</span></div>
           <div class="which-one">{{item.index}}</div>
           <div class="jalousie-content">
@@ -85,15 +85,15 @@
         </div>
       </div>
     </block-item>
-    <div class="hulun-buir">
+    <a href="/hulun_buir" class="hulun-buir">
       <swiper :options="hulunSwiperOption" ref="hulunSwiper">
         <!-- slides -->
-        <swiper-slide><a href="/hulun_buir"><img src="../../static/images/snow-forest.png" alt=""></a></swiper-slide>
-        <swiper-slide><a href="/hulun_buir"><img src="../../static/images/forest2.png" alt=""></a></swiper-slide>
-        <swiper-slide><a href="/hulun_buir"><img src="../../static/images/forest3.png" alt=""></a></swiper-slide>
+        <swiper-slide><img src="../../static/images/snow-forest.png" alt=""></swiper-slide>
+        <swiper-slide><img src="../../static/images/forest2.png" alt=""></swiper-slide>
+        <swiper-slide><img src="../../static/images/forest3.png" alt=""></swiper-slide>
       </swiper>
       <img src="../../static/images/Hulun.png" class="hunlun-buir-text" />
-    </div>
+    </a>
     <block-item block-name="城市采访线" more-class="none-bg" link="/cityline/city_visiting">
       <div class="interview-date-bar" slot="headCenter">
         <span class="inline-box contr-btn" @click="changeDate(-1)"></span>
@@ -122,6 +122,8 @@
   import Tabs from '../components/Tabs/Tabs';
   import NewsBox from '../components/NewsBox/NewsBox';
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
+  import { setBreadCrumb } from "../util";
+
   let jalousie = [
     {content: [], index: '一', title: "媒体通告", id: '16'},
     {content: [], index: '二', title: "即时引语", id: '13'},
@@ -175,7 +177,8 @@
         Wonderful_video: [],
         City_Visiting_Line: [],
         currentKey: 'date',
-        dateTo: today - 1
+        dateTo: today - 1,
+        timer: null
       }
 		},
     components: {
@@ -206,6 +209,7 @@
 		  
     },
     methods: {
+      setBreadCrumb: setBreadCrumb,
 		  getIndexData () {
         const loading = this.$Message.loading({
           content: '正在加载中...',
@@ -213,7 +217,7 @@
         });
         this.$http.getIndex()
           .then((res) => {
-            loading()
+            loading();
             this.setData(res.data);
           })
       },
@@ -275,6 +279,12 @@
 		    this.dateTo = date > 24 ? 24 : ((date - 1)  < 2 ? 0 : date - 3);
 		    this.dateChoose = date;
 		    this.getCityLineList(date);
+      },
+      jalousieShow(index) {
+		    clearTimeout(this.timer);
+		    this.timer = setTimeout(() => {
+		      this.jalousieIndex = index;
+        }, 300);
       }
     }
   }

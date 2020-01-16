@@ -10,3 +10,12 @@ export function details(id) {
   console.log(routeData)
   window.open(routeData.href, '_blank');
 }
+
+export function setBreadCrumb(str, link) {
+  sessionStorage.setItem('from', str);
+  sessionStorage.setItem('link', link);
+}
+
+export function getBreadCrumb() {
+  return { name: sessionStorage.getItem('from'), link: sessionStorage.getItem("link") }
+}

@@ -47,7 +47,7 @@
       box-sizing: border-box;
       vertical-align: middle;
       cursor: pointer;
-      margin-right: 2px;
+      margin-right: 1px;/*no*/
       font-size: 16px;
       &.tab-first {
         width: 195px;

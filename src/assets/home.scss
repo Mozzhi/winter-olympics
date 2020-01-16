@@ -225,7 +225,7 @@
         line-height: 55px;
         text-align: center;
         top: 0;
-        left: 0;
+        left: 10px;
         font-size: 40px;
         color: #fff;
         display: none;
@@ -279,6 +279,7 @@
   .hulun-buir {
     margin-top: 40px;
     position: relative;
+    display: block;
     .hunlun-buir-text {
       position: absolute;
       top: 50%;

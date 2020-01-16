@@ -9,8 +9,8 @@
       <div class="list-devide">
         <block-item :block-name="item.name" class="no-more" v-for="item in charmData" :key="item.id">
           <div class="parts clearfix" slot="blockContent" v-if="item.id !== 48">
-            <a :href="`/details?id=${item.id}`" class="inline-box part-item survey" v-bg="item.survey_img">
-              <div class="mask"><span class="mask-text">概况</span></div>
+            <a :href="`/details?id=${item.id}`" @click="setBreadCrumb(item.name)" class="inline-box part-item survey" v-bg="item.survey_img">
+              <div class="mask-bar"><span class="mask-text">概况</span></div>
             </a>
             <a :href="`/splendid_pages/splendid_video/${item.id}`" class="inline-box part-item" v-bg="item.video_matter">
               <div class="mask-bar"><span class="mask-text">视频素材</span></div>
@@ -39,7 +39,8 @@
   import NewsBox from '../components/NewsBox/NewsBox.vue';
   import { innerMongolia } from '../util/static_data';
   import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
-  console.log(innerMongolia)
+  import { setBreadCrumb } from "../util";
+  
   export default {
     name: 'CharmInnerMongolia',
     data() {
@@ -55,6 +56,12 @@
       NewsBox,
       Breadcrumb
     },
+    created() {
+    
+    },
+    methods: {
+      setBreadCrumb: setBreadCrumb
+    }
   }
 </script>
 <style lang="scss" scoped>

@@ -4,7 +4,7 @@
     <news-box></news-box>
 		<div class="centerMain wrapper">
 			<!--面包屑-->
-      <breadcrumb current="正文"></breadcrumb>
+      <breadcrumb current="正文" :last-page="fromWhere.name" :last-link="fromWhere.link"></breadcrumb>
 			<div class="details p100">
 				<div class="de-head">
 					<div class="de-title">{{list.title}}</div>
@@ -58,14 +58,16 @@
 	import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
   import NewsBox from '../components/NewsBox/NewsBox';
   import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
-	import getToken from '../libs/auth'
+  import { getBreadCrumb } from "../util";
+  import getToken from '../libs/auth'
 	export default {
 		name: 'EventServices',
 		data() {
 			return {
 				groupId:'',
 				id:'',
-				list:[]
+				list:[],
+        fromWhere: {},
 			}
 		},
 		components: {
@@ -78,6 +80,7 @@
 		created(){
 			this.id=this.$route.query.id || 867;
 			this.init();
+			this.fromWhere = this.getBreadCrumb();
 			console.log(this.$router)
 		},
 		watch:{
@@ -94,51 +97,52 @@
 
 		},
 		methods: {
-				download(item){
-					let dto={
-						article_id:item.article_id,
-						accessory_id:item.accessory_id
-					}
-					this.$http.download(dto)
-		          	.then((res) => {
-		          			this.$Modal.info({
-								title: '提示',
-								content: res.msg
-							});
-		          	})
-					
-				},
-				stopsVideo(){
-					document.oncontextmenu = function(){
-					　　return false;
-					}
-					
-				},
-				init() {
-					let dto={
-						id:this.id
-					}
-					this.$http.articleDetails(dto)
-		          	.then((res) => {
-		          	if(res.status == 0) {
-							this.list=res.data;
-							this.groupId=res.data.group_id;
-							//1-视频要不下载，2-视频可以下载
-							if(res.data.group_id==1){
-								this.stopsVideo()
-       						 	var dat = res.data.details.replace(/\<video /gi, '<video controlsList="nodownload"');
-       						 	this.list.details=dat;
-							}
-							
-						} else {
-							this.$Modal.info({
-								title: '提示',
-								content: res.msg
-							});
-						}
-		          	})
-					
-				},
+      getBreadCrumb: getBreadCrumb,
+      download(item){
+        let dto={
+          article_id:item.article_id,
+          accessory_id:item.accessory_id
+        }
+        this.$http.download(dto)
+              .then((res) => {
+                  this.$Modal.info({
+              title: '提示',
+              content: res.msg
+            });
+              })
+        
+      },
+      stopsVideo(){
+        document.oncontextmenu = function(){
+        　　return false;
+        }
+        
+      },
+      init() {
+        let dto={
+          id:this.id
+        };
+        this.$http.articleDetails(dto)
+              .then((res) => {
+              if(res.status == 0) {
+            this.list=res.data;
+            this.groupId=res.data.group_id;
+            //1-视频要不下载，2-视频可以下载
+            if(res.data.group_id==1){
+              this.stopsVideo()
+                  var dat = res.data.details.replace(/\<video /gi, '<video controlsList="nodownload"');
+                  this.list.details=dat;
+            }
+            
+          } else {
+            this.$Modal.info({
+              title: '提示',
+              content: res.msg
+            });
+          }
+              })
+        
+      },
 		}
 	}
 </script>

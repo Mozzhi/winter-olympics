@@ -24,6 +24,7 @@
   import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
   import NewsBox from '../components/NewsBox/NewsBox.vue';
   import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
+  import { setBreadCrumb } from "../util";
   export default {
     name: 'Blessing',
     data() {
@@ -42,8 +43,10 @@
     },
     created() {
       this.getBlessing();
+      this.setBreadCrumb('寄语')
     },
     methods: {
+      setBreadCrumb: setBreadCrumb,
       getBlessing () {
         let params = {
           column_id: 38,

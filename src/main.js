@@ -19,7 +19,7 @@ Vue.prototype.$Loading.config({
 });
 router.beforeEach((to, from, next) => {
 	iView.LoadingBar.start();
-	//  console.log(9999)
+	 console.log(from)
 	//  console.log(getToken())
   if(to.meta.title) {
     document.title = to.meta.title;

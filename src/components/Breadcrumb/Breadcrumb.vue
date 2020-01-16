@@ -2,7 +2,7 @@
 	<div class="breadcrumb">
 	  <span class="now-location">当前位置 ></span>
     <a href="/">首页 ></a>
-    <a href="" v-if="lastPage">{{ lastPage }} > </a>
+    <a :href="lastLink" v-if="lastPage">{{ lastPage }} > </a>
     <a :href="params.path">{{ current }}</a>
     <slot></slot>
 	</div>
@@ -10,7 +10,7 @@
 <script>
 	export default {
 		name: 'Breadcrumb',
-    props: ['current', 'lastPage'],
+    props: ['current', 'lastPage', 'lastLink'],
 		data() {
 			return {
 			  params: this.$route,

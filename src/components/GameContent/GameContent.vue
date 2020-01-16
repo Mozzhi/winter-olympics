@@ -11,7 +11,7 @@
           </thead>
           <tbody>
             <tr v-for="i in 5">
-              <td v-for="(date, index) in febArr" v-if="index <= 7*i && index > 7*(i-1)" :class="{'active': choosed > 5 && choosed == date}" @click="chooseDate(date)"><div class="inner-date" v-if="date">{{date}}</div></td>
+              <td v-for="(date, index) in febArr" v-if="index <= 7*i && index > 7*(i-1)" :class="{'active': choosed == date}" @click="chooseDate(date)"><div class="inner-date" v-if="date">{{date}}</div></td>
             </tr>
           </tbody>
         </table>
@@ -102,7 +102,8 @@
       },
     },
     created() {
-		  this.getList();
+		  this.Competition = this.gamesData.Competition;
+		  this.choosed = this.gamesData.day;
     },
     watch: {
 		  
