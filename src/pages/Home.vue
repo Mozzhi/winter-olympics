@@ -9,7 +9,7 @@
         <tabs :tab-arr="gameTab" :current-key="currentKey" @switchoverKey="changeKey" class="home-page"></tabs>
       </div>
       <div class="main-content" slot="blockContent">
-        <game-content :project-key="currentKey" :games-data="indexData"></game-content>
+        <game-content :project-key="currentKey" :games-data="indexData" :day="dateChoose"></game-content>
       </div>
     </block-item>
     <block-item block-name="每日新闻" link="/list_pages/Daily_News">
@@ -135,12 +135,12 @@
     {key: 'game-house', text: '赛事场馆'},
     {key: 'games', text: '比赛项目'},
   ];
-  let today = new Date().getDate();
+let today = new Date().getDate();
 	export default {
 		name: 'Home',
 		data() {
 			return {
-        swiperOption: {
+        swiperOption:{
           autoplay: true,
           loop: true,
           clickable: true
@@ -159,14 +159,14 @@
             clickable: true
           }
         },
-        dateChoose: today,
+        dateChoose:today,
         jalousieList: jalousie,
         jalousieIndex: 0,
         gameTab: gameTab,
         indexData: {
           Competition_items: [],
           Tournament_venues: [],
-          Competition: []
+          Competition: [],
         },
         message: [],
         stick: [],
@@ -249,6 +249,8 @@
         this.Wonderful_video = data.Wonderful_video;
         this.City_Visiting_Line = data.City_Visiting_Line;
         this.Competition = data.Competition;
+        this.dateChoose=data.day;
+        this.dateTo=data.day-1;
       },
       showList (i, data){
         let start = 3*i - 3,

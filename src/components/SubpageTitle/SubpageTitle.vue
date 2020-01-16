@@ -38,10 +38,10 @@
 		color: #3775bd;
 		background: {
 			color: #fff;
-		    repeat: no-repeat;
-		    size:contain;
-		    position: center center;
 		    image: url("#{$img-base}events/titleBg.png");
+		    repeat: no-repeat;
+		    size:178px 46px;
+		    position: center center;
 		 };
 	}
 	.bg{
@@ -49,7 +49,7 @@
 	 	z-index:1;
 	 	position: absolute;
 	 	width: 778px;
-	 	height:0.005rem;
+	 	height:1px;
 	 	margin-left: -389px;
 	 	left: 50%;
 	 	top: 50%;

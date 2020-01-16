@@ -1,6 +1,6 @@
 <template>
 	<div class="city-interview">
-	  <div class="content-item" v-for="item in cityData">
+	  <div class="content-item" v-for="item in cityData" v-if="cityData">
       <div class="city-introduce">
         <div class="interview-title">{{item.title}}</div>
         <div class="interview-detail">{{item.detail}}</div>
@@ -10,6 +10,7 @@
         <img :src="item.thumb" alt="">
       </div>
     </div>
+    	<img src="../../../static/images/nodata.png" class="Nodata" v-if="cityData==''" style="width: 25%;"/>
 	</div>
 </template>
 <script>

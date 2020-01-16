@@ -11,16 +11,17 @@
           </thead>
           <tbody>
             <tr v-for="i in 5">
-              <td v-for="(date, index) in febArr" v-if="index <= 7*i && index > 7*(i-1)" :class="{'active': choosed > 5 && choosed == date}" @click="chooseDate(date)"><div class="inner-date" v-if="date">{{date}}</div></td>
+              <td v-for="(date, index) in febArr" v-if="index <= 7*i && index > 7*(i-1)" :class="{'active': choosed == date }" @click="chooseDate(date)"><div class="inner-date" v-if="date">{{date}}</div></td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="inline-box game-lists">
-        <a href="" v-for="item in Competition"><div class="game-list clearfix">
+        <a href="" v-for="item in Competition"  v-if="Competition"><div class="game-list clearfix">
           <span class="game-title"><img class="game-icon" src="../../../static/images/game-icon.png" alt="">{{item.title}}</span>
           <span class="date">02-18 08:30</span>
         </div></a>
+        <img src="../../../static/images/nodata.png" class="Nodata" v-if="Competition==''"/>
       </div>
     </div>
     <div class="game-content house" v-show="projectKey == 'game-house'">
@@ -57,15 +58,16 @@
   for(let i = 1; i < 30; i++) {
     arr.push(i);
   }
-  let today = new  Date().getDate();
-  console.log(arr)
+//let today = new  Date().getDate();
+
 	export default {
 		name: 'GameContent',
     props: {
+    	day:"",
 		  projectKey: {
 		    type: String,
         required: true
-      },
+     },
       gamesData: {
 		    type: Object,
         required: true
@@ -75,7 +77,7 @@
       return {
         febArr: arr,
         weekday: ['一','二','三','四','五','六','日'],
-        choosed: today,
+        choosed: this.day,
         value2: 0,
         swiperOption: {
           autoplay: true,
@@ -101,14 +103,15 @@
 		    return Math.ceil(this.gamesData.Tournament_venues.length/3);
       },
     },
-    created() {
-		  this.getList();
+    created(){
+		  //this.getList();
     },
     watch: {
-		  
+		  day(newVal,oldVal){
+        this.choosed = newVal;
+    	}
     },
     mounted() {
-		  
     },
     methods: {
       showList (i, data, length){
