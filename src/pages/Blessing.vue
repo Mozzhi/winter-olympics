@@ -7,7 +7,7 @@
       <breadcrumb current="寄语"></breadcrumb>
       <subpage-title block-name="寄语"></subpage-title>
       <div class="list-devide">
-        <a :href="`/details?id=${list.id}`" target="_blank" class="blessing-list" v-for="list in mainList">
+        <a :href="`/details?id=${list.id}&tw=38`" target="_blank" class="blessing-list" v-for="list in mainList">
           <div class="time inline-box">{{list.published_at1}}</div>
           <div class="inline-box blessing-title">{{list.title}}</div>
         </a>
@@ -24,7 +24,6 @@
   import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
   import NewsBox from '../components/NewsBox/NewsBox.vue';
   import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
-  import { setBreadCrumb } from "../util";
   export default {
     name: 'Blessing',
     data() {
@@ -43,10 +42,8 @@
     },
     created() {
       this.getBlessing();
-      this.setBreadCrumb('寄语')
     },
     methods: {
-      setBreadCrumb: setBreadCrumb,
       getBlessing () {
         let params = {
           column_id: 38,

@@ -4,8 +4,8 @@
     <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
-      <breadcrumb :current="hulunTitle[typeId]" v-if="headerKey == 'article_list'"></breadcrumb>
-      <breadcrumb :current="breadcrumbName" v-else ><span v-if="headerKey == 'search'">"{{keyword}}"找到相关稿件{{totalPages}}篇</span></breadcrumb>
+      <breadcrumb v-if="headerKey == 'article_list'"> <a href="#"> > 文字素材</a></breadcrumb>
+      <breadcrumb v-else ><span v-if="headerKey == 'search'">"{{keyword}}"找到相关稿件{{totalPages}}篇</span></breadcrumb>
       <subpage-title block-name="城市采访线" v-if="headerKey == 'city_visiting'"></subpage-title>
       <across-calendar @getDate="dateChange" v-if="headerKey == 'city_visiting'"></across-calendar>
       <div class="article-list">
@@ -42,7 +42,8 @@
         headerKey: this.$route.params.list_type,
         breadcrumbName: "城市采访线",
         hulunTitle: hulunTitle,
-        typeId: typeId
+        typeId: typeId,
+        currentId: this.$route.query.class_id || 0
       }
     },
     components: {
@@ -81,7 +82,8 @@
           column_id: this.column_id,
           p: this.p,
           psize: 100,
-          schedule_at: this.schedule_at
+          schedule_at: this.schedule_at,
+          classify_id: this.currentId
         };
         this.$http.getArticleList(params)
           .then(res => {

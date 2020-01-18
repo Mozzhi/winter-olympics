@@ -28,7 +28,7 @@
           },
           {
             text: '信息服务',
-            url:'/list_pages/msg_service',
+            url:'/list_pages/msg_service?on=0&tw=1',
             key: 'msg_service'
           },
           {
@@ -38,12 +38,12 @@
           },
           {
             text: '精彩图片',
-            url:'/splendid_pages/splendid_img',
+            url:'/splendid_pages/splendid_img?tw=5',
             key: 'splendid_img'
           },
           {
             text: '精彩视频',
-            url:'/splendid_pages/splendid_video',
+            url:'/splendid_pages/splendid_video?tw=6',
             key: 'splendid_video'
           },
           {
@@ -53,12 +53,12 @@
           },
           {
             text: '每日新闻',
-            url:'/list_pages/Daily_News',
+            url:'/list_pages/Daily_News/7?tw=7',
             key: 'Daily_News'
           },
           {
             text: '开闭幕式',
-            url:'/list_pages/Ceremony',
+            url:'/list_pages/Ceremony/8?tw=8',
             key: 'Ceremony'
           },
           {
@@ -81,7 +81,7 @@
           this.$Message.error('请输入要查找的内容');
         }else {
           let listType = this.$route.params.list_type || '';
-          this.$router.push({path: `/cityline/search/${this.keyword}`});
+          this.$router.push({path: `/cityline/search/${this.keyword}?on=0&tw=61`});
           if(listType == 'city_visiting') {
             window.location.reload();
           }

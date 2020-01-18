@@ -1,10 +1,10 @@
 <template>
 	<div class="home">
-		<header-bar active="home"></header-bar>
+		<header-bar active=""></header-bar>
     <news-box></news-box>
 		<div class="centerMain wrapper">
 			<!--面包屑-->
-      <breadcrumb current="正文" :last-page="fromWhere.name" :last-link="fromWhere.link"></breadcrumb>
+      <breadcrumb> > <a href="#">正文</a></breadcrumb>
 			<div class="details p100">
 				<div class="de-head">
 					<div class="de-title">{{list.title}}</div>
@@ -63,11 +63,13 @@
 	export default {
 		name: 'EventServices',
 		data() {
+		  let queries = this.$route.query;
 			return {
 				groupId:'',
 				id:'',
 				list:[],
         fromWhere: {},
+        queries: queries
 			}
 		},
 		components: {
@@ -81,7 +83,6 @@
 			this.id=this.$route.query.id || 867;
 			this.init();
 			this.fromWhere = this.getBreadCrumb();
-			console.log(this.$router)
 		},
 		watch:{
 	        $route(val){//普通的watch监听

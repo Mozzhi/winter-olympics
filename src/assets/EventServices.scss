@@ -128,6 +128,7 @@
         color:rgba(48,48,48,1);
         cursor: pointer;
         display: block;
+        transition: all 0.3s linear;
         .time{
             font-size:20px;
             font-family:Adobe Heiti Std;
@@ -183,7 +184,7 @@
       font-size: 16px;
       width: 100%;
       color: #303030;
-      transition: all 0.3s linear;
+      transition: all 0.3s linear;background: url("#{$img-base1}other/none.png") left center no-repeat,url("#{$img-base1}other/none.png") right center no-repeat;
     }
     &:hover {
       box-shadow: 0px 0px 20px #dadada;
@@ -205,17 +206,18 @@
              height: 93px;
              padding-top: 20px;
              box-sizing: border-box;
+            transition: all 0.3s linear;
         }
          &:hover .title{
              padding-top:0px;
-            background-size: inherit;
-            position: relative;
+             background-size: inherit;
+              position: relative;
              bottom: -18px;
              height: 93px;
              line-height: 93px;
-                 box-shadow: 0px 0px 20px #dadada;
-                 padding: 0px 36px;
-                 box-sizing: border-box;
+             box-shadow: 0px 0px 20px #dadada;
+             padding: 0px 36px;
+             box-sizing: border-box;
          }
          
         .divImg{

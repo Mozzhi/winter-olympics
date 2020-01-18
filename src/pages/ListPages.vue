@@ -4,8 +4,11 @@
     <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
-      <breadcrumb :current="newsType[type_id] || '每日新闻'" v-if="headerKey == 'Daily_News' || headerKey == 'msg_service'"></breadcrumb>
-      <breadcrumb :current="pageTitle[headerKey]" v-else ></breadcrumb>
+      <!--<breadcrumb :current="newsType[type_id] || '每日新闻'" v-if="headerKey == 'Daily_News'"></breadcrumb>-->
+      <!--<breadcrumb :current="newsType[type_id] || '媒体通告'" v-if="headerKey == 'msg_service'"></breadcrumb>-->
+      <!--<breadcrumb :current="pageTitle[headerKey]"  v-if="headerKey == 'Ceremony'"></breadcrumb>-->
+      <breadcrumb :current="newsType[type_id] || '媒体通告'" v-if="headerKey == 'msg_service'"></breadcrumb>
+      <breadcrumb v-else></breadcrumb>
       <subpage-title :block-name="newsType[type_id] || '每日新闻'" v-if="headerKey == 'Daily_News'"></subpage-title>
       <subpage-title :block-name="pageTitle[headerKey]" v-else></subpage-title>
       <tabs class="list-tab" :tab-arr="tabs" :current-key="tabKey" @switchoverKey="getKey" v-if="headerKey == 'msg_service'"></tabs>
@@ -18,23 +21,23 @@
         </div>
         <div class="inline-box right-sider">
           <div class="sider-block">
-            <a href="/splendid_pages/splendid_img"><div class="sider-block-name">精彩图片 <img src="../../static/images/other/right-arrow.png" alt=""></div></a>
-            <a :href="`/details?id=${Wonderful_picture[0]['id']}`" target="_blank" class="sider-block-show">
+            <a href="/splendid_pages/splendid_img?tw=5"><div class="sider-block-name">精彩图片 <img src="../../static/images/other/right-arrow.png" alt=""></div></a>
+            <a :href="`/details?id=${item['id']}?tw=5`" target="_blank" class="sider-block-show" v-for="(item, index) in Wonderful_picture" v-if="index == 0">
               <img :src="Wonderful_picture[0]['thumb']" alt="">
               <span class="bottom-text">{{Wonderful_picture[0]['title']}}</span>
             </a>
             <div class="topline-list">
-              <div class="lines" v-for="item in imgNumber" :key="item.id"><a :href="`/details?id=${item.id}`" target="_blank">{{item.title}}</a></div>
+              <div class="lines" v-for="item in imgNumber" :key="item.id"><a :href="`/details?id=${item.id}&tw=5`" target="_blank">{{item.title}}</a></div>
             </div>
           </div>
           <div class="sider-block">
-            <a href="/splendid_pages/splendid_video"><div class="sider-block-name" >精彩视频 <img src="../../static/images/other/right-arrow.png" alt=""></div></a>
-            <a :href="`/details?id=${Wonderful_video[0]['id']}`" target="_blank" class="sider-block-show video-block">
+            <a href="/splendid_pages/splendid_video?tw=6"><div class="sider-block-name" >精彩视频 <img src="../../static/images/other/right-arrow.png" alt=""></div></a>
+            <a :href="`/details?id=${item['id']}&tw=6`" target="_blank" class="sider-block-show video-block" v-for="(item, index) in Wonderful_video"  v-if="index == 0">
               <img :src="Wonderful_video[0]['thumb']" alt="">
               <span class="bottom-text">{{Wonderful_video[0]['title']}}</span>
             </a>
             <div class="topline-list">
-              <div class="lines" v-for="item in videoNumber" :key="item.id"><a :href="`/details?id=${item.id}`" target="_blank">{{item.title}}</a></div>
+              <div class="lines" v-for="item in videoNumber" :key="item.id"><a :href="`/details?id=${item.id}&tw=6`" target="_blank">{{item.title}}</a></div>
             </div>
           </div>
         </div>
@@ -81,6 +84,8 @@
     15: '综合新闻',
     17: '赛前信息',
     18: '背景资料',
+    7: '每日新闻',
+    8: '开闭幕式',
   };
   let baseArr = [{
     details: "",
@@ -95,6 +100,7 @@
     name: 'ListPages',
     data() {
       let type_id = this.$route.params.type_id || '';
+      let querys = this.$route.query;
       return {
         headerKey: this.$route.params.list_type,
         mainList: baseArr,
@@ -108,7 +114,12 @@
         totalPages: 0,
         column_id: type_id || column_id[this.$route.params.list_type],
         type_id: type_id,
-        newsType: newsType
+        newsType: newsType,
+        querys: {
+          on: querys.on || 0,
+          tw: querys.tw || '',
+          th: querys.th || ''
+        }
       }
     },
     components: {
@@ -129,6 +140,7 @@
       }
     },
     created() {
+      let url = this.$route.fullPath;
       if(this.type_id) {
         this.getKey(this.type_id);
       }else {
@@ -224,6 +236,7 @@
     overflow: hidden;
     cursor: pointer;
     display: block;
+    border-radius: 4px;
     .bottom-text {
       position: absolute;
       text-align: center;

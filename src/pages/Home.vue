@@ -2,7 +2,7 @@
 	<div class="home">
 	  <header-bar active="home"></header-bar>
     <news-box></news-box>
-    <a href="/EventServices" class="competition">比赛项目> </a>
+    <a href="/EventServices/4" class="competition">比赛项目> </a>
     <msg-service :stick="stick" :message="message"></msg-service>
     <block-item block-name="赛事服务" link="/EventServices">
       <div class="game-tabs" slot="headCenter">
@@ -34,7 +34,8 @@
           <div class="jalousie-content">
             <div class="jalousie-title">{{item.title}}</div>
             <div class="jalousie-detail">
-              <div class="ellipsis" v-for="list in item.content"><a :href="`/details?id=${list.id}`" target="_blank">{{list.title}}</a></div>
+              <div class="ellipsis" v-for="list in item.content"><a :href="`/details?id=${list.id}&on=0&tw=${item.id}`" target="_blank">{{list.title}}</a></div>
+              <div class="no-data" v-if="!item.content.length"><img src="../../static/images/nodata.png" alt=""></div>
             </div>
             <a :href="`/list_pages/msg_service/${item.id}`" class="look-more">查看更多></a>
           </div>
@@ -43,46 +44,58 @@
       <div class="inline-box opening">
         <block-item block-name="开闭幕式" link="/list_pages/Ceremony">
           <div class="game-content open-short" slot="blockContent">
-            <a :href="`/details?id=${item.id}`" target="_blank" class="news-lists" v-for="item in indexData.Ceremony">{{item.title}}</a>
+            <a :href="`/details?id=${item.id}&on=0&tw=8`" target="_blank" class="news-lists" v-for="item in indexData.Ceremony">{{item.title}}</a>
           </div>
         </block-item>
       </div>
     </div>
     <block-item class="splendid-box" block-name="精彩图片" more-class="none-bg" link="/splendid_pages/splendid_img">
       <div class="splendid" slot="blockContent">
-        <div class="pic-show" @mouseenter="stopSwiper($refs.imgSwiper)" @mouseleave="startSwiper($refs.imgSwiper)">
-          <swiper :options="imgSwiperOption" ref="imgSwiper" v-if="Wonderful_picture.length">
-            <!-- slides -->
-            <swiper-slide v-for="item in imgNumber" :key="item">
-              <a :href="`/details?id=${img.id}`" target="_blank" class="img-out" v-for="img in showList(item, Wonderful_picture)">
+        <div class="pic-show">
+          <Carousel
+            v-model="imgIndex"
+            :autoplay="true"
+            :autoplay-speed="3000"
+            dots="inside"
+            :radius-dot="false"
+            trigger="hover"
+            arrow="never">
+            <CarouselItem v-for="item in imgNumber"  :key="item">
+              <a :href="`/details?id=${img.id}&on=0&tw=5`" target="_blank" class="img-out" v-for="img in showList(item, Wonderful_picture)">
                 <div class="pic-show-box">
                   <img :src="img.thumb" alt="">
                 </div>
                 <div class="img-introduce">{{img.title}}</div>
               </a>
-            </swiper-slide>
-            <div class="swiper-pagination"  slot="pagination"></div>
-          </swiper>
+            </CarouselItem>
+          </Carousel>
         </div>
+        <div class="no-data a-no-data" v-if="!Wonderful_video.length"><img src="../../static/images/nodata.png" alt=""></div>
       </div>
     </block-item>
     <block-item class="splendid-box" block-name="精彩视频" more-class="none-bg" link="/splendid_pages/splendid_video">
       <div class="splendid" slot="blockContent">
-        <div class="pic-show" @mouseenter="stopSwiper($refs.videoSwiper)" @mouseleave="startSwiper($refs.videoSwiper)">
-          <swiper :options="imgSwiperOption" ref="videoSwiper" v-if="Wonderful_video.length">
-            <!-- slides -->
-            <swiper-slide v-for="item in videoNumber" :key="item">
-              <a :href="`/details?id=${video.id}`" target="_blank" class="img-out" v-for="video in showList(item, Wonderful_video)">
+        <div class="pic-show">
+          <Carousel
+            v-model="vadioIndex"
+            :autoplay="true"
+            :autoplay-speed="3000"
+            dots="inside"
+            :radius-dot="false"
+            trigger="hover"
+            arrow="never">
+            <CarouselItem v-for="item in videoNumber"  :key="item">
+              <a :href="`/details?id=${img.id}&on=0&tw=6`" target="_blank" class="img-out" v-for="img in showList(item, Wonderful_video)">
                 <div class="pic-show-box video-show">
                   <span class="play-icon"></span>
-                  <img :src="video.thumb" alt="">
+                  <img :src="img.thumb" alt="">
                 </div>
-                <div class="img-introduce">{{video.title}}</div>
+                <div class="img-introduce">{{img.title}}</div>
               </a>
-            </swiper-slide>
-            <div class="swiper-pagination"  slot="pagination"></div>
-          </swiper>
+            </CarouselItem>
+          </Carousel>
         </div>
+        <div class="no-data a-no-data" v-if="!Wonderful_video.length"><img src="../../static/images/nodata.png" alt=""></div>
       </div>
     </block-item>
     <a href="/hulun_buir" class="hulun-buir">
@@ -94,7 +107,7 @@
       </swiper>
       <img src="../../static/images/Hulun.png" class="hunlun-buir-text" />
     </a>
-    <block-item block-name="城市采访线" more-class="none-bg" link="/cityline/city_visiting">
+    <block-item block-name="城市采访线" more-class="none-bg" link="/cityline/city_visiting?on=0&tw=12">
       <div class="interview-date-bar" slot="headCenter">
         <span class="inline-box contr-btn" @click="changeDate(-1)"></span>
         <div class="inline-box date-lists" ref="dateScroll">
@@ -122,7 +135,7 @@
   import Tabs from '../components/Tabs/Tabs';
   import NewsBox from '../components/NewsBox/NewsBox';
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
-  import { setBreadCrumb } from "../util";
+  import { setDay } from "../libs/auth";
 
   let jalousie = [
     {content: [], index: '一', title: "媒体通告", id: '16'},
@@ -161,6 +174,8 @@ let today = new Date().getDate();
             clickable: true
           }
         },
+        imgIndex: 0,
+        vadioIndex: 0,
         dateChoose:today,
         jalousieList: jalousie,
         jalousieIndex: 0,
@@ -209,7 +224,6 @@ let today = new Date().getDate();
 		  
     },
     methods: {
-      setBreadCrumb: setBreadCrumb,
 		  getIndexData () {
         const loading = this.$Message.loading({
           content: '正在加载中...',
@@ -255,26 +269,23 @@ let today = new Date().getDate();
         this.Competition = data.Competition;
         this.dateChoose=data.day;
         this.dateTo=data.day-1;
+        setDay(data.day - 1)
       },
       showList (i, data){
         let start = 3*i - 3,
           end = 3*i;
         return data.slice(start, end);
       },
-      stopSwiper (refs) {
-		    refs.swiper.autoplay.stop();
-      },
-      startSwiper (refs) {
-		    refs.swiper.autoplay.start();
-      },
       changeKey (key) {
 		    this.currentKey = key;
       },
       changeDate(dir) {
 		    if(dir < 0 && this.dateTo > 0) {
-		      this.dateTo--;
+		      this.dateTo -= 5;
+          this.dateTo = this.dateTo < 0 ? 0  : this.dateTo;
         }else if(dir > 0 && this.dateTo < 24){
-		      this.dateTo++;
+		      this.dateTo += 5;
+		      this.dateTo = this.dateTo > 23 ? 24  : this.dateTo;
         }
       },
       chooseDate(date) {

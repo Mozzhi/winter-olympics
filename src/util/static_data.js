@@ -179,37 +179,55 @@ export let hulunData = [
     name: '"十四冬"冬韵篇',
     intro: '呼伦贝尔之俱备',
     id: '46',
-    content: []
+    survey_img: survey_img,
+    video_matter: video_matter,
+    word_matter: word_matter,
+    img_matter: img_matter
   },
   {
     name: '自然地理篇',
     intro: '呼伦贝尔之广袤',
     id: '39',
-    content: []
+    survey_img: survey_img,
+    video_matter: video_matter,
+    word_matter: word_matter,
+    img_matter: img_matter
   },
   {
     name: '历史追溯篇',
     intro: '呼伦贝尔之深邃',
     id: '40',
-    content: []
+    survey_img: survey_img,
+    video_matter: video_matter,
+    word_matter: word_matter,
+    img_matter: img_matter
   },
   {
     name: '政治经济篇',
     intro: '呼伦贝尔之发展',
     id: '41',
-    content: []
+    survey_img: survey_img,
+    video_matter: video_matter,
+    word_matter: word_matter,
+    img_matter: img_matter
   },
   {
     name: '旅游文化篇',
     intro: '呼伦贝尔之魅力',
     id: '42',
-    content: []
+    survey_img: survey_img,
+    video_matter: video_matter,
+    word_matter: word_matter,
+    img_matter: img_matter
   },
   {
     name: '未来展望篇',
     intro: '呼伦贝尔之进取',
     id: '43',
-    content: []
+    survey_img: survey_img,
+    video_matter: video_matter,
+    word_matter: word_matter,
+    img_matter: img_matter
   }
 ];
 
@@ -258,3 +276,68 @@ export let jalousie = [
   { 60: "比赛赛况"},
   { 18: "背景资料"},
 ];
+
+export const breadcrumb = {
+  0: { link: '/', text: '首页' },
+  1: { link: '/list_pages/msg_service', text: '信息服务' },
+  2: { link: '/EventServices/2', text: '赛事日程' },
+  3: { link: '/EventServices/3', text: '赛事场馆' },
+  4: { link: '/EventServices/4', text: '比赛项目' },
+  5: { link: '/splendid_pages/splendid_img', text: '精彩图片' },
+  6: { link: '/splendid_pages/splendid_video', text: '精彩视频' },
+  7: { link: '/list_pages/Daily_News', text: '每日新闻' },
+  8: { link: '/list_pages/Ceremony', text: '开闭幕式' },
+  9: { link: '/charm_inner_mongolia', text: '魅力内蒙古' },
+  10: { link: '/hulun_buir', text: '这里是呼伦贝尔' },
+  11: { link: '/news_center', text: '新闻中心' },
+  12: { link: '/cityline/city_visiting', text: '城市采访线' },
+  13: { link: '/list_pages/msg_service', text: '即时引语' },
+  14: { link: '/list_pages/msg_service', text: '发布会摘要' },
+  15: { link: '/list_pages/msg_service', text: '综合新闻' },
+  16: { link: '/list_pages/msg_service', text: '媒体通告' },
+  17: { link: '/list_pages/msg_service', text: '赛前信息' },
+  18: { link: '/list_pages/msg_service', text: '背景资料' },
+  19: { link: '/news_center', text: '主新闻中心' },
+  20: { link: '/news_center', text: '场馆新闻中心' },
+  21: { link: '/', text: '服务信息' },
+  22: { link: '/news_center', text: '媒体手册' },
+  23: { link: '/splendid_pages/splendid_img', text: '雪橇' },
+  24: { link: '/splendid_pages/splendid_img', text: '钢架雪车' },
+  25: { link: '/splendid_pages/splendid_img', text: '雪车' },
+  26: { link: '/splendid_pages/splendid_img', text: '自由式滑雪' },
+  27: { link: '/splendid_pages/splendid_img', text: '北欧两项' },
+  28: { link: '/splendid_pages/splendid_img', text: '跳台滑雪' },
+  29: { link: '/splendid_pages/splendid_img', text: '越野滑雪' },
+  30: { link: '/splendid_pages/splendid_img', text: '短道速滑' },
+  31: { link: '/splendid_pages/splendid_img', text: '速度滑冰' },
+  32: { link: '/splendid_pages/splendid_img', text: '单板滑雪' },
+  33: { link: '/splendid_pages/splendid_img', text: '高山滑雪' },
+  34: { link: '/splendid_pages/splendid_img', text: '冬季两项' },
+  35: { link: '/splendid_pages/splendid_img', text: '冰球' },
+  36: { link: '/splendid_pages/splendid_img', text: '冰壶' },
+  37: { link: '/splendid_pages/splendid_img', text: '花样滑冰' },
+  38: { link: '/blessing', text: '寄语' },
+  39: { link: '/hulun_buir', text: '自然地理篇' },
+  40: { link: '/hulun_buir', text: '历史追溯篇' },
+  41: { link: '/hulun_buir', text: '政治经济篇' },
+  42: { link: '/hulun_buir', text: '旅游文化篇' },
+  43: { link: '/hulun_buir', text: '未来展望篇' },
+  44: { link: '/', text: '赛前信息' },
+  45: { link: '/', text: '赛前信息' },
+  46: { link: '/hulun_buir', text: '"十四冬"冬韵篇' },
+  47: { link: '/charm_inner_mongolia', text: '内蒙古概况' },
+  48: { link: '/charm_inner_mongolia', text: '呼伦贝尔市' },
+  49: { link: '/charm_inner_mongolia', text: '呼和浩特市' },
+  50: { link: '/charm_inner_mongolia', text: '乌兰察布市' },
+  51: { link: '/charm_inner_mongolia', text: '赤峰市' },
+  52: { link: '/charm_inner_mongolia', text: '锡林郭勒盟' },
+  53: { link: '/charm_inner_mongolia', text: '兴安盟' },
+  54: { link: '/charm_inner_mongolia', text: '包头市' },
+  55: { link: '/charm_inner_mongolia', text: '鄂尔多斯市' },
+  56: { link: '/charm_inner_mongolia', text: '通辽市' },
+  57: { link: '/charm_inner_mongolia', text: '巴彦淖尔市' },
+  58: { link: '/charm_inner_mongolia', text: '乌海市' },
+  59: { link: '/charm_inner_mongolia', text: '阿拉善盟' },
+  60: { link: '/EventServices/4', text: '赛事服务' },
+  61: { link: '/cityline/search/?tw=61', text: '搜索' },
+}

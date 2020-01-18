@@ -10,11 +10,11 @@ export default new Router({
 		{
         path: '*',
         redirect: to => {
-          if (getToken() != undefined) {
+          // if (getToken() != undefined) {
             return "/index"
-          } else {
-            return "/login"
-          }
+          // } else {
+          //   return "/login"
+          // }
         }
     },
     {
@@ -30,7 +30,7 @@ export default new Router({
 			component: (resolve) => require(['@/pages/Login.vue'], resolve)
     },
     {
-			path: '/EventServices',
+			path: '/EventServices/:list_id?',
 			name:'赛事服务',
 			component: (resolve) => require(['@/pages/EventServices.vue'], resolve)
     },
@@ -57,7 +57,7 @@ export default new Router({
     {
 			path: '/hulun_buir',
 			name:'这里是呼伦贝尔',
-			component: (resolve) => require(['@/pages/HulunBuir.vue'], resolve)
+			component: (resolve) => require(['@/pages/NewHulunBuir.vue'], resolve)
     },
     {
 			path: '/blessing',

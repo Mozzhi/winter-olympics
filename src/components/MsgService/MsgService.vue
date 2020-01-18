@@ -3,15 +3,21 @@
     <div class="meet-in-neimoongu"></div>
 	  <div class="inline-box msg-left">
       <div class="new-banner" v-if="banner.length">
-        <swiper :options="swiperOption" ref="mySwiper">
-          <!-- slides -->
-          <swiper-slide v-for="item in banner"  :key="item.id">
-            <img :src="item.thumb" alt="">
-            <div class="thumb-title">{{item.title}}</div>
-          </swiper-slide>
-          <!-- Optional controls -->
-          <div class="swiper-pagination"  slot="pagination"></div>
-        </swiper>
+        <Carousel
+          v-model="value3"
+          :autoplay="setting.autoplay"
+          :autoplay-speed="setting.autoplaySpeed"
+          :dots="setting.dots"
+          :radius-dot="setting.radiusDot"
+          :trigger="setting.trigger"
+          arrow="never">
+          <CarouselItem v-for="item in banner"  :key="item.id">
+            <a :href="`/details?id=${item.id}`">
+              <img :src="item.thumb" alt="">
+              <div class="thumb-title">{{item.title}}</div>
+            </a>
+          </CarouselItem>
+        </Carousel>
       </div>
     </div>
 	  <div class="inline-box msg-right" :class="{'no-wish': !message.length}">
@@ -21,7 +27,7 @@
           <div class="run-text">{{message[0].details}}</div>
         </div>
       </a>
-      <div class="news-content">
+      <div class="news-content home-news-content">
         <div class="top-line">
           <div class="line-item" v-for="(item, index) in stickShow">
             <a :href="`/details?id=${item.id}`" target="_blank">
@@ -33,44 +39,37 @@
         <div class="topline-list">
           <div class="lines" v-for="(list, index) in stick" :key="list.id" v-if="index > 1"><a :href="`/details?id=${list.id}`" target="_blank">{{list.title}}</a></div>
         </div>
+        <div class="no-data" v-if="!stick.length"><img src="../../../static/images/nodata.png" alt=""></div>
       </div>
     </div>
 	</div>
 </template>
 <script>
-  import { swiper, swiperSlide } from 'vue-awesome-swiper'
  
 	export default {
 		name: 'MsgService',
     props: ['stick', 'message'],
 		data() {
 			return {
-        swiperOption: {
-          autoplay: true,
-          loop: true,
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true
-          }
-        },
         banner: [],
+        value3: 0,
+        setting: {
+          autoplay: true,
+          autoplaySpeed: 3000,
+          dots: 'inside',
+          radiusDot: false,
+          trigger: 'hover',
+          arrow: 'hover'
+        }
       }
 		},
-    components: {
-      swiper,
-      swiperSlide
-    },
     computed: {
-      swiper() {
-        return this.$refs.mySwiper.swiper
-      },
       stickShow() {
         return this.stick.slice(0,2);
       }
     },
     created () {
 		  this.getBanners();
-		  console.log(this.message)
     },
     mounted() {
 		  
@@ -80,21 +79,9 @@
         return str.slice(0, 57) + '<span class="red">[详情]</span>'
       },
 		  getBanners () {
-		    let that = this;
 		    this.$http.getBanner()
           .then((res) => {
             this.banner = res.data;
-            this.$nextTick(() => {
-              console.log(this.swiper.pagination.bullets);
-              for(let i = 0; i < this.swiper.pagination.bullets.length; i++ ){
-                this.swiper.pagination.bullets[i].onmouseover = function () {
-                  console.log(1)
-                  this.click();
-                  that.swiper.autoplay.start();
-                }
-              }
-            });
-            console.log(res);
           })
       }
     }

@@ -14,6 +14,7 @@
       float: left;
       margin-right: 10px;
       position: relative;
+      overflow: hidden;
       &:last-child {
         margin-right: 0;
       }
@@ -22,6 +23,26 @@
       @extend .part-item;
       height: 141px;
       margin: 0 0 10px 0;
+      transition: all 0.3s linear;
+      overflow: hidden;
+      img {
+        transition: all 0.3s linear;
+      }
+      &:hover {
+        img {
+          transform: scale(1.5);
+        }
+      }
+    }
+    .tebie {
+      img {
+        transition: all 0.3s linear;
+      }
+      &:hover {
+        img {
+          transform: scale(1.5);
+        }
+      }
     }
     .mask-bar {
       position: absolute;
@@ -34,6 +55,48 @@
       line-height: 50px;
       color: #fff;
       font-size: 18px;
+      display: flex;
+      display: -webkit-flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &.mg {
+      .bt {
+        &:hover {
+          .mask-bar {
+            height: 100%;
+          }
+          
+        }
+        &.survey{
+          &:hover {
+            .mask-text{
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translateX(-50%) translateY(-50%);
+              color: #fff;
+              background-size: 20px 24px;
+              //font-size: 30px;
+              &:before, &:after {
+                @include pseudo-class;
+                width: 100px;
+                border-bottom: 1px solid #fff;/*no*/
+              }
+              &:before {
+                left: -140px;
+              }
+              &:after {
+                right: -140px;
+              }
+            }
+          }
+        }
+      }
+      .mask-bar {
+        background: rgba(0,0,0,.4);
+        transition: all 0.2s linear;
+      }
     }
     .mask-text {
       display: inline-block;
@@ -43,6 +106,14 @@
     }
     .survey {
       width: 520px;
+      img {
+        transition: all 0.3s linear;
+      }
+      &:hover {
+        img {
+          transform: scale(1.5);
+        }
+      }
       .mask {
         position: absolute;
         width: 100%;
@@ -50,26 +121,6 @@
         background: rgba(0,0,0,0.4);
         top: 0;
         left: 0;
-      }
-      .mask-text{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        color: #fff;
-        background-size: 20px 24px;
-        font-size: 30px;
-        &:before, &:after {
-          @include pseudo-class;
-          width: 100px;
-          border-bottom: 1px solid #fff;/*no*/
-        }
-        &:before {
-          left: -140px;
-        }
-        &:after {
-          right: -140px;
-        }
       }
     }
   }

@@ -17,7 +17,7 @@
         </table>
       </div>
       <div class="inline-box game-lists">
-        <a href="" v-for="item in Competition"  v-if="Competition"><div class="game-list clearfix">
+        <a :href="`/details?id=${item.id}&on=0&tw=2`" target="_blank" v-for="item in Competition"  v-if="Competition"><div class="game-list clearfix">
           <span class="game-title"><img class="game-icon" src="../../../static/images/game-icon.png" alt="">{{item.title}}</span>
           <span class="date">02-18 08:30</span>
         </div></a>
@@ -25,40 +25,50 @@
       </div>
     </div>
     <div class="game-content house" v-show="projectKey == 'game-house'">
-      <swiper :options="swiperOption" ref="houseSwiper" v-if="houseNum">
-        <!-- slides -->
-        <swiper-slide v-for="item in houseNum" :key="item">
-          <div class="game-house" v-for="house in showList(item, gamesData.Tournament_venues, 3)">
+      <Carousel
+        v-model="houseIndex"
+        :autoplay="true"
+        :autoplay-speed="3000"
+        dots="inside"
+        :radius-dot="false"
+        trigger="hover"
+        v-if="projectKey == 'game-house'"
+        arrow="never">
+        <CarouselItem v-for="item in 2"  :key="item">
+          <a :href="`/details?id=${house.id}on=0&tw=3`" target="_blank" class="game-house" v-for="house in showList(item, gamesData.Tournament_venues, 3)">
             <div class="house-img"><img :src="house.thumb" alt=""></div>
             <div class="house-name">{{house.title}}</div>
-          </div>
-        </swiper-slide>
-        <div class="swiper-pagination"  slot="pagination"></div>
-      </swiper>
+          </a>
+        </CarouselItem>
+      </Carousel>
     </div>
     <div class="game-content house project" v-show="projectKey == 'games'">
-      <swiper :options="swiperOption" ref="gamesSwiper" v-if="projectNum">
-        <!-- slides -->
-        <swiper-slide v-for="item in projectNum" :key="item">
-          <div class="game-house" v-for="project in showList(item, gamesData.Competition_items, 4)">
-            <div class="house-img"><img :src="project.thumb" alt=""></div>
-            <div class="house-name">{{project.title}}</div>
-          </div>
-        </swiper-slide>
-        <div class="swiper-pagination"  slot="pagination"></div>
-      </swiper>
+      <Carousel
+        v-model="gamesIndex"
+        :autoplay="true"
+        :autoplay-speed="3000"
+        dots="inside"
+        :radius-dot="false"
+        v-if="projectKey == 'games'"
+        trigger="hover"
+        arrow="never">
+        <CarouselItem v-for="item in 2"  :key="item">
+          <a :href="`/details?id=${house.id}on=0&tw=4`" target="_blank" class="game-house" v-for="house in showList(item, gamesData.Competition_items, 4)">
+            <div class="house-img"><img :src="house.thumb" alt=""></div>
+            <div class="house-name">{{house.title}}</div>
+          </a>
+        </CarouselItem>
+      </Carousel>
     </div>
   </div>
 </template>
 <script>
-  import { swiper, swiperSlide } from 'vue-awesome-swiper';
   import { gamesProject } from "../../util/static_data";
 
   let arr = [,,,,,,];
   for(let i = 1; i < 30; i++) {
     arr.push(i);
   }
-//let today = new  Date().getDate();
 
 	export default {
 		name: 'GameContent',
@@ -79,6 +89,8 @@
         weekday: ['一','二','三','四','五','六','日'],
         choosed: this.day,
         value2: 0,
+        houseIndex: 0,
+        gamesIndex: 0,
         swiperOption: {
           autoplay: true,
           loop: true,
@@ -90,10 +102,6 @@
         gamesProject: gamesProject,
         Competition: [],
       };
-    },
-    components: {
-      swiper,
-      swiperSlide,
     },
     computed: {
 		  projectNum() {
@@ -113,6 +121,7 @@
     	}
     },
     mounted() {
+		  
     },
     methods: {
       showList (i, data, length){

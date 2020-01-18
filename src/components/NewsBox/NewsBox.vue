@@ -9,7 +9,7 @@
     </div>
     <div class="logout">
       <div class="side-btn logout-btn" @click="logout">退出登录</div>
-      <div class="side-btn manage-btn">管理后台</div>
+      <div class="side-btn manage-btn" v-if="is_admin" @click="goAdmin()">管理后台</div>
       <div class="side-btn wechat-btn">
         小程序
         <div class="qr-code"><div class="qr-code-inner"><img src="../../../static/images/login/qr-code.png" alt=""></div></div>
@@ -18,17 +18,19 @@
 	</div>
 </template>
 <script>
-	export default {
+  import { getToken, getIsAdmin } from "../../libs/auth";
+
+  export default {
 		name: 'NewsBox',
 		data() {
 			return {
 			  pagePath: this.$route.path,
         floatNotice: [],
+        is_admin: getIsAdmin()
       }
 		},
     created() {
       this.getFloatNotice();
-      console.log(this.$route)
     },
     methods: {
       getFloatNotice () {
@@ -45,6 +47,9 @@
               this.$router.push('/login')
             }, 1500)
           })
+      },
+      goAdmin() {
+        window.open('https://info.dah.isport.nm.cn/index.php/admin/public/login?token=' + getToken())
       }
     }
   }

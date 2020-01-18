@@ -7,8 +7,8 @@
       <breadcrumb current="这里是呼伦贝尔"></breadcrumb>
       <subpage-title block-name="这里是呼伦贝尔"></subpage-title>
       <div class="list-devide">
-        <block-item :block-name="item.name" :small-name="item.intro" class="" v-for="item in hulunData" :key="item.id" :link="`/splendid_pages/splendid_img/${item.id}`">
-          <div class="parts clearfix" slot="blockContent" @click="setBreadCrumb(item.name, '/hulun_buir')">
+        <block-item :block-name="item.name" :small-name="item.intro" class="" v-for="item in hulunData" :key="item.id" :link="`/splendid_pages/hulun_splendid_img/${item.id}?on=10&tw=${item.id}`">
+          <div class="parts clearfix" slot="blockContent">
             <a :href="`/details?id=${list.id}`" target="_blank" class="inline-box part-item survey"
                v-for="(list, index) in item.content" v-if="index == 0" :key="list.id">
               <img :src="list.thumb" alt="">
@@ -45,7 +45,6 @@
   import NewsBox from '../components/NewsBox/NewsBox';
   import { hulunData } from "../util/static_data";
   import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
-  import { setBreadCrumb } from "../util";
 
   export default {
     name: 'CharmInnerMongolia',
@@ -66,7 +65,6 @@
       this.getData();
     },
     methods: {
-      setBreadCrumb: setBreadCrumb,
       getData() {
         this.$http.getHulunbuirData()
           .then(res => {
@@ -76,7 +74,6 @@
             this.hulunData[3]['content'] = res.data.Tourism_culture;
             this.hulunData[4]['content'] = res.data.Future_outloo;
             this.hulunData[5]['content'] = res.data.winter_rhyme;
-            console.log(this.hulunData)
           })
       }
     }

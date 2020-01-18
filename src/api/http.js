@@ -5,6 +5,7 @@ import {
 } from '../libs/auth'
 import Routers from '../router';
 
+
 var service = axios.create({
 	baseURL:'https://info.dah.isport.nm.cn/index.php/api/',
   timeout: 5000, // 因为上传图片或者文件 过大时 需要等一会，不能给时间限制
@@ -43,10 +44,10 @@ service.interceptors.response.use(
   error => {
   	console.log("error")
     console.log(error) // for debug
-    this.$Modal.info({
-				title: '提示',
-				content: error
-			});
+    // this.$Modal.info({
+		// 		title: '提示',
+		// 		content: error
+		// 	});
 
   }
 )

@@ -21,11 +21,25 @@
       width: 720px;
       height: 405px;
       overflow: hidden;
+      position: relative;
       img {
         width: 720px;
         height: 405px;
       }
-
+  
+      .thumb-title {
+        position: absolute;
+        width: 100%;
+        height: 80px;
+        line-height: 80px;
+        color: #fff;
+        font-size: 20px;
+        left: 0;
+        bottom: 0;
+        padding: 0 20px;
+        @include base-bg;
+        background-image: url("#{$img-base}box-gilit.png");
+      }
       .swiper-pagination-bullet {
         width: 14px;
         height: 14px;
@@ -34,19 +48,6 @@
       }
       .swiper-slide {
         position: relative;
-        .thumb-title {
-          position: absolute;
-          width: 100%;
-          height: 80px;
-          line-height: 80px;
-          color: #fff;
-          font-size: 20px;
-          left: 0;
-          bottom: 0;
-          padding: 0 20px;
-          @include base-bg;
-          background-image: url("#{$img-base}box-gilit.png");
-        }
       }
     }
   }

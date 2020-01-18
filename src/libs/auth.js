@@ -25,3 +25,15 @@ export function setDay(day) {
 export function removeDay() {
   return Cookies.remove('day');
 }
+
+export function getIsAdmin() {
+  return Cookies.get('is_admin')
+}
+
+export function setIsAdmin(is_admin) {
+  return Cookies.set('is_admin', is_admin)
+}
+
+export function removeIsAdmin() {
+  return Cookies.remove('is_admin');
+}

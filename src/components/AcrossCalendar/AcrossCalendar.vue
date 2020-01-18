@@ -15,30 +15,34 @@
 	</div>
 </template>
 <script>
+  import { getDay } from "../../libs/auth";
+
   let Feb = [];
   for(let i = 1; i < 30; i++){
     let fdate = i < 10 ? '0' + i : i;
     Feb.push(fdate);
   }
   let today = new Date().getDate();
-  let moveLeft = today > 18 ? 18 : today;
+  let moveLeft = getDay() > 18 ? 18 : getDay() || (today -1);
 	export default {
 		name: 'AcrossCalendar',
 		data() {
 			return {
 			  Feb: Feb,
-        left: today,
+        left: moveLeft,
         clientW: document.documentElement.clientWidth,
-        current: today,
+        current: getDay() || today - 1,
         timer: null
       }
 		},
     methods: {
 		  calendarMove(direction) {
 		    if(direction) {
-		      this.left++;
+		      this.left += 5;
+          this.left = this.left > 18 ? 18  : this.left;
         }else {
-		      this.left--;
+		      this.left -= 5;
+          this.left = this.left < 0 ? 0  : this.left;
         }
       },
       changeDate(index) {
@@ -149,6 +153,9 @@
       background-image: url("#{$img-base}left-icon.png");
       left: auto;
       right: 0;
+    }
+    &:hover {
+      background-color: $theme-color;
     }
   }
 }

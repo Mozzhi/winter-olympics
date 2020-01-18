@@ -1,13 +1,13 @@
 <template>
   <div class="game-content clearfix">
     <div class="inline-box game-lists">
-      <a :href="`/details?id=${item.id}`" target="_blank" v-for="item in news5"><div class="game-list clearfix">
+      <a :href="`/details?id=${item.id}&on=0&tw=7`" target="_blank" v-for="item in news5"><div class="game-list clearfix">
         <span class="game-title"><img class="game-icon" src="../../../static/images/point.png" alt="">{{item.title}}</span>
         <span class="date">{{item.published_at1}}</span>
       </div></a>
     </div>
     <div class="inline-box game-lists second-list">
-      <a :href="`/details?id=${item.id}`" target="_blank" v-for="item in news10"><div class="game-list clearfix">
+      <a :href="`/details?id=${item.id}&on=0&tw=7`" target="_blank" v-for="item in news10"><div class="game-list clearfix">
         <span class="game-title"><img class="game-icon" src="../../../static/images/point.png" alt="">{{item.title}}</span>
         <span class="date">{{item.published_at1}}</span>
       </div></a>

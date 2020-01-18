@@ -9,7 +9,6 @@ import 'wc-messagebox/style.css'
 import 'swiper/dist/css/swiper.css'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
-import { getSessionData } from "./util";
 Vue.use(iView);
 // 进度条配置
 Vue.prototype.$Loading.config({
@@ -19,7 +18,6 @@ Vue.prototype.$Loading.config({
 });
 router.beforeEach((to, from, next) => {
 	iView.LoadingBar.start();
-	 console.log(from)
 	//  console.log(getToken())
   if(to.meta.title) {
     document.title = to.meta.title;
@@ -55,12 +53,6 @@ Vue.directive('bg', {
     el.style.backgroundImage = `url(${binding.value})`;
   }
 });
-
-// 初始化首页数据
-let indexData = getSessionData('indexData');
-if(indexData) {
-  store.commit('INDEXDATA', indexData);
-}
 
 Vue.prototype.$http = new Api();
 

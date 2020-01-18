@@ -1,6 +1,6 @@
 <template>
 	<div class="city-interview">
-	  <div class="content-item" v-for="item in cityData" v-if="cityData">
+	  <a :href="`/details?id=${item.id}&on=0&tw=12`" target="_blank"  class="content-item" v-for="item in cityData" v-if="cityData">
       <div class="city-introduce">
         <div class="interview-title">{{item.title}}</div>
         <div class="interview-detail">{{item.detail}}</div>
@@ -9,7 +9,7 @@
       <div class="city-img">
         <img :src="item.thumb" alt="">
       </div>
-    </div>
+    </a>
     	<img src="../../../static/images/nodata.png" class="Nodata" v-if="cityData==''" style="width: 25%;"/>
 	</div>
 </template>

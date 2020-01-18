@@ -8,18 +8,43 @@
       <subpage-title block-name="魅力内蒙古"></subpage-title>
       <div class="list-devide">
         <block-item :block-name="item.name" class="no-more" v-for="item in charmData" :key="item.id">
-          <div class="parts clearfix" slot="blockContent" v-if="item.id !== 48">
-            <a :href="`/details?id=${item.id}`" @click="setBreadCrumb(item.name)" class="inline-box part-item survey" v-bg="item.survey_img">
+          <div class="parts clearfix mg" slot="blockContent" v-if="item.id == 47">
+            <a :href="`/details?id=${item.id}&on=0&tw=9&th=${item.id}`" class="inline-box part-item survey bt" v-bg="item.survey_img">
               <div class="mask-bar"><span class="mask-text">概况</span></div>
             </a>
-            <a :href="`/splendid_pages/splendid_video/${item.id}`" class="inline-box part-item" v-bg="item.video_matter">
+            <div class="inline-box part-item">
+              <a :href="`/splendid_pages/mongo_splendid_img/${item.id}?class_id=25&on=0&tw=9&th=${item.id}`" class="matter bt" v-bg="item.survey_img">
+                <div class="mask-bar"><span class="mask-text">冬韵</span></div>
+              </a>
+              <a :href="`/splendid_pages/mongo_splendid_img/${item.id}?class_id=26&on=0&tw=9&th=${item.id}`" class="matter bt" v-bg="item.video_matter">
+                <div class="mask-bar"><span class="mask-text">旅游</span></div>
+              </a>
+            </div>
+            <div class="inline-box part-item">
+              <a :href="`/splendid_pages/mongo_splendid_img/${item.id}?class_id=27&on=0&tw=9&th=${item.id}`" class="matter bt" v-bg="item.word_matter">
+                <div class="mask-bar"><span class="mask-text">美食</span></div>
+              </a>
+              <a :href="`/splendid_pages/mongo_splendid_img/${item.id}?class_id=28&on=0&tw=9&th=${item.id}`" class="matter bt" v-bg="item.img_matter">
+                <div class="mask-bar"><span class="mask-text">文化</span></div>
+              </a>
+            </div>
+          </div>
+          <div class="parts clearfix mg" slot="blockContent" v-if="item.id !== 48 & item.id !== 47">
+            <a :href="`/details?id=${item.id}&on=0&tw=9&th=${item.id}`" class="inline-box part-item survey bt" v-bg="item.survey_img">
+              <!--<img :src="item.survey_img" alt="">-->
+              <div class="mask-bar"><span class="mask-text">概况</span></div>
+            </a>
+            <a :href="`/splendid_pages/mongo_splendid_video/${item.id}?class_id=24&on=0&tw=9&th=${item.id}`" class="inline-box part-item bt" v-bg="item.video_matter">
+              <!--<img :src="item.video_matter" alt="">-->
               <div class="mask-bar"><span class="mask-text">视频素材</span></div>
             </a>
             <div class="inline-box part-item">
-              <a :href="`/cityline/article_list?id=${item.id}`" class="matter" v-bg="item.word_matter">
+              <a :href="`/cityline/article_list?id=${item.id}&class_id=22&on=0&tw=9&th=${item.id}`" class="matter bt" v-bg="item.word_matter">
+                <!--<img :src="item.word_matter" alt="">-->
                 <div class="mask-bar"><span class="mask-text">文字素材</span></div>
               </a>
-              <a :href="`/splendid_pages/splendid_img/${item.id}`" class="matter" v-bg="item.img_matter">
+              <a :href="`/splendid_pages/mongo_splendid_img/${item.id}?class_id=23&on=0&tw=9&th=${item.id}`" class="matter bt" v-bg="item.img_matter">
+                <!--<img :src="item.img_matter" alt="">-->
                 <div class="mask-bar"><span class="mask-text">图片素材</span></div>
               </a>
             </div>
@@ -39,7 +64,6 @@
   import NewsBox from '../components/NewsBox/NewsBox.vue';
   import { innerMongolia } from '../util/static_data';
   import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
-  import { setBreadCrumb } from "../util";
   
   export default {
     name: 'CharmInnerMongolia',
@@ -55,12 +79,6 @@
       BlockItem,
       NewsBox,
       Breadcrumb
-    },
-    created() {
-    
-    },
-    methods: {
-      setBreadCrumb: setBreadCrumb
     }
   }
 </script>
@@ -92,4 +110,3 @@
     }
   }
 </style>
-6225 7582 2098 1574

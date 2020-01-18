@@ -4,8 +4,10 @@
     <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
-      <breadcrumb :current="`精彩${type[listType]}`" v-if="!type_id"></breadcrumb>
-      <breadcrumb :current="hulunTitle[type_id]" v-else></breadcrumb>
+      <breadcrumb v-if="listType.indexOf('mongo_splendid') !== -1"><a href="#"> > {{listType.indexOf('img') !== -1 ? (currentId ? typeDetail[currentId] : '图片素材') : '视频素材'}}</a></breadcrumb>
+      <breadcrumb v-else></breadcrumb>
+      <!--<breadcrumb v-if="!type_id"></breadcrumb>-->
+      <!--<breadcrumb :current="hulunTitle[type_id]" v-else></breadcrumb>-->
       <subpage-title :block-name="`精彩${type[listType]}`" v-if="!type_id"></subpage-title>
       <subpage-title :block-name="hulunTitle[type_id]" v-else></subpage-title>
       <div class="filtrate" v-if="!type_id">
@@ -16,10 +18,10 @@
       </div>
       <div class="list-devide">
         <div class="splendids">
-          <div class="inline-box splendid-list" v-for="item in mainList" :key="item.id" @click="toDetail(item.id)">
-            <div class="show-range" :class="{'video-block': listType == 'splendid_video'}"><img :src="item.thumb" alt=""></div>
+          <a class="inline-box splendid-list" v-for="item in mainList" :key="item.id" :href="`/details?id=${item.id}&on=${querys.on}&tw=${querys.tw}&th=${querys.th}`" target="_blank">
+            <div class="show-range" :class="{'video-block': listType.indexOf('splendid_video') !== -1}"><img :src="item.thumb" alt=""></div>
             <div class="list-introduce">{{item.details}}</div>
-          </div>
+          </a>
         </div>
         <Page class="m-pages" :total="totalPage" v-show="totalPage > 1" @on-change="changePage"></Page>
         <div class="no-data" v-if="!mainList.length"><img src="../../static/images/nodata.png" alt=""></div>
@@ -32,8 +34,7 @@
   import HeaderBar from '../components/HeaderBar/HeaderBar.vue';
   import Footer from '../components/Footer/Footer.vue';
   import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
-  import NewsBox from '../components/NewsBox/NewsBox'
-  import { details } from "../util";
+  import NewsBox from '../components/NewsBox/NewsBox';
   import { hulunTitle } from "../util/static_data";
   import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
 
@@ -45,22 +46,37 @@
     splendid_img: 5,
     splendid_video: 6,
   };
+  let typeDetail = {
+    23: '图片素材',
+    24: '视频素材',
+    25: '冬韵',
+    26: '旅游',
+    27: '美食',
+    28: '文化'
+  }
   export default {
     name: 'SplendidPages',
     data() {
       let list_type = this.$route.params.list_type;
       let type_id = this.$route.params.type_id;
+      let querys = this.$route.query;
       return {
         listType: list_type,
         type: type,
         classId: this.$store.getters.getClassId,
-        currentId: 0,
+        currentId: querys.class_id || 0,
         mainList: [],
         column_id: type_id ? type_id : column_id[list_type],
         p: 1,
         totalPage: 1,
         type_id: type_id || '',
-        hulunTitle: hulunTitle
+        hulunTitle: hulunTitle,
+        typeDetail: typeDetail,
+        querys: {
+          on: querys.on || 0,
+          tw: querys.tw || '',
+          th: querys.th || ''
+        }
       }
     },
     components: {
@@ -72,6 +88,10 @@
     },
     created() {
       this.getList();
+      let title= '精彩' + this.type[this.listType]
+      if(this.type_id) {
+        title = this.hulunTitle[this.type_id]
+      }
     },
     methods: {
       doFilter (id) {
@@ -97,9 +117,6 @@
       changePage (p) {
         this.p = p;
         this.getList();
-      },
-      toDetail (id) {
-        details.call(this, id);
       }
     }
   }

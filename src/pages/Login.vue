@@ -15,7 +15,7 @@
 
 	import LoginForm from '../components/LoginForm/login-form'
 	import secret from '../libs/secret'
-	import { setToken, getToken, removeToken} from '../libs/auth'
+	import { setToken, getToken, removeToken, setIsAdmin} from '../libs/auth'
 	export default {
 	    name: 'Login',
 		data () {
@@ -44,14 +44,15 @@
 			this.$http.login(dto)
 	          .then((res) => {
 	            if(res.status == 1) {
-					this.$Modal.info({
-						title: '提示',
-						content:res.msg
-					});
-					return
-				}
+                this.$Modal.info({
+                  title: '提示',
+                  content:res.msg
+                });
+                return
+              }
 	         
 	            setToken(res.data.token);
+              setIsAdmin(res.data.is_admin);
 				this.$Message.success(res.msg);
 				this.$router.push('/index');
 
@@ -109,7 +110,7 @@
 					font-stretch: normal;
 					letter-spacing: 0px;
 					color: #303030;
-					background: #fff;
+					background: #FFFEF7;
 					text-align: center;
 					&:after{
 						content: "";

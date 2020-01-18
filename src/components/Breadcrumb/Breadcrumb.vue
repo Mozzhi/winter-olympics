@@ -1,25 +1,37 @@
 <template>
 	<div class="breadcrumb">
-	  <span class="now-location">当前位置 ></span>
-    <a href="/">首页 ></a>
-    <a :href="lastLink" v-if="lastPage">{{ lastPage }} > </a>
-    <a :href="params.path">{{ current }}</a>
+	  <span class="now-location">当前位置 </span>
+    <template>
+      > <a :href="breadcrumb[on].link">{{ breadcrumb[on].text }}</a>
+    </template>
+    <template v-if="tw">
+      > <a :href="breadcrumb[tw].link">{{ breadcrumb[tw].text }}</a>
+    </template>
+    <template v-if="th">
+      > <a :href="breadcrumb[th].link">{{ breadcrumb[th]['text'] }}</a>
+    </template>
+    <template  v-if="current">
+      > <a :href="params.path">{{ current }}</a>
+    </template>
     <slot></slot>
 	</div>
 </template>
 <script>
-	export default {
+  import { breadcrumb } from "../../util/static_data";
+
+  export default {
 		name: 'Breadcrumb',
     props: ['current', 'lastPage', 'lastLink'],
 		data() {
+		  let querys = this.$route.query;
 			return {
 			  params: this.$route,
-      
+        on: querys.on || 0,
+        tw: querys.tw || '',
+        th: querys.th || '',
+        breadcrumb: breadcrumb
       }
-		},
-    created() {
-		  console.log(this.params)
-    }
+		}
 	}
 </script>
 <style lang="scss" scoped>

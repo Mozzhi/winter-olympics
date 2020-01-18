@@ -2,19 +2,16 @@
 	<div class="block-title">
 		<div class="bg"></div>
 		<div class="title">{{blockName}}</div>
-	 	
+	 
 	</div>
 </template>
 <script>
 	export default {
 		name: 'SubpageTitle',
-    	props: ['blockName'],
+    props: ['blockName'],
 		data() {
 			return {}
-		},
-	    mounted () {
-			  console.log(this)
-	    }
+		}
 	}
 </script>
 <style lang="scss" scoped>
@@ -22,11 +19,13 @@
 .block-title {
 	position: relative;
 	height: 46px;
+  text-align: center;
 	.title{
-		width: 178px;
 		height: 46px;
 		z-index:2;
 		position: relative;
+    display: inline-block;
+    padding: 0 30px;
 		line-height: 46px;
 		margin: 0 auto;
 		font-family: MicrosoftYaHei-Bold;
@@ -40,7 +39,7 @@
 			color: #fff;
 		    image: url("#{$img-base}events/titleBg.png");
 		    repeat: no-repeat;
-		    size:178px 46px;
+		    size:100% 46px;
 		    position: center center;
 		 };
 	}
@@ -49,7 +48,7 @@
 	 	z-index:1;
 	 	position: absolute;
 	 	width: 778px;
-	 	height:1px;
+	 	height:1px;/*no*/
 	 	margin-left: -389px;
 	 	left: 50%;
 	 	top: 50%;

@@ -7,14 +7,14 @@
          <breadcrumb :current="tabs[index]['text']"></breadcrumb>
 	     	<subpage-title block-name="赛事服务"></subpage-title>
 	     	<div class="tabs-box">
-          <tabs :tab-arr="tabs" :current-key="column_id" @switchoverKey="changeId"></tabs>
+          <tabs class="list-tab" :tab-arr="tabs" :current-key="column_id" @switchoverKey="changeId"></tabs>
         </div>
          <across-calendar v-show="column_id == 2" @getDate="changeDate"></across-calendar>
 	     	<!--比赛项目-->
 	     	<div class="game-project" v-if="column_id == 4">
             <Row>
                 <Col span="6"  v-for="(item, index) in list" :key="item.id" class="e-outer">
-                  <a :href="`/splendid_pages/splendid_img/${item.id}`" target="_blank">
+                  <a :href="`/splendid_pages/competition/${item.id}?tw=4&th=${item.id}`">
                   <div class="e-bolck">
                 <div  class="divImg"><img :src="`../../static/images/events/${item.id - 22}.png`"/></div>
                 <div class="title ellipsis">{{item.name}}</div>
@@ -25,18 +25,19 @@
 	     	</div>
 	     	<!--比赛日程-->
 	     	<div class="scheduleEvent" v-if="column_id == 2">
-	     		<a :href="`/details?id=${item.id}`" target="_blank" class="s-line" v-for="(item, index) in mainList" :key="item.id">
+	     		<a :href="`/details?id=${item.id}&on=60&tw=2`" target="_blank" class="s-line" v-for="(item, index) in mainList" :key="item.id">
 	     			<img src="../../static/images/events/dw2.png"/>
 	     			<div class="time">{{item.published_at1}}</div>
 	     			<div class="title ellipsis">{{item.title}}</div>
 	     		</a>
           <Page class="m-pages" :total="totalPage - 0" @on-change="changePage" v-show="totalPage > 1"></Page>
+          <div class="no-data" v-if="!mainList.length"><img src="../../static/images/nodata.png" alt=""></div>
 	     	</div>
 	     	<!--赛事场馆-->
 	     	<div class="venues contestEvent" v-if="column_id == 3">
 	     		<Row>
 			        <Col span="8" v-for="(item, index) in mainList" :key="item.id" >
-                <a :href="`/details?id=${item.id}`" target="_blank">
+                <a :href="`/details?id=${item.id}&on=60&tw=3`" target="_blank">
 			       		<div class="e-bolck">
 							<div class="divImg">
                 <img :src="item.thumb" alt="">
@@ -46,6 +47,7 @@
                 </a>
 			        </Col>
 			    </Row>
+          <div class="no-data" v-if="!mainList.length"><img src="../../static/images/nodata.png" alt=""></div>
 	     	</div>
 	     </div>
 	    <Footer></Footer>
@@ -59,6 +61,7 @@
   import AcrossCalendar from '../components/AcrossCalendar/AcrossCalendar';
   import NewsBox from '../components/NewsBox/NewsBox.vue';
   import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
+
   let tabs = [
     { text: "赛事日程", key: 2 },
     { text: "赛事场馆", key: 3 },
@@ -67,11 +70,13 @@
 	export default {
 		name: 'EventServices',
 		data() {
+		  let listId = this.$route.params.list_id;
 			return {
         tabs: tabs,
-        index: 0,
-        column_id: 2,
+        index: listId - 2 || 0,
+        column_id: listId || 2,
         selectDay: new Date().getDate(),
+        listType: this.$route.params.list_id,
 			  list:[
 				{
 				 name:"雪橇",
@@ -186,7 +191,6 @@
       },
       changePage (p) {
 		    this.page = p;
-		    console.log(this.page)
 		    this.getData();
       },
       changeDate(date) {

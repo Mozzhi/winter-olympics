@@ -1,6 +1,6 @@
 <template>
 	<div class="list-item clearfix" :class="{'no-img': NoImg}">
-    <a :href="`/details?id=${list.id}`" target="_blank">
+    <a :href="`/details?id=${list.id}&on=${querys.on}&tw=${querys.tw}&th=${querys.th}`" target="_blank">
 	  <div class="inline-box list-text">
       <div class="list-title">{{list.title}}</div>
       <div class="list-detail">{{list.details}}</div>
@@ -17,7 +17,14 @@
 		name: 'ListItem',
     props: ['NoImg', 'list'],
 		data() {
-			return {}
+		  let querys = this.$route.query;
+			return {
+        querys: {
+          on: querys.on || 0,
+          tw: querys.tw || '',
+          th: querys.th || ''
+        }
+      }
 		},
     created() {
 		  
@@ -56,8 +63,9 @@
     position: absolute;
     top: 30px;
     right: 30px;
-    width: 200px;
-    height: 112px;
+    width: 168px;
+    height: 95px;
+    border-radius: 4px;
     overflow: hidden;
   }
   &:hover {
