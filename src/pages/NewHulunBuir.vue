@@ -9,21 +9,32 @@
       <div class="list-devide">
         <block-item :block-name="item.name" :small-name="item.intro" v-for="item in charmData" :key="item.id" class="no-more">
           <div class="parts clearfix mg" slot="blockContent">
-            <a :href="`/details?id=${item.id}&on=0&tw=10&th=${item.id}`" class="inline-box part-item survey bt" v-bg="item.survey_img">
-              <!--<img :src="item.survey_img" alt="">-->
+            <a :href="`/list_pages/Daily_News_bt/${item.id}?class_id=29&on=0&tw=10&th=${item.id}`"
+               v-if="item.id  == 43"
+               class="inline-box part-item survey bt"
+               v-bg="item.survey_img">
+              <div class="mask-bar"><span class="mask-text">各旗市区风采</span></div>
+            </a>
+            <a :href="`/details?id=${item.id}&on=0&tw=10&th=${item.id}`"
+               v-else
+               class="inline-box part-item survey bt"
+               v-bg="item.survey_img">
               <div class="mask-bar"><span class="mask-text">概况</span></div>
             </a>
-            <a :href="`/splendid_pages/mongo_splendid_video/${item.id}?class_id=24&on=0&tw=10&th=${item.id}`" class="inline-box part-item bt" v-bg="item.video_matter">
-              <!--<img :src="item.video_matter" alt="">-->
+            <a :href="`/splendid_pages/mongo_splendid_video/${item.id}?class_id=24&on=0&tw=10&th=${item.id}`"
+               class="inline-box part-item bt"
+               v-bg="item.video_matter">
               <div class="mask-bar"><span class="mask-text">视频素材</span></div>
             </a>
             <div class="inline-box part-item">
-              <a :href="`/cityline/article_list?id=${item.id}&class_id=22&on=0&tw=10&th=${item.id}`" class="matter bt" v-bg="item.word_matter">
-                <!--<img :src="item.word_matter" alt="">-->
+              <a :href="`/cityline/article_list?id=${item.id}&class_id=22&on=0&tw=10&th=${item.id}`"
+                 class="matter bt"
+                 v-bg="item.word_matter">
                 <div class="mask-bar"><span class="mask-text">文字素材</span></div>
               </a>
-              <a :href="`/splendid_pages/mongo_splendid_img/${item.id}?class_id=23&on=0&tw=10&th=${item.id}`" class="matter bt" v-bg="item.img_matter">
-                <!--<img :src="item.img_matter" alt="">-->
+              <a :href="`/splendid_pages/mongo_splendid_img/${item.id}?class_id=23&on=0&tw=10&th=${item.id}`"
+                 class="matter bt"
+                 v-bg="item.img_matter">
                 <div class="mask-bar"><span class="mask-text">图片素材</span></div>
               </a>
             </div>

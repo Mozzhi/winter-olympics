@@ -14,5 +14,6 @@ module.exports = {
     {text: '轮滑冰球', id: 10},
     {text: '冬季两项', id: 11},
     {text: '其他', id: 12}
-  ]
-}
+  ],
+  noticeData: []
+};

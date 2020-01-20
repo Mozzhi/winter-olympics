@@ -1,6 +1,6 @@
 <template>
   <div class="news-center">
-    <header-bar active="home"></header-bar>
+    <header-bar active=""></header-bar>
     <news-box></news-box>
     <div class="centerMain wrapper">
       <!--面包屑-->
@@ -19,7 +19,7 @@
             </a>
           </Col>
           <Col span="12">
-            <a href="list_pages/Daily_News/19?tw=19" class="news-entry">
+            <a href="list_pages/Daily_News_center/19?tw=19" class="news-entry">
               <div class="entry-inner">
                 <span class="type-text">
                   <img src="../../static/images/other/主新闻中心icon.png" alt="">
@@ -29,7 +29,7 @@
             </a>
           </Col>
           <Col span="12">
-            <a href="list_pages/Daily_News/20?tw=20" class="news-entry">
+            <a href="list_pages/Daily_News_center/20?tw=20" class="news-entry">
               <div class="entry-inner">
                 <span class="type-text">
                   <img src="../../static/images/other/场馆新闻中心icon.png" alt="">
@@ -39,7 +39,7 @@
             </a>
           </Col>
           <Col span="12">
-            <a href="list_pages/Daily_News/21?tw=21" class="news-entry">
+            <a href="list_pages/Daily_News_center/21?tw=21" class="news-entry">
               <div class="entry-inner">
                 <span class="type-text">
                   <img src="../../static/images/other/服务信息icon.png" alt="">

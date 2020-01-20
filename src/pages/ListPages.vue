@@ -9,7 +9,7 @@
       <!--<breadcrumb :current="pageTitle[headerKey]"  v-if="headerKey == 'Ceremony'"></breadcrumb>-->
       <breadcrumb :current="newsType[type_id] || '媒体通告'" v-if="headerKey == 'msg_service'"></breadcrumb>
       <breadcrumb v-else></breadcrumb>
-      <subpage-title :block-name="newsType[type_id] || '每日新闻'" v-if="headerKey == 'Daily_News'"></subpage-title>
+      <subpage-title :block-name="newsType[type_id] || '每日新闻'" v-if="headerKey.indexOf('Daily_News') !== -1"></subpage-title>
       <subpage-title :block-name="pageTitle[headerKey]" v-else></subpage-title>
       <tabs class="list-tab" :tab-arr="tabs" :current-key="tabKey" @switchoverKey="getKey" v-if="headerKey == 'msg_service'"></tabs>
       <div class="list-devide clearfix">
@@ -54,6 +54,7 @@
   import NewsBox from '../components/NewsBox/NewsBox';
   import Tabs from '../components/Tabs/Tabs';
   import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
+  import { hulunTitle } from "../util/static_data";
 
   let title = {
     Ceremony: '开闭幕式',
@@ -73,20 +74,6 @@
     {text: '赛前信息', key: '17'},
     {text: '背景资料', key: '18'},
   ];
-  let newsType = {
-    19: '主新闻中心',
-    20: '场馆新闻中心',
-    21: '服务信息',
-    22: '媒体手册',
-    16: '媒体通告',
-    13: '即时引语',
-    14: '发布会摘要',
-    15: '综合新闻',
-    17: '赛前信息',
-    18: '背景资料',
-    7: '每日新闻',
-    8: '开闭幕式',
-  };
   let baseArr = [{
     details: "",
     id: "",
@@ -114,12 +101,13 @@
         totalPages: 0,
         column_id: type_id || column_id[this.$route.params.list_type],
         type_id: type_id,
-        newsType: newsType,
+        newsType: hulunTitle,
         querys: {
           on: querys.on || 0,
           tw: querys.tw || '',
           th: querys.th || ''
-        }
+        },
+        classId: querys.class_id || ''
       }
     },
     components: {
@@ -159,7 +147,8 @@
       getArticle() {
         let params = {
           column_id: this.column_id,
-          p: this.page
+          p: this.page,
+          classify_id: this.classId
         };
         const loading = this.$Message.loading({
           content: '正在加载中...',

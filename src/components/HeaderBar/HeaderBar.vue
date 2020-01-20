@@ -81,7 +81,7 @@
           this.$Message.error('请输入要查找的内容');
         }else {
           let listType = this.$route.params.list_type || '';
-          this.$router.push({path: `/cityline/search/${this.keyword}?on=0&tw=61`});
+          this.$router.push({path: `/cityline/search/${this.keyword}?on=0&tw=101`});
           if(listType == 'city_visiting') {
             window.location.reload();
           }

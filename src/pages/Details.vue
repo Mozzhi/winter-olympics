@@ -58,7 +58,6 @@
 	import SubpageTitle from '../components/SubpageTitle/SubpageTitle.vue';
   import NewsBox from '../components/NewsBox/NewsBox';
   import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
-  import { getBreadCrumb } from "../util";
   import getToken from '../libs/auth'
 	export default {
 		name: 'EventServices',
@@ -82,7 +81,6 @@
 		created(){
 			this.id=this.$route.query.id || 867;
 			this.init();
-			this.fromWhere = this.getBreadCrumb();
 		},
 		watch:{
 	        $route(val){//普通的watch监听
@@ -98,7 +96,6 @@
 
 		},
 		methods: {
-      getBreadCrumb: getBreadCrumb,
       download(item){
         let dto={
           article_id:item.article_id,

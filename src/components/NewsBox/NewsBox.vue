@@ -19,24 +19,31 @@
 </template>
 <script>
   import { getToken, getIsAdmin } from "../../libs/auth";
+  import { saveData, getSessionData } from "../../util";
 
   export default {
 		name: 'NewsBox',
 		data() {
 			return {
 			  pagePath: this.$route.path,
-        floatNotice: [],
-        is_admin: getIsAdmin()
+        floatNotice: this.$store.getters.getNoticeData || [],
+        is_admin: getIsAdmin(),
+        
       }
 		},
     created() {
-      this.getFloatNotice();
+		  console.log(this.floatNotice.length)
+		  if(!this.floatNotice.length){
+        this.getFloatNotice();
+      }
     },
     methods: {
       getFloatNotice () {
         this.$http.getNotice()
           .then((res) => {
-            this.floatNotice = res.data
+            this.floatNotice = res.data;
+            saveData('noticeData', res.data);
+            this.$store.commit('NOTICEDATA', res.data);
           })
       },
       logout () {
@@ -49,7 +56,7 @@
           })
       },
       goAdmin() {
-        window.open('https://info.dah.isport.nm.cn/index.php/admin/public/login?token=' + getToken())
+        window.open('https://info.dah.isport.nm.cn/index.php/admin/public/login?token=' + getToken(), "_blank")
       }
     }
   }

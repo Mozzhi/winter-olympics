@@ -4,5 +4,8 @@ export default {
   },
   getClassId(state) {
     return state.classId;
+  },
+  getNoticeData(state) {
+    return state.noticeData;
   }
 }

@@ -9,6 +9,8 @@ import 'wc-messagebox/style.css'
 import 'swiper/dist/css/swiper.css'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
+import { getSessionData } from "./util";
+
 Vue.use(iView);
 // 进度条配置
 Vue.prototype.$Loading.config({
@@ -53,6 +55,10 @@ Vue.directive('bg', {
     el.style.backgroundImage = `url(${binding.value})`;
   }
 });
+
+//初始化悬浮窗数据
+let noticeData = getSessionData('noticeData') || [];
+store.commit('NOTICEDATA', noticeData);
 
 Vue.prototype.$http = new Api();
 

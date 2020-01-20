@@ -9,7 +9,7 @@
       <div class="list-devide">
         <block-item :block-name="item.name" class="no-more" v-for="item in charmData" :key="item.id">
           <div class="parts clearfix mg" slot="blockContent" v-if="item.id == 47">
-            <a :href="`/details?id=${item.id}&on=0&tw=9&th=${item.id}`" class="inline-box part-item survey bt" v-bg="item.survey_img">
+            <a :href="`/list_pages/Daily_News_bt/${item.id}?class_id=21&on=0&tw=9&th=${item.id}`" class="inline-box part-item survey bt" v-bg="item.survey_img">
               <div class="mask-bar"><span class="mask-text">概况</span></div>
             </a>
             <div class="inline-box part-item">

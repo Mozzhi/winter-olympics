@@ -24,7 +24,7 @@
         <img src="../../../static/images/nodata.png" class="Nodata" v-if="Competition==''"/>
       </div>
     </div>
-    <div class="game-content house" v-show="projectKey == 'game-house'">
+    <!-- <div class="game-content house" v-show="projectKey == 'game-house'">
       <Carousel
         v-model="houseIndex"
         :autoplay="true"
@@ -38,6 +38,26 @@
           <a :href="`/details?id=${house.id}on=0&tw=3`" target="_blank" class="game-house" v-for="house in showList(item, gamesData.Tournament_venues, 3)">
             <div class="house-img"><img :src="house.thumb" alt=""></div>
             <div class="house-name">{{house.title}}</div>
+          </a>
+        </CarouselItem>
+      </Carousel>
+    </div> -->
+    <div class="game-content house project" v-show="projectKey == 'game-house'">
+      <Carousel
+        v-model="houseIndex"
+        :autoplay="true"
+        :autoplay-speed="3000"
+        dots="inside"
+        :radius-dot="false"
+        trigger="hover"
+        v-if="projectKey == 'game-house'"
+        arrow="never">
+        <CarouselItem v-for="item in houseNum"  :key="item">
+          <a :href="`/list_pages/Daily_News_venue/${house.id}?on=100&tw=3&th=${house.id}`"
+             target="_blank" class="game-house"
+             v-for="(house, index) in showList(item, venueList, 4)">
+            <div class="house-img"><img :src="`../../../static/images/events/c${index + 1}.png`" alt=""></div>
+            <div class="house-name">{{house.name}}</div>
           </a>
         </CarouselItem>
       </Carousel>
@@ -63,7 +83,7 @@
   </div>
 </template>
 <script>
-  import { gamesProject } from "../../util/static_data";
+  import { gamesProject, venueList } from "../../util/static_data";
 
   let arr = [,,,,,,];
   for(let i = 1; i < 30; i++) {
@@ -101,6 +121,7 @@
         },
         gamesProject: gamesProject,
         Competition: [],
+        venueList: venueList
       };
     },
     computed: {
@@ -108,7 +129,7 @@
 		    return Math.ceil(this.gamesData.Competition_items.length/4);
       },
 		  houseNum() {
-		    return Math.ceil(this.gamesData.Tournament_venues.length/3);
+		    return Math.ceil(this.venueList.length/4);
       },
     },
     created() {

@@ -14,7 +14,7 @@
 	     	<div class="game-project" v-if="column_id == 4">
             <Row>
                 <Col span="6"  v-for="(item, index) in list" :key="item.id" class="e-outer">
-                  <a :href="`/splendid_pages/competition/${item.id}?tw=4&th=${item.id}`">
+                  <a :href="`/list_pages/Daily_News_competition/${item.id}?on=100&tw=4&th=${item.id}`">
                   <div class="e-bolck">
                 <div  class="divImg"><img :src="`../../static/images/events/${item.id - 22}.png`"/></div>
                 <div class="title ellipsis">{{item.name}}</div>
@@ -36,18 +36,17 @@
 	     	<!--赛事场馆-->
 	     	<div class="venues contestEvent" v-if="column_id == 3">
 	     		<Row>
-			        <Col span="8" v-for="(item, index) in mainList" :key="item.id" >
-                <a :href="`/details?id=${item.id}&on=60&tw=3`" target="_blank">
+			        <Col span="8" v-for="(item, index) in venueList" :key="item.id" >
+                <a :href="`/list_pages/Daily_News_venue/${item.id}?on=100&tw=3&th=${item.id}`" target="_blank">
 			       		<div class="e-bolck">
 							<div class="divImg">
-                <img :src="item.thumb" alt="">
+                <img :src="`../../static/images/events/c${index + 1}.png`" alt="">
               </div>
-							<div class="title ellipsis">{{item.title}}</div>
+							<div class="title ellipsis">{{item.name}}</div>
 			       		</div>
                 </a>
 			        </Col>
 			    </Row>
-          <div class="no-data" v-if="!mainList.length"><img src="../../static/images/nodata.png" alt=""></div>
 	     	</div>
 	     </div>
 	    <Footer></Footer>
@@ -61,6 +60,7 @@
   import AcrossCalendar from '../components/AcrossCalendar/AcrossCalendar';
   import NewsBox from '../components/NewsBox/NewsBox.vue';
   import Breadcrumb from '../components/Breadcrumb/Breadcrumb.vue';
+  import { gameList, venueList } from "../util/static_data";
 
   let tabs = [
     { text: "赛事日程", key: 2 },
@@ -77,69 +77,8 @@
         column_id: listId || 2,
         selectDay: new Date().getDate(),
         listType: this.$route.params.list_id,
-			  list:[
-				{
-				 name:"雪橇",
-				 id:"23"
-				},
-				{
-				 name:"钢架雪车",
-				 id:"24"
-				},
-				{
-				 name:"雪车",
-				 id:"25"
-				},
-				{
-				 name:"自由式滑雪",
-				 id:"26"
-				},
-				{
-				 name:"北欧两项",
-				 id:"27"
-				},
-				{
-				 name:"跳台滑雪",
-				 id:"28"
-				},
-				{
-				 name:"越野滑雪",
-				 id:"29"
-				},
-				{
-				 name:"短道速滑",
-				 id:"30"
-				},
-				{
-				 name:"速度滑冰",
-				 id:"31"
-				},
-				{
-				 name:"单板滑雪",
-				 id:"32"
-				},
-				{
-				 name:"高山滑雪",
-				 id:"33"
-				},
-				{
-				 name:"冬季两项",
-				 id:"34"
-				},
-				{
-				 name:"冰球",
-				 id:"35"
-				},
-				{
-				 name:"冰壶",
-				 id:"36"
-				},
-				{
-				 name:"花样滑冰",
-				 id:"37"
-				},
-				
-			  ],
+			  list: gameList,
+        venueList: venueList,
         mainList: [],
         page: 1,
         totalPage: 1,

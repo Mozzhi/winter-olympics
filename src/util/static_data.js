@@ -232,6 +232,18 @@ export let hulunData = [
 ];
 
 export let hulunTitle = {
+  7: '每日新闻',
+  8: '开闭幕式',
+  13: '即时引语',
+  14: '发布会摘要',
+  15: '综合新闻',
+  16: '媒体通告',
+  17: '赛前信息',
+  18: '背景资料',
+  19: '主新闻中心',
+  20: '场馆新闻中心',
+  21: '服务信息',
+  22: '媒体手册',
   23: "雪橇",
   24: "钢架雪车",
   25: "雪车",
@@ -266,6 +278,16 @@ export let hulunTitle = {
   57: '巴彦淖尔市',
   58: '乌海市',
   59: '阿拉善盟',
+  60:"速度滑冰馆",
+  61:"短道速滑馆",
+  62:"冰球冰壶馆",
+  63:"主媒体中心",
+  64:"牙克石凤凰山滑雪场",
+  65:"扎兰屯金龙山滑雪场",
+  66:"喀喇沁美林谷滑雪场",
+  67:"凉城岱海国际滑雪场",
+  68:"多伦龙泽湖公园",
+  69:"呼伦贝尔市体育场"
 };
 
 export let jalousie = [
@@ -299,7 +321,7 @@ export const breadcrumb = {
   18: { link: '/list_pages/msg_service', text: '背景资料' },
   19: { link: '/news_center', text: '主新闻中心' },
   20: { link: '/news_center', text: '场馆新闻中心' },
-  21: { link: '/', text: '服务信息' },
+  21: { link: '/news_center', text: '服务信息' },
   22: { link: '/news_center', text: '媒体手册' },
   23: { link: '/splendid_pages/splendid_img', text: '雪橇' },
   24: { link: '/splendid_pages/splendid_img', text: '钢架雪车' },
@@ -338,6 +360,47 @@ export const breadcrumb = {
   57: { link: '/charm_inner_mongolia', text: '巴彦淖尔市' },
   58: { link: '/charm_inner_mongolia', text: '乌海市' },
   59: { link: '/charm_inner_mongolia', text: '阿拉善盟' },
-  60: { link: '/EventServices/4', text: '赛事服务' },
-  61: { link: '/cityline/search/?tw=61', text: '搜索' },
-}
+  60: { link: '/cityline/search/?tw=61', text: '速度滑冰馆' },
+  61: { link: '/cityline/search/?tw=61', text: '短道速滑馆' },
+  62: { link: '/cityline/search/?tw=61', text: '冰球冰壶馆' },
+  63: { link: '/cityline/search/?tw=61', text: '主媒体中心' },
+  64: { link: '/cityline/search/?tw=61', text: '牙克石凤凰山滑雪场' },
+  65: { link: '/cityline/search/?tw=61', text: '扎兰屯金龙山滑雪场' },
+  66: { link: '/cityline/search/?tw=61', text: '喀喇沁美林谷滑雪场' },
+  67: { link: '/cityline/search/?tw=61', text: '凉城岱海国际滑雪场' },
+  68: { link: '/cityline/search/?tw=61', text: '多伦龙泽湖公园' },
+  69: { link: '/cityline/search/?tw=61', text: '呼伦贝尔市体育场' },
+  100: { link: '/EventServices/4', text: '赛事服务' },
+  101: { link: '/cityline/search/?tw=61', text: '搜索' },
+};
+
+export const gameList = [
+  { name:"雪橇", id:"23" },
+  { name:"钢架雪车", id:"24" },
+  { name:"雪车", id:"25" },
+  { name:"自由式滑雪", id:"26" },
+  { name:"北欧两项", id:"27" },
+  { name:"跳台滑雪", id:"28" },
+  { name:"越野滑雪", id:"29" },
+  { name:"短道速滑", id:"30" },
+  { name:"速度滑冰", id:"31" },
+  { name:"单板滑雪", id:"32" },
+  { name:"高山滑雪", id:"33" },
+  { name:"冬季两项", id:"34" },
+  { name:"冰球", id:"35" },
+  { name:"冰壶", id:"36" },
+  { name:"花样滑冰", id:"37" },
+];
+
+export const venueList = [
+  { name:"速度滑冰馆", id:"60" },
+  { name:"短道速滑馆", id:"61" },
+  { name:"冰球冰壶馆", id:"62" },
+  { name:"主媒体中心", id:"63" },
+  { name:"牙克石凤凰山滑雪场", id:"64" },
+  { name:"扎兰屯金龙山滑雪场", id:"65" },
+  { name:"喀喇沁美林谷滑雪场", id:"66" },
+  { name:"凉城岱海国际滑雪场", id:"67" },
+  { name:"多伦龙泽湖公园", id:"68" },
+  { name:"呼伦贝尔市体育场", id:"69" }
+];

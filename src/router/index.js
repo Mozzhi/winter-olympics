@@ -20,7 +20,11 @@ export default new Router({
     {
       path: '/index',
       name: 'Home',
-      component: Home
+      component: Home,
+      meta: {
+        keepAlive: true,
+        title: '中国人民共和国第十四届冬季运动会'
+      }
     },
     {
 			path: '/login',
@@ -32,7 +36,11 @@ export default new Router({
     {
 			path: '/EventServices/:list_id?',
 			name:'赛事服务',
-			component: (resolve) => require(['@/pages/EventServices.vue'], resolve)
+			component: (resolve) => require(['@/pages/EventServices.vue'], resolve),
+      meta: {
+        keepAlive: true,
+        title: '赛事服务'
+      }
     },
     {
 			path: '/cityline/:list_type/:keyword?',
@@ -52,12 +60,20 @@ export default new Router({
     {
 			path: '/charm_inner_mongolia',
 			name:'魅力内蒙古',
-			component: (resolve) => require(['@/pages/CharmInnerMongolia.vue'], resolve)
+			component: (resolve) => require(['@/pages/CharmInnerMongolia.vue'], resolve),
+      meta: {
+        keepAlive: true,
+          title: '魅力内蒙古'
+      }
     },
     {
 			path: '/hulun_buir',
 			name:'这里是呼伦贝尔',
-			component: (resolve) => require(['@/pages/NewHulunBuir.vue'], resolve)
+			component: (resolve) => require(['@/pages/NewHulunBuir.vue'], resolve),
+      meta: {
+        keepAlive: true,
+        title: '这里是呼伦贝尔'
+      }
     },
     {
 			path: '/blessing',
@@ -70,12 +86,16 @@ export default new Router({
 			component: (resolve) => require(['@/pages/Details.vue'], resolve)
     },
     {
-        path: '/preview',
-        component: (resolve) => require(['@/pages/preview.vue'], resolve)
+      path: '/preview',
+      component: (resolve) => require(['@/pages/preview.vue'], resolve)
 		},
     {
-        path: '/news_center',
-        component: (resolve) => require(['@/pages/NewsCenter.vue'], resolve)
+      path: '/news_center',
+      component: (resolve) => require(['@/pages/NewsCenter.vue'], resolve),
+      meta: {
+        keepAlive: true,
+        title: '新闻中心'
+      }
 		}
   ]
 })
