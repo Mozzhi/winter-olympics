@@ -37,10 +37,9 @@
 				let dto = {
 					'username': userName,
 					'verify': code,
-					'password': secret.encrypt(password),
+					'password': password,
 					'token_code':token_code
 				}
-			
 			this.$http.login(dto)
 	          .then((res) => {
 	            if(res.status == 1) {
@@ -54,6 +53,7 @@
 	            setToken(res.data.token);
               setIsAdmin(res.data.is_admin);
 				this.$Message.success(res.msg);
+				
 				this.$router.push('/index');
 
 	          })

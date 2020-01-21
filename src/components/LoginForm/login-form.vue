@@ -55,6 +55,7 @@
 </template>
 <script>
 	import SIdentify from './valid-code'
+	import { JSEncrypt } from 'jsencrypt'
 	export default {
 		name: 'LoginForm',
 		components: {
@@ -131,6 +132,15 @@
 			this.makeCode(this.identifyCodes, 4);
 		},
 		methods: {
+			// 加密
+			 encryptedData(data) {
+			 let publicKey ="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDT52xDLN1k/dyxIM0DU+7pOZvCU0u6gxFvjkhfYKejk88eGQ4ooPX79YSz97pdRDj1jkgf3QB0l9tXQwqiWygYKWrS62Uc7gRTLxKo2O1oUUHy/6xmqhhUq+XGIiYTvS0GhUr89j76TWMbRe5vGQ/n4XfCQ4BwVlNA/GmSTOVwHQIDAQAB";
+			  let encryptor = new JSEncrypt();
+			  // 设置公钥
+			  encryptor.setPublicKey(publicKey);
+			  // 加密数据
+			  return encryptor.encrypt(data);
+			 },
 			randomNum(min, max) {
 				return Math.floor(Math.random() * (max - min) + min);
 			},
@@ -160,11 +170,12 @@
 //							this.$Message.info('请输入正确的验证码');
 //							return
 //						}
+						let Password = this.encryptedData(this.form.password);
 						this.$emit('on-success-valid', {
 							userName: this.form.userName,
 							code: this.form.code,
 							token_code: this.Time,
-							password: this.form.password
+							password: Password
 						})
 					}
 				})
