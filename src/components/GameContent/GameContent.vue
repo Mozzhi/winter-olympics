@@ -1,6 +1,6 @@
 <template>
   <div class="game-tabs">
-    <div class="game-content" v-show="projectKey == 'date'">
+    <div class="game-content game-calendar" v-show="projectKey == 'date'">
       <div class="inline-box calendar-box">
         <div class="feb"><span>2020</span>年<span>2</span>月</div>
         <table class="table">
@@ -42,7 +42,7 @@
         </CarouselItem>
       </Carousel>
     </div> -->
-    <div class="game-content house project" v-show="projectKey == 'game-house'">
+    <div class="game-content house project venue" v-show="projectKey == 'game-house'">
       <Carousel
         v-model="houseIndex"
         :autoplay="true"

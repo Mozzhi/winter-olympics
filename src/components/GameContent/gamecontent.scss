@@ -6,13 +6,16 @@
 
 .game-content {
   width: 1140px;
-  min-height: 278px;
+  min-height: 160px;
   background: {
     repeat: no-repeat;
     size: 100% 100%;
     image: url("#{$img-base}game-border.png");
   };
   margin-top: 15px;
+  &.game-calendar {
+    min-height: 288px;
+  }
   .inline-box {
     vertical-align: top;
   }
@@ -162,6 +165,14 @@
       left: 0;
       height: 60px;
       line-height: 60px;
+    }
+  }
+  &.venue {
+    .game-house {
+      height: 210px;
+    }
+    .house-img {
+      height: 146px;
     }
   }
 }
