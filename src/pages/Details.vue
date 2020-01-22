@@ -15,7 +15,7 @@
 						<p>{{list.source}}</p>
 					</div>
 				</div>
-				<div class="de-main" :class="{'downDetail': groupId == 1}" v-html="list.details">
+				<div class="de-main" :class="{'downDetail': groupId == 1, 'small-size': list.is_size == '2'}" v-html="list.details">
 
 				</div>
 				<!--文件-->
@@ -145,10 +145,13 @@
 	}
 </script>
 <style type="text/css">
-		.de-main p span{
-		   display:inline-block!important;
-		   text-indent: 2em;
+		.de-main > p{
+      margin-bottom: 20px;
+      font-size: 24px!important;/*no*/
 		}
+    .small-size > p {
+      font-size: 16px!important;/*no*/
+    }
 </style>
 <style scoped lang="scss">
 	@import "../assets/commom";
@@ -191,7 +194,7 @@
 			margin-bottom: 90px;
 			text-align: justify;
 /*        	text-align-last: justify;*/
-			
+		
 		}
 		span{
 			display:inline-block!important;

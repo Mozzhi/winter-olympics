@@ -32,7 +32,6 @@
       }
 		},
     created() {
-		  console.log(this.floatNotice.length)
 		  if(!this.floatNotice.length){
         this.getFloatNotice();
       }

@@ -2,15 +2,21 @@ const survey_img = require('../../static/images/staticimg/1.png');
 const video_matter = require('../../static/images/staticimg/2.png');
 const word_matter = require('../../static/images/staticimg/3.png');
 const img_matter = require('../../static/images/staticimg/4.png');
+function returnImg(url) {
+  return require(`../../static/images/hulun/${url}.png`);
+}
+function returnCharmImg(url) {
+  return require(`../../static/images/charm/${url}.png`);
+}
 
 export const innerMongolia = [
   {
     name: '内蒙古概况',
     id: 47,
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnCharmImg('nei/1'),
+    video_matter: returnCharmImg('nei/视频素材'),
+    word_matter: returnCharmImg('nei/文字素材'),
+    img_matter: returnCharmImg('nei/图片素材'),
   },
   {
     name: '呼伦贝尔市',
@@ -23,90 +29,90 @@ export const innerMongolia = [
   {
     name: '呼和浩特市',
     id: 49,
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnCharmImg('hu/1'),
+    video_matter: returnCharmImg('hu/视频素材'),
+    word_matter: returnCharmImg('hu/文字素材'),
+    img_matter: returnCharmImg('hu/图片素材'),
   },
   {
     name: '乌兰察布市',
     id: 50,
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnCharmImg('4/1'),
+    video_matter: returnCharmImg('4/视频素材'),
+    word_matter: returnCharmImg('4/文字素材'),
+    img_matter: returnCharmImg('4/图片素材'),
   },
   {
     name: '赤峰市',
     id: 51,
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnCharmImg('5/1'),
+    video_matter: returnCharmImg('5/视频素材'),
+    word_matter: returnCharmImg('5/文字素材'),
+    img_matter: returnCharmImg('5/图片素材'),
   },
   {
     name: '锡林郭勒盟',
     id: 52,
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnCharmImg('6/1'),
+    video_matter: returnCharmImg('6/视频素材'),
+    word_matter: returnCharmImg('6/文字素材'),
+    img_matter: returnCharmImg('6/图片素材'),
   },
   {
     name: '兴安盟',
     id: 53,
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnCharmImg('7/1'),
+    video_matter: returnCharmImg('7/视频素材'),
+    word_matter: returnCharmImg('7/文字素材'),
+    img_matter: returnCharmImg('7/图片素材'),
   },
   {
     name: '包头市',
     id: 54,
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnCharmImg('8/1'),
+    video_matter: returnCharmImg('8/视频素材'),
+    word_matter: returnCharmImg('8/文字素材'),
+    img_matter: returnCharmImg('8/图片素材'),
   },
   {
     name: '鄂尔多斯市',
     id: 55,
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnCharmImg('9/1'),
+    video_matter: returnCharmImg('9/视频素材'),
+    word_matter: returnCharmImg('9/文字素材'),
+    img_matter: returnCharmImg('9/图片素材'),
   },
   {
     name: '通辽市',
     id: 56,
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnCharmImg('10/1'),
+    video_matter: returnCharmImg('10/视频素材'),
+    word_matter: returnCharmImg('10/文字素材'),
+    img_matter: returnCharmImg('10/图片素材'),
   },
   {
     name: '巴彦淖尔市',
     id: 57,
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnCharmImg('11/1'),
+    video_matter: returnCharmImg('11/视频素材'),
+    word_matter: returnCharmImg('11/文字素材'),
+    img_matter: returnCharmImg('11/图片素材'),
   },
   {
     name: '乌海市',
     id: 58,
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnCharmImg('12/1'),
+    video_matter: returnCharmImg('12/视频素材'),
+    word_matter: returnCharmImg('12/文字素材'),
+    img_matter: returnCharmImg('12/图片素材'),
   },
   {
     name: '阿拉善盟',
     id: 59,
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnCharmImg('13/1'),
+    video_matter: returnCharmImg('13/视频素材'),
+    word_matter: returnCharmImg('13/文字素材'),
+    img_matter: returnCharmImg('13/图片素材'),
   },
 ];
 
@@ -179,55 +185,55 @@ export let hulunData = [
     name: '"十四冬"冬韵篇',
     intro: '呼伦贝尔之俱备',
     id: '46',
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnImg('dong/1'),
+    video_matter: returnImg('dong/2'),
+    word_matter: returnImg('dong/3'),
+    img_matter: returnImg('dong/4'),
   },
   {
     name: '自然地理篇',
     intro: '呼伦贝尔之广袤',
     id: '39',
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnImg('zi/1'),
+    video_matter: returnImg('zi/2'),
+    word_matter: returnImg('zi/3'),
+    img_matter: returnImg('zi/4'),
   },
   {
     name: '历史追溯篇',
     intro: '呼伦贝尔之深邃',
     id: '40',
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnImg('history/1'),
+    video_matter: returnImg('history/2'),
+    word_matter: returnImg('history/3'),
+    img_matter: returnImg('history/4'),
   },
   {
     name: '政治经济篇',
     intro: '呼伦贝尔之发展',
     id: '41',
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnImg('enomi/1'),
+    video_matter: returnImg('enomi/2'),
+    word_matter: returnImg('enomi/3'),
+    img_matter: returnImg('enomi/4'),
   },
   {
     name: '旅游文化篇',
     intro: '呼伦贝尔之魅力',
     id: '42',
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnImg('tran/1'),
+    video_matter: returnImg('tran/2'),
+    word_matter: returnImg('tran/3'),
+    img_matter: returnImg('tran/4'),
   },
   {
     name: '未来展望篇',
     intro: '呼伦贝尔之进取',
     id: '43',
-    survey_img: survey_img,
-    video_matter: video_matter,
-    word_matter: word_matter,
-    img_matter: img_matter
+    survey_img: returnImg('feture/1'),
+    video_matter: returnImg('feture/2'),
+    word_matter: returnImg('feture/3'),
+    img_matter: returnImg('feture/4'),
   }
 ];
 
