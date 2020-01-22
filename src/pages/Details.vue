@@ -144,7 +144,12 @@
 		}
 	}
 </script>
-
+<style type="text/css">
+		.de-main p span{
+		   display:inline-block!important;
+		   text-indent: 2em;
+		}
+</style>
 <style scoped lang="scss">
 	@import "../assets/commom";
 	
@@ -152,7 +157,8 @@
 		padding: 0px 100px;
 		box-sizing:border-box;
 	}
-	
+
+
 	.details{
 		.de-head{
 			text-align: center;
@@ -185,6 +191,10 @@
 			margin-bottom: 90px;
 			text-align: justify;
 /*        	text-align-last: justify;*/
+			
+		}
+		span{
+			display:inline-block!important;
 		}
 		.de-botm{
 			border:1px solid rgba(163,201,245,1);
