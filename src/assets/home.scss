@@ -9,18 +9,18 @@
               url("#{$img-base1}hosis.png") right 2000px no-repeat;
   .competition {
     position: fixed;
-    width: 321px;
-    height: 287px;
+    width: 250px;
+    height: 223px;
     @include base-bg;
     background-image: url("#{$img-base1}mascot.png");
-    right: 64px;
+    right: 90px;
     bottom: 10px;
     z-index: 99;
     text-align: center;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
     color: $theme-color;
-    padding-top: 73px;
+    padding-top: 56px;
   }
   .game-tabs {
   

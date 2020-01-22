@@ -23,7 +23,7 @@ export default new Router({
       component: Home,
       meta: {
         keepAlive: true,
-        title: '中国人民共和国第十四届冬季运动会'
+        title: '第十四届全国冬季运动会网上新闻中心'
       }
     },
     {

@@ -40,7 +40,7 @@
                 <a :href="`/list_pages/Daily_News_venue/${item.id}?on=100&tw=3&th=${item.id}`" target="_blank">
 			       		<div class="e-bolck">
 							<div class="divImg">
-                <img :src="`../../static/images/events/c${index + 1}.png`" alt="">
+                <img :src="`https://info.dah.isport.nm.cn/d/upload/cg/${index + 1}.png`" alt="">
               </div>
 							<div class="title ellipsis">{{item.name}}</div>
 			       		</div>

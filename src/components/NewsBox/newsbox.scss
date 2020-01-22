@@ -40,20 +40,20 @@
     position: fixed;
     right: 240px;
     top: 257px;
-    width: 80px;
+    width: 65px;
     //overflow: hidden;
     border-radius: 4px;
     background: rgba(55,117,189,0.7);
     z-index: 999;
     .side-btn {
       border-bottom: 1px solid rgba(255,255,255,0.75);
-      height: 110px;
-      padding-top: 70px;
+      height: 90px;
+      padding-top: 57px;
       @include base-bg;
-      background-size: 38px;
+      background-size: 30px;
       background-image: url("#{$img-base}logout.png");
       background-position: center 23px;
-      font-size: 14px;
+      font-size: 12px;
       text-align: center;
       color: #fff;
       cursor: pointer;
