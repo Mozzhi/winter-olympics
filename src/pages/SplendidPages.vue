@@ -20,7 +20,7 @@
         <div class="splendids">
           <a class="inline-box splendid-list" v-for="item in mainList" :key="item.id" :href="`/details?id=${item.id}&on=${querys.on}&tw=${querys.tw}&th=${querys.th}`" target="_blank">
             <div class="show-range" :class="{'video-block': listType.indexOf('splendid_video') !== -1}"><img :src="item.thumb" alt=""></div>
-            <div class="list-introduce">{{item.details}}</div>
+            <div class="list-introduce">{{item.title}}</div>
           </a>
         </div>
         <Page class="m-pages" :total="totalPage" v-show="totalPage > 1" @on-change="changePage"></Page>
@@ -230,7 +230,7 @@
       }
       .list-introduce {
         transition: all 0.3s linear;
-        line-height: 28px;
+        line-height: 56px;
         padding: 0 18px;
         background: url("#{$img-base1}other/none.png") left center no-repeat,
       url("#{$img-base1}other/none.png") right center no-repeat;
@@ -241,6 +241,7 @@
         overflow: hidden;
         height: 56px;
         margin: 18px 0;
+        text-align: center;
       }
     }
   }

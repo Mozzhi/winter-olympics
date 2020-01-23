@@ -1,6 +1,6 @@
 <template>
 	<div class="list-item clearfix" :class="{'no-img': NoImg}">
-    <a :href="`/details?id=${list.id}&on=${querys.on}&tw=${querys.tw}&th=${querys.th}`" target="_blank">
+    <a :href="`/details?id=${listType == 'search' ? list.article_id : list.id}&on=${querys.on}&tw=${querys.tw}&th=${querys.th}`" target="_blank">
 	  <div class="inline-box list-text">
       <div class="list-title">{{list.title}}</div>
       <div class="list-detail">{{list.details}}</div>
@@ -22,8 +22,9 @@
         querys: {
           on: querys.on || 0,
           tw: querys.tw || '',
-          th: querys.th || ''
-        }
+          th: querys.th || '',
+        },
+        listType: this.$route.params.list_type
       }
 		},
     created() {

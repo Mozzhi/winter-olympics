@@ -11,7 +11,7 @@
       <div class="article-list">
         <list-item v-for="list in mainList" :key="list.id" :list="list" :no-img="list.thumb !== '' ? false : true"></list-item>
         <!--<div class="no-more"><span class="nothing">没有更多了</span></div>-->
-        <Page class="m-pages" v-if="headerKey == 'search'" v-show="totalPages > 1" :total="totalPages*10" @on-change="doSearch"></Page>
+        <Page class="m-pages" v-if="headerKey == 'search'" v-show="totalPages > 1" :total="totalPages - 0" @on-change="doSearch"></Page>
         <div class="no-data" v-if="!mainList.length"><img src="../../static/images/nodata.png" alt=""></div>
       </div>
     </div>

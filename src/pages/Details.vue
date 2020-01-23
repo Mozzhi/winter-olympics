@@ -146,11 +146,15 @@
 </script>
 <style type="text/css">
 		.de-main > p{
-      margin-bottom: 20px;
+      /*margin-bottom: 20px;*/
       font-size: 24px!important;/*no*/
 		}
     .small-size > p {
       font-size: 16px!important;/*no*/
+    }
+    .de-main img, .de-main video {
+      display: block;
+      margin: 0 auto;
     }
 </style>
 <style scoped lang="scss">

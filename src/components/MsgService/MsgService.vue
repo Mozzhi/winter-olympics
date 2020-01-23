@@ -12,7 +12,7 @@
           :trigger="setting.trigger"
           arrow="never">
           <CarouselItem v-for="item in banner"  :key="item.id">
-            <a :href="`/details?id=${item.id}`">
+            <a :href="item.url">
               <img :src="item.thumb" alt="">
               <div class="thumb-title">{{item.title}}</div>
             </a>

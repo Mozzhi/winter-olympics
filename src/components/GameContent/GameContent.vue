@@ -56,7 +56,7 @@
           <a :href="`/list_pages/Daily_News_venue/${house.id}?on=100&tw=3&th=${house.id}`"
              target="_blank" class="game-house"
              v-for="(house, index) in showList(item, venueList, 4)">
-            <div class="house-img"><img :src="`https://info.dah.isport.nm.cn/d/upload/cg/${index + 1}.png`" alt=""></div>
+            <div class="house-img"><img :src="`https://info.dah.isport.nm.cn/d/upload/cg/${4*(item-1) + index + 1}.png`" alt=""></div>
             <div class="house-name">{{house.name}}</div>
           </a>
         </CarouselItem>

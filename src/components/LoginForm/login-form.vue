@@ -108,7 +108,7 @@
 				identifyCodes: "1234567890",
 				identifyCode: "",
 				Time:Date.parse(new Date()),
-				UrL: 'http://info.dah.isport.nm.cn/index.php?g=api&m=checkcode&a=index&length=4&font_size=20&width=248&height=42&use_noise=1&use_curve=0&token_code=',
+				UrL: 'https://info.dah.isport.nm.cn/index.php?g=api&m=checkcode&a=index&length=4&font_size=20&width=248&height=42&use_noise=1&use_curve=0&token_code=',
 				form: {
 					code: '',
 					userName: '',
@@ -125,7 +125,7 @@
 			}
 		},
 		created() {
-			
+		
 		},
 		mounted() {
 			this.identifyCode = "";
@@ -204,17 +204,17 @@
 	.ivu-form-item-error .ivu-input:hover{
 		border-bottom: 1px solid  #ed4014;
 	}
-	input.ivu-input::-webkit-input-placeholder{ 
-	color:  #969696;; 
-	} 
-	input.ivu-input:-moz-placeholder{ 
-	color:  #969696;; 
-	} 
-	input.ivu-input::-moz-placeholder{ 
-	color:  #969696;; 
-	} 
-	input.ivu-input:-ms-input-placeholder{ 
-	color:  #969696;; 
+	input.ivu-input::-webkit-input-placeholder{
+	color:  #969696;;
+	}
+	input.ivu-input:-moz-placeholder{
+	color:  #969696;;
+	}
+	input.ivu-input::-moz-placeholder{
+	color:  #969696;;
+	}
+	input.ivu-input:-ms-input-placeholder{
+	color:  #969696;;
 	}
 
 </style>
