@@ -14,9 +14,10 @@ export const innerMongolia = [
     name: '内蒙古概况',
     id: 47,
     survey_img: returnCharmImg('nei/1'),
-    video_matter: returnCharmImg('nei/视频素材'),
-    word_matter: returnCharmImg('nei/文字素材'),
-    img_matter: returnCharmImg('nei/图片素材'),
+    video_matter: returnCharmImg('nei/旅游'),
+    word_matter: returnCharmImg('nei/美食'),
+    img_matter: returnCharmImg('nei/文化'),
+    dong: returnCharmImg('nei/冬韵'),
   },
   {
     name: '呼伦贝尔市',

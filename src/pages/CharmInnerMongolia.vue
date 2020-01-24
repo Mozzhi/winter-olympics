@@ -13,7 +13,7 @@
               <div class="mask-bar"><span class="mask-text">概况</span></div>
             </a>
             <div class="inline-box part-item">
-              <a :href="`/splendid_pages/mongo_splendid_img/${item.id}?class_id=25&on=0&tw=9&th=${item.id}`" class="matter bt" v-bg="item.survey_img">
+              <a :href="`/splendid_pages/mongo_splendid_img/${item.id}?class_id=25&on=0&tw=9&th=${item.id}`" class="matter bt" v-bg="item.dong">
                 <div class="mask-bar"><span class="mask-text">冬韵</span></div>
               </a>
               <a :href="`/splendid_pages/mongo_splendid_img/${item.id}?class_id=26&on=0&tw=9&th=${item.id}`" class="matter bt" v-bg="item.video_matter">
