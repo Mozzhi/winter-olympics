@@ -27,6 +27,12 @@
   }
   .venue {
     width: 754px;
+    img {
+      height: 90px;
+      width: auto;
+      margin: 0 auto;
+      display: block;
+    }
   }
   .splendid {
     @include base-bg;

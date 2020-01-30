@@ -16,7 +16,8 @@
       <div class="venue" slot="headCenter">
         <swiper :options="swiperOption" ref="mySwiper">
           <!-- slides -->
-          <swiper-slide v-for="i in 4"  :key="i"><img src="../../static/images/training-center.png" alt=""></swiper-slide>
+          <swiper-slide><img src="../../static/images/training-center.png" alt=""></swiper-slide>
+          <swiper-slide><img src="../../static/images/changg.png" alt=""></swiper-slide>
         </swiper>
       </div>
       <div class="daily" slot="blockContent">
