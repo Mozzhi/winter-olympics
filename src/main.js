@@ -5,12 +5,14 @@ import App from './App'
 import router from './router'
 import { Api } from './api'
 import store from './store'
+import { Toast } from 'wc-messagebox'
 import 'wc-messagebox/style.css'
 import 'swiper/dist/css/swiper.css'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import { getSessionData } from "./util";
 
+Vue.use(Toast);
 Vue.use(iView);
 // 进度条配置
 Vue.prototype.$Loading.config({

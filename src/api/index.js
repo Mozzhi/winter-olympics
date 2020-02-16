@@ -120,5 +120,12 @@ export class Api {
     return post('Pcapi/flbe')
   }
 
+  /**
+   * 密钥验证
+   * */
+  checkSecretKey (key) {
+    return post('Pcapi/secret_key',{ key: key })
+  }
+
 }
 
