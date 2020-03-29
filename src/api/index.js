@@ -127,5 +127,12 @@ export class Api {
     return post('Pcapi/secret_key',{ key: key })
   }
 
+  /**
+   * 日期数据
+   * */
+  getDateData () {
+    return post('Pcapi/data_date')
+  }
+
 }
 

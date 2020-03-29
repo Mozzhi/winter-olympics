@@ -9,7 +9,7 @@
         <tabs :tab-arr="gameTab" :current-key="currentKey" @switchoverKey="changeKey" class="home-page"></tabs>
       </div>
       <div class="main-content" slot="blockContent">
-        <game-content :project-key="currentKey" :games-data="indexData" :day="dateChoose"></game-content>
+        <game-content :project-key="currentKey" :games-data="indexData" :day="interviewDateChoose"></game-content>
       </div>
     </block-item>
     <block-item block-name="每日新闻" link="/list_pages/Daily_News">
@@ -108,15 +108,16 @@
       </swiper>
       <img src="../../static/images/Hulun.png" class="hunlun-buir-text" />
     </a>
+    {{app.interview.length}}
     <block-item block-name="城市采访线" more-class="none-bg" link="/cityline/city_visiting?on=0&tw=12">
       <div class="interview-date-bar" slot="headCenter">
-        <span class="inline-box contr-btn" @click="changeDate(-1)"></span>
+        <span class="inline-box contr-btn" @click="changeDate(-1)" v-show="app.interview.length > 5"></span>
         <div class="inline-box date-lists" ref="dateScroll">
-          <div class="content" :style="{left: -dateTo*100/192 + 'rem'}">
-            <div class="dates" v-for="i in 29" :class="{'active': i == dateChoose}" @click="chooseDate(i)">2月{{i}}日</div>
+          <div class="content" :style="{left: -dateTo*100/192 + 'rem', width: interviewLength*100/192 + 'rem'}">
+            <div class="dates" v-for="(date, index) in app.interview" :date="`2020-${date.month}-${date.date}`" :class="{'active': `2020-${addZero(date.month)}-${addZero(date.date)}` == dateChoose}" @click="chooseDate(`2020-${addZero(date.month)}-${addZero(date.date)}`, index)">{{date.month}}月{{date.date}}日</div>
           </div>
         </div>
-        <span class="inline-box contr-btn next-btn" @click="changeDate(1)"></span>
+        <span class="inline-box contr-btn next-btn" @click="changeDate(1)" v-show="app.interview.length > 5"></span>
       </div>
       <div class="city-view" slot="blockContent">
         <city-interview :city-data="City_Visiting_Line"></city-interview>
@@ -137,6 +138,7 @@
   import NewsBox from '../components/NewsBox/NewsBox';
   import { swiper, swiperSlide } from 'vue-awesome-swiper';
   import { setDay } from "../libs/auth";
+  import { dateInitLeft, addZero } from "../util";
 
   let jalousie = [
     {content: [], index: '一', title: "媒体通告", id: '16'},
@@ -154,6 +156,7 @@
 let today = new Date().getDate();
 	export default {
 		name: 'Home',
+    inject: ['app'],
 		data() {
 			return {
         swiperOption:{
@@ -178,6 +181,7 @@ let today = new Date().getDate();
         imgIndex: 0,
         vadioIndex: 0,
         dateChoose:today,
+        interviewDateChoose: today,
         jalousieList: jalousie,
         jalousieIndex: 0,
         gameTab: gameTab,
@@ -194,7 +198,8 @@ let today = new Date().getDate();
         City_Visiting_Line: [],
         currentKey: 'date',
         dateTo: today - 1,
-        timer: null
+        timer: null,
+        interviewLength: this.app.interview.length
       }
 		},
     components: {
@@ -222,9 +227,10 @@ let today = new Date().getDate();
 		  this.getIndexData();
     },
     mounted() {
-		  
+		  console.log(this.app.interview)
     },
     methods: {
+      addZero,
 		  getIndexData () {
         const loading = this.$Message.loading({
           content: '正在加载中...',
@@ -254,6 +260,7 @@ let today = new Date().getDate();
           })
       },
       setData(data) {
+		    let cDateTo = dateInitLeft(this.app.interview, data.day);
         this.indexData = data;
         this.jalousieList[0]['content'] = data.Match_status;
         this.jalousieList[1]['content'] = data.Instant_quotation;
@@ -268,9 +275,10 @@ let today = new Date().getDate();
         this.Wonderful_video = data.Wonderful_video;
         this.City_Visiting_Line = data.City_Visiting_Line;
         this.Competition = data.Competition;
-        this.dateChoose=data.day;
-        this.dateTo=data.day-1;
-        setDay(data.day - 1)
+        this.dateChoose = data.day;
+        this.interviewDateChoose = data.day;
+        this.dateTo = cDateTo > (this.interviewLength - 5) ? (this.interviewLength - 5) : cDateTo;
+        setDay(data.day)
       },
       showList (i, data){
         let start = 3*i - 3,
@@ -284,13 +292,14 @@ let today = new Date().getDate();
 		    if(dir < 0 && this.dateTo > 0) {
 		      this.dateTo -= 5;
           this.dateTo = this.dateTo < 0 ? 0  : this.dateTo;
-        }else if(dir > 0 && this.dateTo < 24){
+        }else if(dir > 0 && this.dateTo < this.interviewLength - 5){
 		      this.dateTo += 5;
-		      this.dateTo = this.dateTo > 23 ? 24  : this.dateTo;
+		      this.dateTo = this.dateTo > (this.interviewLength - 6) ? (this.interviewLength - 5)  : this.dateTo;
         }
+		    console.log(dir, this.dateTo)
       },
-      chooseDate(date) {
-		    this.dateTo = date > 24 ? 24 : ((date - 1)  < 2 ? 0 : date - 3);
+      chooseDate(date, index) {
+		    this.dateTo = index > (this.interviewLength - 5) ? (this.interviewLength - 5) : (index  < 3 ? 0 : index - 2);
 		    this.dateChoose = date;
 		    this.getCityLineList(date);
       },

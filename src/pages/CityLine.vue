@@ -7,7 +7,7 @@
       <breadcrumb v-if="headerKey == 'article_list'"> <a href="#"> > 文字素材</a></breadcrumb>
       <breadcrumb v-else ><span v-if="headerKey == 'search'">"{{keyword}}"找到相关稿件{{totalPages}}篇</span></breadcrumb>
       <subpage-title block-name="城市采访线" v-if="headerKey == 'city_visiting'"></subpage-title>
-      <across-calendar @getDate="dateChange" v-if="headerKey == 'city_visiting'"></across-calendar>
+      <across-calendar @getDate="dateChange" v-if="headerKey == 'city_visiting'" date-type="interview"></across-calendar>
       <div class="article-list">
         <list-item v-for="list in mainList" :key="list.id" :list="list" :no-img="list.thumb !== '' ? false : true"></list-item>
         <!--<div class="no-more"><span class="nothing">没有更多了</span></div>-->
@@ -92,7 +92,7 @@
           })
       },
       dateChange(date) {
-        this.schedule_at = date + 1;
+        this.schedule_at = date;
         this.getArticle();
       },
       doSearch(p = 1) {

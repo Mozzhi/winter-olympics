@@ -9,7 +9,7 @@
 	     	<div class="tabs-box">
           <tabs class="list-tab" :tab-arr="tabs" :current-key="column_id" @switchoverKey="changeId"></tabs>
         </div>
-         <across-calendar v-show="column_id == 2" @getDate="changeDate"></across-calendar>
+         <across-calendar v-show="column_id == 2" @getDate="changeDate" date-type="competition"></across-calendar>
 	     	<!--比赛项目-->
 	     	<div class="game-project" v-if="column_id == 4">
             <Row>

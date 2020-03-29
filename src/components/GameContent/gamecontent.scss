@@ -22,6 +22,85 @@
   .calendar-box {
     width: 550px;
     text-align: center;
+    position: relative;
+    .my-calendar {
+      /deep/ .ivu-select-dropdown {
+        left: 50%!important;
+        top: 0!important;
+        background-color: transparent;
+        box-shadow: none;
+        transform: translateX(-50%);
+        .ivu-date-picker-header {
+          border-bottom: none;
+          width: 250px;
+          margin: 25px auto 10px;
+          background: url("#{$img-base}563left.png") left center no-repeat,
+                      url("#{$img-base}563right.png") right center no-repeat;
+          background-size: 26px 30px;
+          letter-spacing: 4px;
+          .ivu-date-picker-prev-btn-arrow, .ivu-date-picker-next-btn-arrow {
+            display: none;
+          }
+        }
+        .ivu-date-picker-prev-btn-arrow-double, .ivu-date-picker-next-btn-arrow-double {
+          i {
+            margin-left: 0;
+            margin-right: 0;
+            &:before, &:after {
+              display: none;
+            }
+          }
+        }
+        .ivu-date-picker-header-label {
+          font-size: 24px;
+          color: $theme-color;
+          font-weight: bold;
+        }
+        .ivu-date-picker-cells {
+          width: 448px;
+          span {
+            width: 64px;
+            em {
+              width: 30px;
+              height: 30px;
+              line-height: 30px;
+              border-radius: 50%;
+            }
+            &.ivu-date-picker-cells-cell {
+              &:hover {
+                em {
+                  background: $theme-color;
+                  color: #fff;
+                }
+              }
+            }
+            &.ivu-date-picker-cells-focused{
+              em {
+                background: $theme-color;
+                color: #fff;
+              }
+            }
+            &.ivu-date-picker-cells-cell-today {
+              em:after {
+                display: none;
+              }
+            }
+            &.ivu-date-picker-cells-cell-next-month, &.ivu-date-picker-cells-cell-prev-month {
+              em {
+                display: none;
+              }
+            }
+          }
+          .ivu-date-picker-cells-header {
+            span {
+              margin: 0;
+              color: #336EA8;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
     .feb {
       width: 250px;
       font-size: 16px;

@@ -2,8 +2,18 @@
   <div class="game-tabs">
     <div class="game-content game-calendar" v-show="projectKey == 'date'">
       <div class="inline-box calendar-box">
-        <div class="feb"><span>2020</span>年<span>2</span>月</div>
-        <table class="table">
+        <Date-picker
+          :open="open"
+          :value="choosed"
+          class="my-calendar"
+          type="date"
+          @on-change="chooseDate">
+          <a href="javascript:void(0)">
+          </a>
+        </Date-picker>
+        <!--<div class="feb"><span>2020</span>年<span>2</span>月</div>-->
+        <!--<Calendar></Calendar>-->
+        <!--<table class="table">
           <thead>
           <tr>
             <th v-for="week in weekday">{{week}}</th>
@@ -14,7 +24,7 @@
               <td v-for="(date, index) in febArr" v-if="index <= 7*i && index > 7*(i-1)" :class="{'active': choosed == date}" @click="chooseDate(date)"><div class="inner-date" v-if="date">{{date}}</div></td>
             </tr>
           </tbody>
-        </table>
+        </table> -->
       </div>
       <div class="inline-box game-lists">
         <a :href="`/details?id=${item.id}&on=0&tw=2`" target="_blank" v-for="item in Competition"  v-if="Competition"><div class="game-list clearfix">
@@ -84,6 +94,7 @@
 </template>
 <script>
   import { gamesProject, venueList } from "../../util/static_data";
+  import Calendar from '../Calendar/Calendar.vue'
 
   let arr = [,,,,,,];
   for(let i = 1; i < 30; i++) {
@@ -103,6 +114,9 @@
         required: true
       }
     },
+    components: {
+      Calendar
+    },
     data() {
       return {
         febArr: arr,
@@ -121,7 +135,8 @@
         },
         gamesProject: gamesProject,
         Competition: [],
-        venueList: venueList
+        venueList: venueList,
+        open: true
       };
     },
     computed: {
@@ -173,7 +188,10 @@
           this.choosed = date;
           this.getList(date);
         }
-      }
+      },
+      handleChange (date) {
+        this.choosed = date;
+      },
     }
   };
 </script>

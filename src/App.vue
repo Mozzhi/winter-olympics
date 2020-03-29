@@ -10,6 +10,29 @@
 <script>
 export default {
   name: 'App',
+  provide () {
+    return {
+      app: this
+    }
+  },
+  data () {
+    return {
+      competition: [],
+      interview: []
+    }
+  },
+  methods: {
+    getDateData () {
+      this.$http.getDateData()
+        .then((res) => {
+          this.competition = res.data.competition;
+          this.interview = res.data.interview;
+        })
+    }
+  },
+  created () {
+    this.getDateData();
+  }
 }
 </script>
 <style>

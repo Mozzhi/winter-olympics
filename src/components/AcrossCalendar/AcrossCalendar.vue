@@ -1,54 +1,56 @@
 <template>
 	<div class="across-calendar">
-	  <span class="date-btn across-contr-btn" @click="calendarMove()" v-show="left > 0"></span>
+	  <span class="date-btn across-contr-btn" @click="calendarMove()" v-if="app[dateType].length > 10" v-show="left > 0"></span>
     <div class="date-out-box">
-      <div class="date-box" :style="{'left': -(78/192) * left + 'rem'}">
-        <div class="date-btn" v-for="(date, index) in Feb" @click="changeDate(index)" >
+      <div class="date-box" :style="{'left': -(78/192) * left + 'rem', width: app[dateType].length*100/192 + 'rem'}">
+        <div class="date-btn" v-for="(date, index) in app[dateType]" @click="changeDate(`${date.year ? date.year : 2020}-${addZero(date.month)}-${addZero(date.date)}`, index)" >
           <div class="date-btn-inner" :class="{'active': index == current}">
-          <div class="date-text">{{date}}</div>
-          <span class="febb"></span>
+          <div class="date-text">{{date.date}}</div>
+          <!--<span class="febb"></span>-->
+            <span>{{date.year ? date.year : 2020}} {{date.month}}月</span>
           </div>
         </div>
       </div>
     </div>
-	  <span class="date-btn across-contr-btn next-btn" @click="calendarMove(1)" v-show="left < 19"></span>
+	  <span class="date-btn across-contr-btn next-btn" @click="calendarMove(1)" v-show="left < dateArrLenth - 10" v-if="app[dateType].length > 10"></span>
 	</div>
 </template>
 <script>
   import { getDay } from "../../libs/auth";
+  import { dateInitLeft, addZero } from "../../util";
 
-  let Feb = [];
-  for(let i = 1; i < 30; i++){
-    let fdate = i < 10 ? '0' + i : i;
-    Feb.push(fdate);
-  }
-  let today = new Date().getDate();
-  let moveLeft = getDay() > 18 ? 18 : getDay() || (today -1);
 	export default {
 		name: 'AcrossCalendar',
+    inject: ['app'],
+    props: ['dateType'],
 		data() {
 			return {
-			  Feb: Feb,
-        left: moveLeft,
+        left: 0,
         clientW: document.documentElement.clientWidth,
-        current: getDay() || today - 1,
-        timer: null
+        current: dateInitLeft(this.app[this.dateType], getDay()) || 0,
+        timer: null,
+        dateArrLenth: this.app[this.dateType].length,
+        leftNum: dateInitLeft(this.app[this.dateType], getDay())
       }
 		},
     methods: {
+      addZero,
 		  calendarMove(direction) {
 		    if(direction) {
 		      this.left += 5;
-          this.left = this.left > 18 ? 18  : this.left;
+          this.left = this.left > this.dateArrLenth - 10 ? this.dateArrLenth - 10  : this.left;
         }else {
 		      this.left -= 5;
           this.left = this.left < 0 ? 0  : this.left;
         }
       },
-      changeDate(index) {
+      changeDate(date, index) {
           this.current = index;
-          this.$emit('getDate', index);
+          this.$emit('getDate', date);
       }
+    },
+    mounted () {
+		  this.left = this.leftNum > this.dateArrLenth - 10 ? this.dateArrLenth - 10 : this.leftNum;
     }
 	}
 </script>
@@ -120,6 +122,7 @@
     .date-text {
       font-size: 38px;
       font-weight: bold;
+      height: 47px;
     }
     .febb {
       display: block;
