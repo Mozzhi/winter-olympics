@@ -11,6 +11,7 @@ import 'swiper/dist/css/swiper.css'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import { getSessionData } from "./util";
+import VueRouter from 'vue-router';
 
 Vue.use(Toast);
 Vue.use(iView);
@@ -20,42 +21,43 @@ Vue.prototype.$Loading.config({
 	failedColor: '#f0ad4e',
 	height: 3
 });
+
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) { 
+	return routerPush.call(this, location).catch(error => error)
+}
+
 router.beforeEach((to, from, next) => {
 	iView.LoadingBar.start();
-	//  console.log(getToken())
-  if(to.meta.title) {
-    document.title = to.meta.title;
-  }
+	if(to.meta.title) {
+		document.title = to.meta.title;
+	}
 	next();
-	//  if(getToken()==undefined || getToken()==""){
-	//  	next('/login');
-	//  }else{
-	//  	next();
-	//  }
+
 
 });
-//
+
 router.afterEach((to, from, next) => {
 	iView.LoadingBar.finish();
 	window.scrollTo(0, 0);
 });
 // 动态计算根字号
 function setRem() {
-  let rem = document.documentElement.clientWidth / 10;
-  rem = rem > 192 ? 192 : (rem < 120 ? 120 : rem);
-  document.documentElement.style.fontSize = rem + "px";
+	let rem = document.documentElement.clientWidth / 10;
+	rem = rem > 192 ? 192 : (rem < 120 ? 120 : rem);
+	document.documentElement.style.fontSize = rem + "px";
 }
 document.body.style.fontSize = "14px";
 setRem();
-window.addEventListener("resize", function () {
-  setRem();
+window.addEventListener("resize", function() {
+	setRem();
 });
 
 //自定义背景指令
 Vue.directive('bg', {
-  bind: function (el, binding, vnode) {
-    el.style.backgroundImage = `url(${binding.value})`;
-  }
+	bind: function(el, binding, vnode) {
+		el.style.backgroundImage = `url(${binding.value})`;
+	}
 });
 
 //初始化悬浮窗数据
@@ -68,8 +70,8 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  store,
-  render: h => h(App)
+	el: '#app',
+	router,
+	store,
+	render: h => h(App)
 })

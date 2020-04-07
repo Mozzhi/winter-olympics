@@ -18,8 +18,9 @@
 	</div>
 </template>
 <script>
-  import { getToken, getIsAdmin } from "../../libs/auth";
+  import { getToken, getIsAdmin, removeToken, removeIsAdmin } from "../../libs/auth";
   import { saveData, getSessionData } from "../../util";
+  
   import md5 from 'js-md5';
 
   export default {
@@ -62,6 +63,8 @@
           })
       },
       logout () {
+      	removeToken()
+      	removeIsAdmin()
         this.$http.logout()
           .then(res => {
             this.$Message.success('退出成功！');

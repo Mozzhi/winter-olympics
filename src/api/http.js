@@ -20,8 +20,13 @@ service.interceptors.request.use(set => {
   if(set.method  === 'post' || set.method === 'put'){
     set.data = qs.stringify(set.data);
   }
+    	 //console.log('截获:'+getToken())
+ 
 	if (getToken() != undefined) {
 	  set.headers['token'] = getToken();
+	}else{
+	
+		Routers.push('/login')
 	}
   return set;
 },err => {
@@ -34,7 +39,7 @@ service.interceptors.response.use(
   	//50登录过期
 //	 console.log('截获:'+response.data.status)
     if (response.data.status == 50) {
-    	console.log(Routers)
+    	//console.log(Routers)
        Routers.push('/login')
     }
 
