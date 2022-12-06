@@ -18,7 +18,7 @@
     "js-md5": "^0.7.3",
     "jsencrypt": "^3.0.0-rc.1",
     "lib-flexible": "^0.3.2",
-    "qs": "^6.9.1",
+    "qs": "^6.9.7",
     "view-design": "^4.0.2",
     "vue": "^2.5.2",
     "vue-awesome-swiper": "^3.1.3",
